@@ -1,0 +1,58 @@
+<?page title="UniCloud List" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+	java.util.Collection uniclouds =  com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
+</zscript>
+<!-- <style src="/widgets/grid/master_detail/style.css"/> -->
+<style src="/css/parallel.css"/>
+<grid sclass="unicloud-table">
+	<columns>
+		<column width="25px"/>
+		<column width="100px" label="UniCloud" sort="auto"/>
+		<column label="IP Address"/>
+		<column label="Last Seen"/>
+		<column label="CWS (Mesh)"/>
+		<column label="CWS (GW)"/>
+	</columns>
+	<rows>
+		<row forEach="${uniclouds}" style="background-color: ${each.statusColor};" popup="detail" >
+			<detail>
+				<hlayout>
+					<image sclass="unicloud-table" src="images/device_icon_medium.png"/>
+					<vlayout>
+						<label value="${each.name}"  sclass="heavy-italic"/>
+						<include src="unicloud_dashboard.zul"/>
+					</vlayout>
+				</hlayout>
+			</detail>
+			<label sclass="unicloud-table" value="${each.name}"/>
+			<label sclass="unicloud-table" value="${each.ip}"/>
+			<label sclass="unicloud-table" value="${each.lastSeenMinutes} minutes ago"/>
+			<label sclass="unicloud-table" style="color: green" value="${each.meshCount}"/>
+			<label sclass="unicloud-table" style="color: green" value="${each.gwCount}"/>
+		</row>
+<!--
+		<row tooltip="detail2">
+			<detail>
+				<hlayout>
+					<image sclass="myimg" src="images/device_icon_medium.png"/>
+					<vlayout>
+						<label value="${unicloud2.name}" sclass="heavy-italic"/>
+						<include src="alarm_summary.zul"/>
+					</vlayout>
+				</hlayout>
+			</detail>
+			<label value="${unicloud2.name}"/>
+			<label value="${unicloud2.ip}"/>
+					<label style="color: ${unicloud2.statusColor}" value="${unicloud2.lastSeenMinutes} minutes ago"/>
+					<label style="color: green" value="8"/>
+					<label style="color: red" value="1"/>
+				</row>		
+		-->
+			</rows>
+		</grid>
+		<popup id="detail">
+			<include src="unicloud_dashboard.zul"/>
+		</popup>
+
+		</zk>

@@ -1,0 +1,8 @@
+<zk>
+   <groupbox id="overview_alarms" apply="com.parallelwireless.zkui.AlarmSummaryChartComposer">
+      <hbox hflex="true">
+	     <charts type="pie" id="summary" title="Severity" height="240" width="360"/>
+         <charts type="pie" id="severities" title="Status" height="240" width="360"/>
+      </hbox>
+   </groupbox>
+</zk>

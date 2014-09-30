@@ -1,0 +1,27 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="/widgets/grid/heirarchy/style.css"/>
+<div apply="com.parallelwireless.zkui.UnicloudHeirarchyController">
+	<grid id="hGrid" model="${$composer.unicloud}">
+	   <columns>
+	   	<column width="40px"/>
+	   	<column label="UniCloud"/>
+	   	<column label="Critical"/>
+	   	<column label="Major" />
+	   	<column label="Minor" />
+	   </columns>
+	   <template name="model">
+	   	<row>
+	   		<custom-attributes cws="${each.name}" alarm="${each}"/>
+	   		<detail open="false" fulfill="onOpen">
+	   			<include src="cws.zul" alarm="${alarm}" cws="${cws}" />
+	   		</detail>
+	   		<label value="${each.name}"/>
+	   		<label value="${each.critical}" style="color:red; font-weight: bold;"/>
+	   		<label value="${each.major}" style="color:#ffa500;"/>
+	   		<label value="${each.minor}"  style="color: black;"/>
+	   	</row>
+	   </template>
+	</grid>
+</div>
+</zk>

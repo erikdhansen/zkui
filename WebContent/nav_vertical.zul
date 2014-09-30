@@ -1,0 +1,42 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+	int alarmCount = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarms().getUnackedCount();
+</zscript>
+<navbar orient="vertical" width="200px">
+	<navitem label="Dashboard" iconSclass="z-icon-home"/>
+	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell">
+		<navitem label="Alarms"/>
+		<navitem label="Event History"/>
+		<navitem label="Live Event Log"/>
+	</nav>
+	<navitem label="Network Map" iconSclass="z-icon-globe"/>
+	<nav label="Devices" iconSclass="z-icon-sitemap">
+		<navitem label="Manage"/>
+		<navitem label="Groups"/>
+		<navitem label="Upgrade"/>
+		<navitem label="Backup"/>
+		<navitem label="Files"/>
+	</nav>
+	<nav label="Statistics" iconSclass="z-icon-tachometer">
+		<navitem label="Graph Statistics"/>
+		<navitem label="Configure"/>
+		<navitem label="Threshold Rules"/>
+	</nav>
+	<navitem label="Reports" iconSclass="z-icon-align-left"/>
+	<navitem label="Configuration" iconSclass="z-icon-wrench"/>
+	<nav label="Administration" iconSclass="z-icon-cogs">
+		<navitem label="Alarm System"/>
+		<navitem label="Web Resources"/>
+		<nav label="security" iconSclass="z-icon-lock">
+			<navitem label="Users"/>
+			<navitem label="Server"/>
+			<navitem label="Sessions"/>
+			<navitem label="Audit Log"/>
+			<navitem label="Views"/>
+		</nav>
+		<navitem label="System Backup"/>
+	</nav>
+	<navitem label="Help" iconSclass="z-icon-home"/>
+</navbar>
+</zk>

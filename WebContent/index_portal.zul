@@ -1,0 +1,88 @@
+<?page title="Auto Generated index.zul"?>
+<window title="Unimanage ZK Dashboard" border="normal" width="100%">
+<image src="images/logo_median.png" style="padding: 10px;"/>
+<tabbox width="100%" sclass="nav_tabs">
+	<tabs id="navtabs">
+		<tab label="Dashboard" onSelect="updateCategory(self.label)"/>
+		<tab label="Network" onSelect="updateCategory(self.label)"/>
+		<tab>
+			<caption>
+				<label value="Alarms"/>
+				<label value="22" sclass="badge" style="margin: 2px"/>
+			</caption>
+		</tab>
+		<tab label="Statistics" onSelect="updateCategory(self.label)"/>
+		<tab label="Reports" onSelect="updateCategory(self.label)"/>
+		<tab label="Configuration" onSelect="updateCategory(self.label)"/>
+		<tab label="Inventory" onSelect="updateCategory(self.label)"/>
+		<tab label="Administration" onSelect="updateCategory(self.label)"/>
+	</tabs>
+	<toolbar sclass="nav_toolbar">
+		<toolbarbutton style="color: #3a92c8;" image="images/export_24px.png"/>
+	</toolbar>
+	<tabpanels>
+		<tabpanel id="dashboard_tab">
+<!-- 		   <toolbar>
+		      <toolbarbutton label="Overview" onClick="updateDashCaption(self.label)"/>
+		      <toolbarbutton label="Unicloud 1" onClick="updateDashCaption(self.label)"/>
+		      <toolbarbutton label="Unicloud 2" onClick="updateDashCaption(self.label)"/>
+		   </toolbar> -->
+		   <div apply="com.parallelwireless.zkui.DashboardPortalLayoutController">
+			<portallayout id="portalLayout" maximizedMode="whole">
+				<portalchildren style="padding: 5px" width="66%">
+					<panel id="alarm_summary" title="Alarm Summary" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px; overflow: auto">
+						<panelchildren>
+							<include src="alarm_summary.zul"/>
+						</panelchildren>
+					</panel>
+					<panel id="unicloud_summary" title="Alarm Summary Detail" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px">
+						<panelchildren>
+							<include src="unicloud_all.zul"/>
+						</panelchildren>
+					</panel>
+					<panel id="uniclouds_summary" title="Uniclouds" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px">
+						<panelchildren>
+							<include src="unicloud1_overview.zul"/>
+							<include src="unicloud2_overview.zul"/>
+						</panelchildren>
+					</panel>					
+				</portalchildren>
+			</portallayout>		   
+		   </div>
+		</tabpanel>
+		<tabpanel id="network_tab">
+			<vbox>
+			   <include src="gmaps.zul"/>
+			</vbox>
+		</tabpanel>
+		<tabpanel id="alarms_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+		<tabpanel id="statistics_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+		<tabpanel id="reports_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+		<tabpanel id="configuration_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+		<tabpanel id="inventory_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+		<tabpanel id="administration_tab">
+		   <toolbar hflex="true"/>
+		</tabpanel>
+	</tabpanels>
+</tabbox>
+<separator height="30px"/>
+<zscript><![CDATA[
+    void updateCategory(String category) {
+    	//current_category.setValue(category);
+    }
+    void updateDashCaption(String caption) {
+    	db_content_title.setLabel(caption);
+    }
+]]></zscript>
+
+</window>

@@ -1,0 +1,25 @@
+<?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+	List summary = com.parallelwireless.zkui.models.UnimanageDataUtil.getNetworkSummary().getSummaryRows();
+</zscript>
+<div apply="com.parallelwireless.zkui.NetworkStatusController">
+<hbox>
+   <grid id="network_status_table" sclass="unicloud-table">
+   	<columns>
+   		<column hflex="5">Device Type</column>
+   		<column hflex="3">Up</column>
+		<column hflex="3">Down</column>
+   	</columns>
+   	<rows>
+   		<row forEach="${summary}">
+   			<label sclass="unicloud-table" value="${each.name}"/>
+   			<label sclass="unicloud-table" value="${each.up}"/>
+   			<label sclass="unicloud-table" style="color: #ff0000" value="${each.down}"/>
+   		</row>
+   	</rows>
+   </grid>
+   <charts id="chart" type="pie" title="Network Status by Device" subtitle="Click to drilldown" width="340" height="260" />
+</hbox>
+</div>
+</zk>

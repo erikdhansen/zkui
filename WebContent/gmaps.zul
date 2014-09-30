@@ -1,0 +1,11 @@
+<?page title="Network" contentType="text/html;charset=UTF-8"?>
+<zk>
+   <groupbox id="network_content_group" width="100%" apply="com.parallelwireless.zkui.GoogleMapsController">
+      <caption id="network_content_title" label="Network"/>
+      <script type="text/javascript" content="zk.googleAPIkey='ABQIAAAAmGxmYR57XDAbAumS9tV5fxQXyylOlR69a1vFTcUcpV6DXdesOBSMEHfkewcSzwEwBT7UzVx8ep8vjA'"/>
+      <gmaps lat="-71.454856" lng="42.708549" version="3.9" id="gmaps" showSmallCtrl="true" height="100%" width="100%">
+         <ginfo id="info" open="true" content="Test Content"/>      
+         <gmarker id="marker" lat="-71.454856" lng="42.708549" content="UC1"/>
+      </gmaps>
+   </groupbox>
+</zk>

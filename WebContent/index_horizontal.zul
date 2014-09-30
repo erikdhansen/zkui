@@ -1,0 +1,56 @@
+<?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+	@font-face 
+	{
+		font-family: EuroStyleLT;
+		src: url("font/EuroStyle-LT-Std.otf")
+	}
+	@font-face
+	{
+		font-family: ErasBT;
+		src: url("font/ErasBT.otf")
+	}
+	.font_style
+	{
+	font-family: "EuroStyleLT","ErasBT",Arial,Helvetica,sans-serif
+	}
+</style>
+<window style="margin-top: 10px" border="normal">
+<caption label="UniManage 4.0" style="font-family: ErasBT"/>
+<div sclass="header">
+<image src="images/logo_median.png" style="margin-top: 5px; margin-bottom: 5px"/>
+</div>
+<div sclass="search"></div>
+<div sclass="user-nav">
+<include src="nav_horizontal.zul"/>
+</div>
+<div sclass="content-header" ></div>
+<div sclass="content" style="margin-top: 40px; padding: 10px">
+		   <div apply="com.parallelwireless.zkui.DashboardPortalLayoutController">
+			<portallayout id="portalLayout" maximizedMode="whole">
+				<portalchildren style="padding: 5px" width="66%">
+					<panel id="alarm_summary" title="Alarm Summary" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px; overflow: auto">
+						<panelchildren>
+							<include src="alarm_summary.zul"/>
+						</panelchildren>
+					</panel>
+					<panel id="unicloud_summary" title="Alarm Summary Detail" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px">
+						<panelchildren>
+							<include src="unicloud_all.zul"/>
+						</panelchildren>
+					</panel>
+					<panel id="uniclouds_summary" title="Uniclouds" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px">
+						<panelchildren>
+							<include src="unicloud1_overview.zul"/>
+							<include src="unicloud2_overview.zul"/>
+						</panelchildren>
+					</panel>					
+				</portalchildren>
+			</portallayout>		   
+		   </div></div>
+
+	<div sclass="breadcrumb">
+	</div>
+	</window>
+</zk>

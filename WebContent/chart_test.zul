@@ -1,0 +1,6 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="ZK Charts Test" border="normal" apply="com.parallelwireless.zkui.ChartTestComposer">
+	<charts id="chart" type="pie" title="Browser Market Shares at Stankyfish.com, 2003"/>
+</window>
+</zk>

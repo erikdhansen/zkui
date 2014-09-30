@@ -1,0 +1,20 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<grid model="${arg.cws}" sclass="inner-grid">
+	<columns>
+		<column width="40px" />
+		<column label="CWS" />
+		<column label="Critical"/>
+		<column label="Major" />
+		<column label="Minor" />
+	</columns>
+	<template name="model">
+		<row value="${forEachStatus.index}">
+			<label value="${each.name}"/>
+			<label value="${each.critical}" style="color:red;"/>
+			<label value="${each.major}" style="color:#ffa500;"/>
+			<label value="${each.minor}" style="color:#fcff00;"/>
+		</row>
+	</template>
+</grid>
+</zk>

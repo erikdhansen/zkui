@@ -1,0 +1,28 @@
+<zk>
+<groupbox id="unicloud1_overview" style="padding: 10px">
+   <caption label="UniCloud: UC1"/>
+   <grid>
+   		<auxhead>
+   		   <auxheader colspan="6" label="Active Alarm Summary"/>
+   		</auxhead>
+   		<auxhead>
+   		   <auxheader label="Critical" colspan="2"/>
+   		   <auxheader label="Major" colspan="2"/>
+   		   <auxheader label="Minor" colspan="2"/>
+   		</auxhead>
+		<columns>
+			<column label="UnACKed"/>
+			<column label="ACKed"/>
+			<column label="UnACKed"/>
+			<column label="ACKed"/>
+			<column label="UnACKed"/>
+			<column label="ACKed"/>
+		</columns>
+		<rows>
+			<row>	
+			   <label value="2"/><label value="4"/><label value="4"/><label value="2"/><label value="4"/><label value="12"/>
+			</row>
+		</rows>
+	</grid>
+</groupbox>
+</zk>

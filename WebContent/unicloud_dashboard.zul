@@ -1,0 +1,21 @@
+<zk>
+<!-- 
+<zscript>
+	String unicloudId = ((javax.servlet.http.HttpServletRequest)Executions.getCurrent().getNativeRequest()).getParameter("unicloudId");
+	com.parallelwireless.zkui.models.UnicloudModel unicloud = UnicloudDataUtil.get(Integer.parseInt(unicloudId));
+</zscript>
+-->
+<panel id="panel" title="${each.name}" framable="true" border="normal" collapsible="true" closable="false" apply="com.parallelwireless.zkui.UnicloudDashboardUIController">
+        <panelchildren>
+        	<vbox>
+	        	<hbox width="100%">
+    	    		<charts id="alarms" type="bar" title="${each.name} Active Alarms by Severity" width="340" height="260"/>
+        			<charts id="capacity" type="gauge" width="340" height="260"/>
+        		</hbox>
+<!--         		<hbox>
+        			<charts id="cws" 
+        		</hbox> -->
+        	</vbox>
+        </panelchildren>
+    </panel>
+</zk>
