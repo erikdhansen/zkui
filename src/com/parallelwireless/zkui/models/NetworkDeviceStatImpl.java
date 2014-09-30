@@ -25,4 +25,17 @@ public class NetworkDeviceStatImpl implements NetworkDevice {
 	public int getCount() {
 		return count;
 	}
+	
+	public static String getLabel(TYPE type) {
+		switch(type){
+		case unicloud:
+			return "Uni-Cloud";
+		case cws_mesh:
+			return "CWS (Mesh)";
+		case cws_gw:
+			return "CWS (GW)";
+		default:
+			return "Unknown Type: " + type;
+		}
+	}
 }

@@ -20,6 +20,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 
 import com.parallelwireless.zkui.models.NetworkDevice;
+import com.parallelwireless.zkui.models.NetworkDeviceStatImpl;
 import com.parallelwireless.zkui.models.NetworkSummary;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
@@ -39,24 +40,24 @@ public class NetworkStatusController extends SelectorComposer<Div>{
 		
 		chart.getTooltip().setHeaderFormat("<span style=\"font-size: 11px\">{series.name}</span><br/>");
 		chart.getTooltip().setPointFormat("<span style=\"color:{point.color}\">{point.name}" + "</span>: <b>{point.y}</b>");
-		initSeries();		
+		initSeriesDrilldown();
 	}
 	
-	private void initSeries() {
+	private void initSeriesDrilldown() {
 		Series series = chart.getSeries();
 		List<Series> drilldowns = new ArrayList<Series>();
 		series.setName("Network Devices");
 		ColumnPlotOptions plotOptions = new ColumnPlotOptions();
 		plotOptions.setColorByPoint(true);
 		series.setPlotOptions(plotOptions);
-		Iterator<Entry<NetworkDevice.TYPE, Integer>> iterator = UnimanageDataUtil.getNetworkSummary().getAllDevices().entrySet().iterator();
+		Iterator<Entry<NetworkDevice.TYPE, Integer>> iterator = summary.getAllDevices().entrySet().iterator();
 		while(iterator.hasNext()) {
 			Map.Entry<NetworkDevice.TYPE, Integer> entry = iterator.next();
-			String label = entry.getKey().toString();
+			String label = NetworkDeviceStatImpl.getLabel(entry.getKey());
 			Point point = new Point(label, entry.getValue());
 			if(entry.getValue() > 1) {
 				point.setDrilldown(label);
-				List<NetworkDevice> devices = UnimanageDataUtil.getNetworkSummary().getNetworkDevices(entry.getKey());
+				List<NetworkDevice> devices = summary.getNetworkDevices(entry.getKey());
 				if(!devices.isEmpty()) {
 					Series s = new Series();
 					s.setId(label);

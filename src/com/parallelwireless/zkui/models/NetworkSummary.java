@@ -22,6 +22,8 @@ public class NetworkSummary {
 	private PieModel ddModel;
 	private Map<NetworkDevice.TYPE, Integer> allDevices;
 	private List<NetworkDevice> networkDevices;
+	private Map<String, Integer> allDevs;
+	private Map<String, HashMap<String, Integer>> netDevMap;
 	
 	public NetworkSummary(NetworkMap nmap) {
 		this.nmap = nmap;
@@ -37,6 +39,7 @@ public class NetworkSummary {
 		cwsMesh.put("down", 0);
 		processNmap();
 		createDrilldownPieChart();
+		// createDonutPieChart();
 	}
 
 	private void processNmap() {
@@ -140,6 +143,38 @@ public class NetworkSummary {
 		model.setValue("up", cwsMesh.get("up"));
 		model.setValue("down", cwsMesh.get("down"));
 		return model;
+	}
+	
+	private void createDonutPieChart() {
+		allDevs    = new HashMap<String, Integer>();
+		netDevMap  = new HashMap<String, HashMap<String, Integer>>();
+		
+		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), getUnicloudCount());
+		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), getCwsGwCount());
+		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), getCwsMeshCount());
+		
+		HashMap<String, Integer> uniclouds = new HashMap<String, Integer>();
+		uniclouds.put(NetworkDevice.STATUS.up.toString(), uniclouds.get("up"));
+		uniclouds.put(NetworkDevice.STATUS.down.toString(), uniclouds.get("down"));
+		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), uniclouds);
+		
+		HashMap<String, Integer> gw = new HashMap<String, Integer>();
+		gw.put(NetworkDevice.STATUS.up.toString(), cwsGW.get("up"));
+		gw.put(NetworkDevice.STATUS.down.toString(), cwsGW.get("down"));
+		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), gw);
+		
+		HashMap<String, Integer> mesh = new HashMap<String, Integer>();
+		mesh.put(NetworkDevice.STATUS.up.toString(), cwsMesh.get("up"));
+		mesh.put(NetworkDevice.STATUS.down.toString(), cwsMesh.get("down"));
+		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), mesh);
+	}
+	
+	public Map<String, Integer> getAllDevs() {
+		return allDevs;
+	}
+	
+	public Map<String, Integer> getDevices(String deviceTypeLabel) {
+		return netDevMap.get(deviceTypeLabel);
 	}
 	
 	private void createDrilldownPieChart() {

@@ -37,7 +37,6 @@ public class UnimanageDataUtil {
 		uniclouds.get(4).getCwsList().add(new CwsModel("cws-uc4-2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh, 0));
 		uniclouds.get(4).getCwsList().add(new CwsModel("cws-uc4-3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw, 60));
 	}
-	static NetworkSummary networkSummary = new NetworkSummary(uniclouds);
 	
 	public static UnicloudModel getUnicloud(int id) {
 		return uniclouds.get(id);
@@ -48,6 +47,6 @@ public class UnimanageDataUtil {
 	}
 	
 	public static NetworkSummary getNetworkSummary() {
-		return networkSummary;
+		return new NetworkSummary(uniclouds);
 	}
 }

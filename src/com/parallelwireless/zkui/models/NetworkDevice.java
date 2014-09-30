@@ -1,13 +1,13 @@
 package com.parallelwireless.zkui.models;
 
 public interface NetworkDevice {
-	public static enum TYPE {
+	public enum TYPE {
 		unicloud,
 		cws_mesh,
 		cws_gw
 	}
 
-	public static enum STATUS {
+	public enum STATUS {
 		up,
 		down
 	}
