@@ -1,6 +1,6 @@
 package com.parallelwireless.zkui.models;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,17 +13,17 @@ import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 public class NetworkSummary {
 	NetworkMap nmap;
 
-	Map<String,Integer> all = new HashMap<String,Integer>();
-	Map<String,Integer> uniclouds = new HashMap<String,Integer>();
-	Map<String,Integer> cwss = new HashMap<String,Integer>();
-	Map<String,Integer> cwsGW = new HashMap<String, Integer>();
-	Map<String,Integer> cwsMesh = new HashMap<String, Integer>();
+	Map<String,Integer> all = new TreeMap<String,Integer>();
+	Map<String,Integer> uniclouds = new TreeMap<String,Integer>();
+	Map<String,Integer> cwss = new TreeMap<String,Integer>();
+	Map<String,Integer> cwsGW = new TreeMap<String, Integer>();
+	Map<String,Integer> cwsMesh = new TreeMap<String, Integer>();
 		
 	private PieModel ddModel;
 	private Map<NetworkDevice.TYPE, Integer> allDevices;
 	private List<NetworkDevice> networkDevices;
 	private Map<String, Integer> allDevs;
-	private Map<String, HashMap<String, Integer>> netDevMap;
+	private Map<String, TreeMap<String, Integer>> netDevMap;
 	
 	public NetworkSummary(NetworkMap nmap) {
 		this.nmap = nmap;
@@ -106,7 +106,6 @@ public class NetworkSummary {
 		rows.add(new NetworkSummaryRow("Uniclouds", uniclouds.get("up"), uniclouds.get("down")));
 		rows.add(new NetworkSummaryRow("CWS (GW)", cwsGW.get("up"), cwsGW.get("down")));
 		rows.add(new NetworkSummaryRow("CWS (Mesh)", cwsMesh.get("up"), cwsMesh.get("down")));
-		rows.add(new NetworkSummaryRow("CWS (total)", cwss.get("up"), cwss.get("down")));
 		return rows;
 	}
 
@@ -146,24 +145,24 @@ public class NetworkSummary {
 	}
 	
 	private void createDonutPieChart() {
-		allDevs    = new HashMap<String, Integer>();
-		netDevMap  = new HashMap<String, HashMap<String, Integer>>();
+		allDevs    = new TreeMap<String, Integer>();
+		netDevMap  = new TreeMap<String, TreeMap<String, Integer>>();
 		
 		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), getUnicloudCount());
 		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), getCwsGwCount());
 		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), getCwsMeshCount());
 		
-		HashMap<String, Integer> uniclouds = new HashMap<String, Integer>();
+		TreeMap<String, Integer> uniclouds = new TreeMap<String, Integer>();
 		uniclouds.put(NetworkDevice.STATUS.up.toString(), uniclouds.get("up"));
 		uniclouds.put(NetworkDevice.STATUS.down.toString(), uniclouds.get("down"));
 		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), uniclouds);
 		
-		HashMap<String, Integer> gw = new HashMap<String, Integer>();
+		TreeMap<String, Integer> gw = new TreeMap<String, Integer>();
 		gw.put(NetworkDevice.STATUS.up.toString(), cwsGW.get("up"));
 		gw.put(NetworkDevice.STATUS.down.toString(), cwsGW.get("down"));
 		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), gw);
 		
-		HashMap<String, Integer> mesh = new HashMap<String, Integer>();
+		TreeMap<String, Integer> mesh = new TreeMap<String, Integer>();
 		mesh.put(NetworkDevice.STATUS.up.toString(), cwsMesh.get("up"));
 		mesh.put(NetworkDevice.STATUS.down.toString(), cwsMesh.get("down"));
 		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), mesh);
@@ -180,7 +179,7 @@ public class NetworkSummary {
 	private void createDrilldownPieChart() {
 		ddModel = getAllDevicesChart();
 		
-		allDevices = new HashMap<NetworkDevice.TYPE, Integer>();
+		allDevices = new TreeMap<NetworkDevice.TYPE, Integer>();
 		allDevices.put(TYPE.unicloud, getUnicloudCount());
 		allDevices.put(TYPE.cws_mesh, getCwsMeshCount());
 		allDevices.put(TYPE.cws_gw,  getCwsGwCount());

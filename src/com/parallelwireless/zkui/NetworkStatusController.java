@@ -22,6 +22,7 @@ import org.zkoss.zul.Div;
 import com.parallelwireless.zkui.models.NetworkDevice;
 import com.parallelwireless.zkui.models.NetworkDeviceStatImpl;
 import com.parallelwireless.zkui.models.NetworkSummary;
+import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 public class NetworkStatusController extends SelectorComposer<Div>{
@@ -40,6 +41,7 @@ public class NetworkStatusController extends SelectorComposer<Div>{
 		
 		chart.getTooltip().setHeaderFormat("<span style=\"font-size: 11px\">{series.name}</span><br/>");
 		chart.getTooltip().setPointFormat("<span style=\"color:{point.color}\">{point.name}" + "</span>: <b>{point.y}</b>");
+		chart.setColors(Unimanage.DEFAULT_CHART_GRADIENTS);
 		initSeriesDrilldown();
 	}
 	

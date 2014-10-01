@@ -49,4 +49,14 @@ public class UnimanageDataUtil {
 	public static NetworkSummary getNetworkSummary() {
 		return new NetworkSummary(uniclouds);
 	}
+	
+	public static AlarmStatusModel getAlarmSummary() {
+		AlarmStatusModel model = new AlarmStatusModel();
+		List<AlarmRowModel> rows = model.getAlarmRowModels();
+		rows.clear();
+		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), 3, 4, 8));
+		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), 6, 3, 9));
+		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), 4, 2, 3));
+		return model;
+	}
 }

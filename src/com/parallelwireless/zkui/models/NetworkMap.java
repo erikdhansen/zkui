@@ -1,8 +1,8 @@
 package com.parallelwireless.zkui.models;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 @SuppressWarnings("serial")
-public class NetworkMap extends HashMap<Integer, UnicloudModel> {
+public class NetworkMap extends TreeMap<Integer, UnicloudModel> {
 
 }

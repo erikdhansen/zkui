@@ -3,12 +3,12 @@
 <zscript>
 	int alarmCount = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarms().getUnackedCount();
 </zscript>
-<navbar orient="vertical" width="200px">
-	<navitem label="Dashboard" iconSclass="z-icon-home"/>
-	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell">
-		<navitem label="Alarms"/>
-		<navitem label="Event History"/>
-		<navitem label="Live Event Log"/>
+<navbar orient="vertical" width="200px" sclass="unimanage">
+	<navitem label="Dashboard" iconSclass="z-icon-home" sclass="unimanage"/>
+	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell"  sclass="unimanage">
+		<navitem label="Alarms"  sclass="unimanage"/>
+		<navitem label="Event History" sclass="unimanage"/>
+		<navitem label="Live Event Log" sclass="unimanage"/>
 	</nav>
 	<navitem label="Network Map" iconSclass="z-icon-globe"/>
 	<nav label="Devices" iconSclass="z-icon-sitemap">

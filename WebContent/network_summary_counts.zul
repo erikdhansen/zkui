@@ -2,24 +2,44 @@
 <zk>
 <zscript>
 	List summary = com.parallelwireless.zkui.models.UnimanageDataUtil.getNetworkSummary().getSummaryRows();
+	com.parallelwireless.zkui.models.AlarmStatusModel alarmSummary = com.parallelwireless.zkui.models.UnimanageDataUtil.getAlarmSummary();
+	List alarmRowModels = alarmSummary.getAlarmRowModels();
 </zscript>
-<div apply="com.parallelwireless.zkui.NetworkStatusController">
+<style src="/css/parallel.css"/>
 <hbox>
-   <grid id="network_status_table" sclass="unicloud-table">
-   	<columns>
-   		<column hflex="5">Device Type</column>
-   		<column hflex="3">Up</column>
-		<column hflex="3">Down</column>
-   	</columns>
-   	<rows>
-   		<row forEach="${summary}">
-   			<label sclass="unicloud-table" value="${each.name}"/>
-   			<label sclass="unicloud-table" value="${each.up}"/>
-   			<label sclass="unicloud-table" style="color: #ff0000" value="${each.down}"/>
-   		</row>
-   	</rows>
-   </grid>
-   <charts id="chart" type="pie" title="Network Status by Device" subtitle="Click to drilldown" width="340" height="260" />
+	<div apply="com.parallelwireless.zkui.NetworkStatusController">
+   		<grid id="network_status_table" sclass="unicloud-table">
+   			<columns>
+   				<column hflex="4">Device Type</column>
+   				<column hflex="3">Up</column>
+				<column hflex="3">Down</column>
+   			</columns>
+   			<rows>
+   				<row forEach="${summary}">
+	   				<label sclass="unicloud-table" value="${each.name}"/>
+   					<label sclass="unicloud-table" value="${each.up}"/>
+   					<label sclass="unicloud-table" style="color: #ff0000" value="${each.down}"/>
+ 	  			</row>
+   			</rows>
+   		</grid>
+   	   <charts id="chart" type="pie" title="Network Devices" width="340" height="260" />
+   	</div>		
+   	<div apply="com.parallelwireless.zkui.AlarmStatusController">
+		<listbox id="alarm_status_table" sclass="unicloud-table">
+			<listhead>
+				<listheader hflex="4" label="Device Type"/>
+				<listheader hflex="2" label="Critical"/>
+				<listheader hflex="2" label="Major"/>
+				<listheader hflex="2" label="Minor"/>
+			</listhead>
+				<listitem forEach="${alarmRowModels}" sclass="unicloud-table">
+					<listcell sclass="unicloud-table" label="${each.deviceType}"/>
+					<listcell sclass="unicloud-table" style="color: red" label="${each.critical}"/>
+					<listcell sclass="unicloud-table" style="color: orange" label="${each.major}"/>
+					<listcell sclass="unicloud-table" label="${each.minor}"/>
+				</listitem>		
+   		</listbox>
+   		<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" width="340" height="260"/>
+   	</div>
 </hbox>
-</div>
 </zk>
