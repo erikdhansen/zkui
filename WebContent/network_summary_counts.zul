@@ -42,4 +42,9 @@
    		<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" width="340" height="260"/>
    	</div>
 </hbox>
+<hbox>
+	<div>
+		<include src="unicloud_list.zul"/>
+	</div>
+</hbox>
 </zk>
