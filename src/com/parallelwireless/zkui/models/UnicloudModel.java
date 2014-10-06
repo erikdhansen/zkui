@@ -7,27 +7,25 @@ import org.zkoss.chart.Color;
 
 import com.parallelwireless.zkui.models.CwsModel.CWS_TYPE;
 
-public class UnicloudModel implements NetworkDevice {
+public class UnicloudModel extends NetworkDeviceImpl {
 	int id;
 	String name;
-	String ip;
 	int lastSeenMinutes = 0;
+	
+	NetworkDevice.TYPE type = NetworkDevice.TYPE.unicloud;
 	
 	List<CwsModel> cwsList = new LinkedList<CwsModel>();
 	
 	public UnicloudModel(int id, String name, String ip, int lastSeenMinutes) {
 		this.id = id;
 		this.name = name;
-		this.ip = ip;
 		this.lastSeenMinutes = lastSeenMinutes;
+		refreshSysInfo();
+		refreshNetworkDeviceInterfaces(); 
 	}
 	
 	public String getName() {
 		return name;
-	}
-	
-	public String getIp() {
-		return ip;
 	}
 	
 	public int getLastSeenMinutes() {
@@ -59,7 +57,7 @@ public class UnicloudModel implements NetworkDevice {
 
 	@Override
 	public TYPE getType() {
-		return NetworkDevice.TYPE.unicloud;
+		return type;
 	}
 	
 	public List<CwsModel> getMeshCws() {
@@ -89,10 +87,15 @@ public class UnicloudModel implements NetworkDevice {
 	public int getGwCount() {
 		return getGwCws().size();
 	}
-
-	@Override
-	public int getCount() {
-		return 1;
+	
+	public SysInfo refreshSysInfo() {
+		sysinfo = UnimanageDataUtil.fudgeNetDeviceSysInfo(NetworkDevice.TYPE.unicloud);
+		return sysinfo;
+	}
+	
+	public List<NetworkDeviceInterface> refreshNetworkDeviceInterfaces() {
+		networkDeviceInterfaces = UnimanageDataUtil.fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE.unicloud);
+		return networkDeviceInterfaces;
 	}
 	
 }

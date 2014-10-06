@@ -1,6 +1,10 @@
 package com.parallelwireless.zkui.models;
 
-public class CwsModel implements NetworkDevice {
+import java.util.LinkedList;
+import java.util.List;
+
+
+public class CwsModel extends NetworkDeviceImpl {
 
 	private static int globalCwsId = 1;
 	
@@ -12,17 +16,19 @@ public class CwsModel implements NetworkDevice {
 	int id;
 	String name;
 	int unicloudId;
-	String ip;
 	NetworkDevice.TYPE type;
 	int lastSeenMinutes;
+
+	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 	
 	public CwsModel(String name, int unicloudId, String ip, NetworkDevice.TYPE type, int lastSeenMinutes) {
 		this.id = globalCwsId++;
 		this.name = name;
 		this.unicloudId = unicloudId;
-		this.ip = ip;
 		this.type = type;
 		this.lastSeenMinutes = lastSeenMinutes;
+		refreshSysInfo();
+		refreshNetworkDeviceInterfaces();
 	}
 
 	public int getId() {
@@ -45,14 +51,6 @@ public class CwsModel implements NetworkDevice {
 		this.unicloudId = unicloudId;
 	}
 	
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
 	public void setType(NetworkDevice.TYPE type) {
 		this.type = type;
 	}
@@ -74,11 +72,15 @@ public class CwsModel implements NetworkDevice {
 	public TYPE getType() {
 		return type;
 	}
-
-	@Override
-	public int getCount() {
-		return 1;
+	
+	public SysInfo refreshSysInfo() {
+		sysinfo = UnimanageDataUtil.fudgeNetDeviceSysInfo(getType());
+		return sysinfo;
 	}
 	
+	public List<NetworkDeviceInterface> refreshNetworkDeviceInterfaces() {
+		networkDeviceInterfaces = UnimanageDataUtil.fudgeNetworkDeviceInterfaces(getType());
+		return networkDeviceInterfaces;
+	}
 	
 }

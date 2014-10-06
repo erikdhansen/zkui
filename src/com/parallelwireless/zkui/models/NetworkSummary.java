@@ -21,7 +21,7 @@ public class NetworkSummary {
 		
 	private PieModel ddModel;
 	private Map<NetworkDevice.TYPE, Integer> allDevices;
-	private List<NetworkDevice> networkDevices;
+	private List<NetworkDeviceStatusBucket> networkDevices;
 	private Map<String, Integer> allDevs;
 	private Map<String, TreeMap<String, Integer>> netDevMap;
 	
@@ -148,24 +148,24 @@ public class NetworkSummary {
 		allDevs    = new TreeMap<String, Integer>();
 		netDevMap  = new TreeMap<String, TreeMap<String, Integer>>();
 		
-		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), getUnicloudCount());
-		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), getCwsGwCount());
-		allDevs.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), getCwsMeshCount());
+		allDevs.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.unicloud), getUnicloudCount());
+		allDevs.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_gw), getCwsGwCount());
+		allDevs.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_mesh), getCwsMeshCount());
 		
 		TreeMap<String, Integer> uniclouds = new TreeMap<String, Integer>();
 		uniclouds.put(NetworkDevice.STATUS.up.toString(), uniclouds.get("up"));
 		uniclouds.put(NetworkDevice.STATUS.down.toString(), uniclouds.get("down"));
-		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), uniclouds);
+		netDevMap.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.unicloud), uniclouds);
 		
 		TreeMap<String, Integer> gw = new TreeMap<String, Integer>();
 		gw.put(NetworkDevice.STATUS.up.toString(), cwsGW.get("up"));
 		gw.put(NetworkDevice.STATUS.down.toString(), cwsGW.get("down"));
-		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), gw);
+		netDevMap.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_gw), gw);
 		
 		TreeMap<String, Integer> mesh = new TreeMap<String, Integer>();
 		mesh.put(NetworkDevice.STATUS.up.toString(), cwsMesh.get("up"));
 		mesh.put(NetworkDevice.STATUS.down.toString(), cwsMesh.get("down"));
-		netDevMap.put(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), mesh);
+		netDevMap.put(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_mesh), mesh);
 	}
 	
 	public Map<String, Integer> getAllDevs() {
@@ -184,13 +184,13 @@ public class NetworkSummary {
 		allDevices.put(TYPE.cws_mesh, getCwsMeshCount());
 		allDevices.put(TYPE.cws_gw,  getCwsGwCount());
 		
-		networkDevices = new LinkedList<NetworkDevice>();
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.unicloud, NetworkDevice.STATUS.up, uniclouds.get("up")));
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.unicloud, NetworkDevice.STATUS.down, uniclouds.get("down")));
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.cws_mesh, NetworkDevice.STATUS.up, cwsMesh.get("up")));
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.cws_mesh, NetworkDevice.STATUS.down, cwsMesh.get("down")));
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.cws_gw, NetworkDevice.STATUS.up, cwsGW.get("up")));
-		networkDevices.add(new NetworkDeviceStatImpl(NetworkDevice.TYPE.cws_gw, NetworkDevice.STATUS.down, cwsGW.get("down")));
+		networkDevices = new LinkedList<NetworkDeviceStatusBucket>();
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.unicloud, NetworkDevice.STATUS.up, uniclouds.get("up")));
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.unicloud, NetworkDevice.STATUS.down, uniclouds.get("down")));
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.cws_mesh, NetworkDevice.STATUS.up, cwsMesh.get("up")));
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.cws_mesh, NetworkDevice.STATUS.down, cwsMesh.get("down")));
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.cws_gw, NetworkDevice.STATUS.up, cwsGW.get("up")));
+		networkDevices.add(new NetworkDeviceStatusBucket(NetworkDevice.TYPE.cws_gw, NetworkDevice.STATUS.down, cwsGW.get("down")));
 	}
 	
 	public PieModel getPieModel() {
@@ -201,9 +201,9 @@ public class NetworkSummary {
 		return allDevices;
 	}
 	
-	public List<NetworkDevice> getNetworkDevices(NetworkDevice.TYPE type) {
-		List<NetworkDevice> result = new LinkedList<NetworkDevice>();
-		for(NetworkDevice nd : networkDevices) {
+	public List<NetworkDeviceStatusBucket> getNetworkDevices(NetworkDevice.TYPE type) {
+		List<NetworkDeviceStatusBucket> result = new LinkedList<NetworkDeviceStatusBucket>();
+		for(NetworkDeviceStatusBucket nd : networkDevices) {
 			if(nd.getType() == type) {
 				result.add(nd);
 			}

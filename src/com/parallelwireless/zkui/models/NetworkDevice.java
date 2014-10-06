@@ -1,5 +1,8 @@
 package com.parallelwireless.zkui.models;
 
+
+import java.util.List;
+
 public interface NetworkDevice {
 	public enum TYPE {
 		unicloud,
@@ -14,5 +17,7 @@ public interface NetworkDevice {
 	
 	public boolean isUp();
 	public TYPE getType();
-	public int getCount();
+	public List<NetworkDeviceInterface> getNetworkInterfaces();
+	public SysInfo getSysInfo();
+	
 }

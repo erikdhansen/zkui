@@ -20,7 +20,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 
 import com.parallelwireless.zkui.models.NetworkDevice;
-import com.parallelwireless.zkui.models.NetworkDeviceStatImpl;
+import com.parallelwireless.zkui.models.NetworkDeviceStatusBucket;
 import com.parallelwireless.zkui.models.NetworkSummary;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
@@ -55,15 +55,15 @@ public class NetworkStatusController extends SelectorComposer<Div>{
 		Iterator<Entry<NetworkDevice.TYPE, Integer>> iterator = summary.getAllDevices().entrySet().iterator();
 		while(iterator.hasNext()) {
 			Map.Entry<NetworkDevice.TYPE, Integer> entry = iterator.next();
-			String label = NetworkDeviceStatImpl.getLabel(entry.getKey());
+			String label = NetworkDeviceStatusBucket.getLabel(entry.getKey());
 			Point point = new Point(label, entry.getValue());
 			if(entry.getValue() > 1) {
 				point.setDrilldown(label);
-				List<NetworkDevice> devices = summary.getNetworkDevices(entry.getKey());
+				List<NetworkDeviceStatusBucket> devices = summary.getNetworkDevices(entry.getKey());
 				if(!devices.isEmpty()) {
 					Series s = new Series();
 					s.setId(label);
-					for(NetworkDevice n : devices) {
+					for(NetworkDeviceStatusBucket n : devices) {
 						Point p = new Point((n.isUp() ? "UP" : "DOWN"), n.getCount());
 						s.addPoint(p);
 					}

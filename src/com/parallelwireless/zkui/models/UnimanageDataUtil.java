@@ -2,6 +2,7 @@ package com.parallelwireless.zkui.models;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,9 +55,17 @@ public class UnimanageDataUtil {
 		AlarmStatusModel model = new AlarmStatusModel();
 		List<AlarmRowModel> rows = model.getAlarmRowModels();
 		rows.clear();
-		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.unicloud), 3, 4, 8));
-		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_gw), 6, 3, 9));
-		rows.add(new AlarmRowModel(NetworkDeviceStatImpl.getLabel(NetworkDevice.TYPE.cws_mesh), 4, 2, 3));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.unicloud), 3, 4, 8));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_gw), 6, 3, 9));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_mesh), 4, 2, 3));
 		return model;
+	}
+	
+	public static SysInfo fudgeNetDeviceSysInfo(NetworkDevice.TYPE type) {
+		return new SysInfo();
+	}
+	
+	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE type) {
+		return new LinkedList<NetworkDeviceInterface>();
 	}
 }
