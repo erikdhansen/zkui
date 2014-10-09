@@ -1,0 +1,43 @@
+<?page title="Network Interface Statistics" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+	.netif-list .z-listheader-content {
+		padding: 4px;
+		font-size: 12px;
+		line-height: 14px;
+		color: #fff;
+	}
+	.netif-list .z-listcell-content {
+		padding: 4px;
+		font-size: 11px;
+		line-height: 14px;
+		color: #222;
+	}
+</style>
+
+<listbox sclass="netif-list" id="network_interface_stats" width="800px">
+	<listhead>
+		<listheader label="Interface" sort="auto" />
+		<listheader label="IP Address" sort="auto" />
+		<listheader label="Speed (Mbps)" sort="auto" />
+		<listheader label="Rx Packets" sort="auto" />
+		<listheader label="Tx Packets" sort="auto" />
+		<listheader label="Rx Bytes" sort="auto" />
+		<listheader label="Tx Bytes" sort="auto" />
+		<listheader label="Rx Errors" sort="auto" />
+		<listheader label="Tx Errors" sort="auto" />
+	</listhead>
+	<listitem>
+		<listcell label="eth0" />
+		<listcell label="10.10.10.10" />
+		<listcell label="1000"/>
+		<listcell label="1234567"/>
+		<listcell label="2345671" />
+		<listcell label="1234567890"/>
+		<listcell label="2345678901"/>
+		<listcell label="123" />
+		<listcell label="12" />
+	</listitem>
+</listbox>
+
+</zk>

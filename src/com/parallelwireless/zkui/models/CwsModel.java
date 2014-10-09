@@ -83,4 +83,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		return networkDeviceInterfaces;
 	}
 	
+	public List<NetworkDeviceInterface> getNetworkInterfaces() {
+		return networkDeviceInterfaces;
+	}
 }

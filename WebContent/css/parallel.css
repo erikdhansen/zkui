@@ -1,6 +1,5 @@
 @CHARSET "UTF-8";
 
-
 .unicloud-table .z-row-content {
 	font-size: 11px;
 	line-height: 14px;
@@ -24,6 +23,13 @@
 	line-height: 14px;
 	color: #222;
 }
+
+.unicloud-table .z-auxheader .z-auxheader-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 20px;
+}
+
 .unicloud-table .z-listhead .z-listheader-content {
 	font-size: 12px;
 	line-height: 20px;

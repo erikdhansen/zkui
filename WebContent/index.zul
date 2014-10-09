@@ -1,62 +1,68 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<style>
-	@font-face 
-	{
-		font-family: EuroStyleLT;
-		src: url("font/EuroStyle-LT-Std.otf")
-	}
-	@font-face
-	{
-		font-family: ErasBT;
-		src: url("font/ErasBT.otf")
-	}
-	.font_style
-	{
-	font-family: "EuroStyleLT","ErasBT",Arial,Helvetica,sans-serif
-	}
-	[class*="z-"]:not([class*="z-icon-"]) {
-	    font-family: ErasBT;
-	}
-</style>
-<window style="margin-top: 10px" border="normal">
-<caption label="UniManage 4.0" style="font-family: ErasBT"/>
-<div sclass="header">
-<image src="images/logo_median.png" style="margin-top: 5px; margin-bottom: 5px"/>
-</div>
-<div sclass="search"></div>
-<hbox width="100%">
-<div sclass="user-nav">
-<include src="nav_vertical.zul"/>
-</div>
-<div sclass="content-header"></div>
-<div sclass="content">
-		   <div apply="com.parallelwireless.zkui.DashboardPortalLayoutController">
-			<portallayout id="portalLayout" maximizedMode="whole">
-				<portalchildren style="padding: 5px">
-				    <panel title="Network Status" id="network_summary_counts" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px; overflow: auto">
-				    	<panelchildren>
-				    		<include src="network_summary_counts.zul"/>
-				    	</panelchildren>
-				    </panel>
-					<panel id="unicloud_list" title="UniCloud Summary" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px; overflow: auto">
-						<panelchildren>
-							<include src="unicloud_list.zul"/>
-						</panelchildren>
-					</panel>
-					<panel id="alarm_summary" title="Alarm Summary" border="normal" collapsible="true" closable="true" style="margin-bottom: 10px; overflow: auto">
-						<panelchildren>
-							<include src="alarm_summary.zul"/>
-						</panelchildren>
-					</panel>
-				</portalchildren>
-			</portallayout>		   
-		   </div>
-</div>
-
-</hbox>
-
-	<div sclass="breadcrumb">
-	</div>
+	<style>
+		@font-face { font-family: EuroStyleLT; src:
+		url("font/EuroStyle-LT-Std.otf") } @font-face { font-family:
+		ErasBT; src: url("font/ErasBT.otf") } .font_style { font-family:
+		"EuroStyleLT","ErasBT",Arial,Helvetica,sans-serif }
+		[class*="z-"]:not([class*="z-icon-"]) { font-family: ErasBT; }
+	</style>
+	<window style="margin-top: 10px" border="normal">
+		<!--  <caption label="UniManage 4.0" style="font-family: ErasBT" /> -->
+		<div sclass="header">	
+			<hbox align="center" width="100%">
+				<image src="images/logo_median.png" style="margin-top: 5px; margin-bottom: 15px" />
+			</hbox>				
+		</div>
+		<hbox width="100%">
+			<div sclass="user-nav">
+				<include src="nav_vertical.zul" />
+			<hbox >
+					<menubar width="200px">
+						<menu label="User: admin">
+							<menupopup>
+								<menuitem iconSclass="z-icon-gear" label="Settings" />
+								<menuitem iconSclass="z-icon-user" label="Profile" />
+								<menuseparator/>
+								<menuitem label="Logout"/>							
+							</menupopup>
+						</menu>
+					</menubar>
+			</hbox>				
+			</div>
+			<div sclass="content-header"></div>
+			<div sclass="content">
+				<div
+					apply="com.parallelwireless.zkui.DashboardPortalLayoutController">
+					<portallayout id="portalLayout"
+						maximizedMode="whole">
+						<portalchildren style="padding: 5px">
+							<panel title="Network Status"
+								id="network_summary_counts" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="network_summary.zul" />
+								</panelchildren>
+							</panel>
+							<panel id="unicloud_list"
+								title="UniCloud Summary" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="unicloud_list.zul" />
+								</panelchildren>
+							</panel>
+							<panel id="alarm_summary"
+								title="Alarm Summary" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="alarm_summary.zul" />
+								</panelchildren>
+							</panel>
+						</portalchildren>
+					</portallayout>
+				</div>
+			</div>
+		</hbox>		
+		<div sclass="breadcrumb"></div>
 	</window>
 </zk>

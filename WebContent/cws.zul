@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<grid model="${arg.cws}" sclass="inner-grid">
+<grid model="${arg.cws}" sclass="unicloud-table inner-grid">
 	<columns>
 		<column width="40px" />
 		<column label="CWS" />

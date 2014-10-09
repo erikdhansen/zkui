@@ -1,58 +1,79 @@
 <?page title="UniCloud List" contentType="text/html;charset=UTF-8"?>
 <zk>
-<zscript>
-	java.util.Collection uniclouds =  com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
+	<zscript>
+	java.util.Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getAllUniclouds();
 </zscript>
-<!-- <style src="/widgets/grid/master_detail/style.css"/> -->
-<style src="/css/parallel.css"/>
-<grid sclass="unicloud-table">
-	<columns>
-		<column width="25px"/>
-		<column width="100px" label="UniCloud" sort="auto"/>
-		<column label="IP Address"/>
-		<column label="Last Seen"/>
-		<column label="CWS (Mesh)"/>
-		<column label="CWS (GW)"/>
-	</columns>
-	<rows>
-		<row forEach="${uniclouds}" style="background-color: ${each.statusColor};" popup="detail" >
-			<detail>
-				<hlayout>
-					<image sclass="unicloud-table" src="images/device_icon_medium.png"/>
-					<vlayout>
-						<label value="${each.name}"  sclass="heavy-italic"/>
-						<include src="unicloud_dashboard.zul"/>
-					</vlayout>
-				</hlayout>
-			</detail>
-			<label sclass="unicloud-table" value="${each.name}"/>
-			<label sclass="unicloud-table" value="${each.ip}"/>
-			<label sclass="unicloud-table" value="${each.lastSeenMinutes} minutes ago"/>
-			<label sclass="unicloud-table" style="color: green" value="${each.meshCount}"/>
-			<label sclass="unicloud-table" style="color: green" value="${each.gwCount}"/>
-		</row>
-<!--
-		<row tooltip="detail2">
-			<detail>
-				<hlayout>
-					<image sclass="myimg" src="images/device_icon_medium.png"/>
-					<vlayout>
-						<label value="${unicloud2.name}" sclass="heavy-italic"/>
-						<include src="alarm_summary.zul"/>
-					</vlayout>
-				</hlayout>
-			</detail>
-			<label value="${unicloud2.name}"/>
-			<label value="${unicloud2.ip}"/>
-					<label style="color: ${unicloud2.statusColor}" value="${unicloud2.lastSeenMinutes} minutes ago"/>
-					<label style="color: green" value="8"/>
-					<label style="color: red" value="1"/>
-				</row>		
-		-->
-			</rows>
-		</grid>
-		<popup id="detail">
-			<include src="unicloud_dashboard.zul"/>
-		</popup>
+	<!-- <style src="/widgets/grid/master_detail/style.css"/> -->
+	<style src="/css/parallel.css" />
+	<grid sclass="unicloud-table">
+		<auxhead sclass="unicloud-table">
+			<auxheader sclass="unicloud-table" colspan="8"
+				label="Uni-Clouds" />
+		</auxhead>
+		<auxhead sclass="unicloud-table">
+			<auxheader sclass="unicloud-table" colspan="2"
+				label="System Name" />
+			<auxheader sclass="unicloud-table" colspan="4"
+				label="Network Interfaces" />
+			<auxheader sclass="unicloud-table" colspan="2" label="CWSs" />
+		</auxhead>
+		<columns>
+			<column width="25px" />
+			<column width="100px" label="UniCloud" sort="auto" />
+			<column label="NetIf1" />
+			<column label="NetIf2" />
+			<column label="NetIf3" />
+			<column label="NetIf4" />
+			<column label="CWS (Mesh)" />
+			<column label="CWS (GW)" />
+		</columns>
+		<rows>
+			<row forEach="${uniclouds}">
+				<detail>
+					<listbox sclass="unicloud-table">
+						<auxhead>
+							<auxheader label="CWS" colspan="4" />
+							<auxheader label="Alarms" colspan="3" />
+						</auxhead>
+						<listhead>
+							<listheader label="Name" sort="auto" />
+							<listheader label="IP" sort="auto" />
+							<listheader label="Type" sort="auto" />
+							<listheader label="Peers" sort="auto" />
+							<listheader label="Critical" sort="auto" />
+							<listheader label="Major" sort="auto" />
+							<listheader label="Minor" sort="auto" />
+						</listhead>
+						<listitem forEach="${each.cwsList}">
+							<listcell label="${each.name}"/>
+							<listcell label="${each.networkInterfaces.get(0).fakeIp}" popup="detail_cws"/>
+							<listcell label="${each.type}"/>
+							<listcell label="3"/>
+							<listcell style="color: red" label="2"/>
+							<listcell style="color: orange" label="1"/>
+							<listcell label="3"/>
+						</listitem>
+					</listbox>
+				</detail>
+				<label sclass="unicloud-table" value="${each.name}" />
+				<label sclass="unicloud-table"
+					value="${each.networkInterfaces.get(0).fakeIp}" popup="detail" />
+				<label sclass="unicloud-table" value="x.x.x.x" />
+				<label sclass="unicloud-table" value="x.x.x.x" />
+				<label sclass="unicloud-table" value="x.x.x.x" />
+				<label sclass="unicloud-table" style="color: green"
+					value="${each.meshCount}" />
+				<label sclass="unicloud-table" style="color: green"
+					value="${each.gwCount}" />
+			</row>
+		</rows>
+	</grid>
+	<popup id="detail">
+		<include src="network_interface.zul" />
+	</popup>
+	<popup id="detail_cws">
+		<include src="cws_network_interface.zul"/>
+	</popup>
 
-		</zk>
+</zk>

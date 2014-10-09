@@ -5,7 +5,7 @@
 </zscript>
 <navbar orient="vertical" width="200px" sclass="unimanage">
 	<navitem label="Dashboard" iconSclass="z-icon-home" sclass="unimanage"/>
-	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell"  sclass="unimanage">
+	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell">
 		<navitem label="Alarms"  sclass="unimanage"/>
 		<navitem label="Event History" sclass="unimanage"/>
 		<navitem label="Live Event Log" sclass="unimanage"/>

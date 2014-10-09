@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.models;
 
+import java.net.NetworkInterface;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class UnimanageDataUtil {
 		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh, 0));
 		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-2", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh, 0));
 		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-3", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw, 0));
-		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-3", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw, 60));
+		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-3", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw, 60));
 		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-1", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh, 0));
 		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-2", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw, 60));
 		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-3", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw, 60));
@@ -66,6 +67,10 @@ public class UnimanageDataUtil {
 	}
 	
 	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE type) {
-		return new LinkedList<NetworkDeviceInterface>();
+		List<NetworkDeviceInterface> netIfs = new LinkedList<NetworkDeviceInterface>();
+		NetworkDeviceInterface netIf = new NetworkDeviceInterface();
+		netIfs.add(netIf);
+		return netIfs;
+		
 	}
 }

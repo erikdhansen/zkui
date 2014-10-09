@@ -1,0 +1,27 @@
+<?page title="Uni-Cloud CWS List" contentType="text/html;charset=UTF-8"?>
+<zk>
+<listbox sclass="unicloud-table">
+	<auxhead>
+		<auxheader label="CWS" colspan="4"/>
+		<auxheader label="Alarms" colspan="3"/>
+	</auxhead>
+	<listhead>
+		<listheader label="Name" sort="auto" />
+		<listheader label="IP" sort="auto" />
+		<listheader label="Type" sort="auto" />
+		<listheader label="Peers" sort="auto" />
+		<listheader label="Critical" sort="auto"/>
+		<listheader label="Major" sort="auto"/>
+		<listheader label="Minor" sort="auto"/>
+	</listhead>
+	<listitem>
+		<listcell label="" />
+		<listcell label="" />
+	</listitem>
+	<listitem>
+		<listcell label="" />
+		<listcell label="" />
+	</listitem>
+</listbox>
+
+</zk>

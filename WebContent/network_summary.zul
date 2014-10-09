@@ -9,8 +9,11 @@
 <hbox>
 	<div apply="com.parallelwireless.zkui.NetworkStatusController">
    		<grid id="network_status_table" sclass="unicloud-table">
+   			<auxhead>
+   				<auxheader colspan="3" label="Network Device Summary"/>
+   			</auxhead>
    			<columns>
-   				<column hflex="4">Device Type</column>
+   				<column sclass="unicloud-table" hflex="4">Device Type</column>
    				<column hflex="3">Up</column>
 				<column hflex="3">Down</column>
    			</columns>
@@ -26,6 +29,9 @@
    	</div>		
    	<div apply="com.parallelwireless.zkui.AlarmStatusController">
 		<listbox id="alarm_status_table" sclass="unicloud-table">
+			<auxhead>
+				<auxheader colspan="4" label="Alarm Summary"/>
+			</auxhead>
 			<listhead>
 				<listheader hflex="4" label="Device Type"/>
 				<listheader hflex="2" label="Critical"/>

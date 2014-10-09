@@ -26,6 +26,9 @@ public class NetworkDeviceInterface {
 	//
 	int	   intfMaxSpeedInMB = 0;
 	
+	public NetworkDeviceInterface() {
+		
+	}
 	public NetworkDeviceInterface(NetworkInterface netIntf) {
 		this.netIntf = netIntf;
 	}
@@ -34,6 +37,10 @@ public class NetworkDeviceInterface {
 		return netIntf;
 	}
 
+	public String getFakeIp() {
+		return "10.10.10.10";
+	}
+	
 	public void setNetIntf(NetworkInterface netIntf) {
 		this.netIntf = netIntf;
 	}
