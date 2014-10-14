@@ -44,20 +44,29 @@
 									<include src="network_summary.zul" />
 								</panelchildren>
 							</panel>
+							<panel id="unicloud_system_resources"
+								title="Uni-Cloud System Resource Utilization" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="unicloud_cpu_memory.zul" />
+									<include src="unicloud_disk_network.zul" />
+								</panelchildren>
+							</panel>
+							<panel id="cws_system_resources"
+								title="CWS System Resource Utilization" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="cws_cpu_memory.zul" />
+									<include src="cws_disk_network.zul" />
+								</panelchildren>
+							</panel>
 							<panel id="unicloud_list"
 								title="UniCloud Summary" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
 									<include src="unicloud_list.zul" />
 								</panelchildren>
-							</panel>
-							<panel id="alarm_summary"
-								title="Alarm Summary" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-									<include src="alarm_summary.zul" />
-								</panelchildren>
-							</panel>
+							</panel>														
 						</portalchildren>
 					</portallayout>
 				</div>

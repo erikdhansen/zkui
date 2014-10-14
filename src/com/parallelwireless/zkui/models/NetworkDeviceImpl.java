@@ -8,6 +8,7 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	boolean up = true;
 	NetworkDevice.TYPE type;
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
+	NetworkDeviceInfo networkDeviceInfo = new NetworkDeviceInfo();
 	SysInfo sysinfo = new SysInfo();
 	
 	@Override
@@ -21,8 +22,8 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	}
 
 	@Override
-	public List<NetworkDeviceInterface> getNetworkInterfaces() {
-		return networkDeviceInterfaces;
+	public NetworkDeviceInfo getNetworkDeviceInfo() {
+		return networkDeviceInfo;
 	}
 
 	@Override

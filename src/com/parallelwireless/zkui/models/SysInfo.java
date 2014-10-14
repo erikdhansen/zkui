@@ -1,5 +1,7 @@
 package com.parallelwireless.zkui.models;
 
+import java.util.Comparator;
+
 public class SysInfo {
 	// System Resources			// Linux SNMP OIDs
 	// Load						//
@@ -288,5 +290,33 @@ public class SysInfo {
 		this.percentInodeUsed = percentInodeUsed;
 	}
 	
-	
+	public static class Comparators {
+		
+		public static Comparator<SysInfo> CPU = new Comparator<SysInfo>() {
+			@Override
+			public int compare(SysInfo s1, SysInfo s2) {
+				Integer cpu1 = 100 - s1.getPercentIdleCPU();
+				Integer cpu2 = 100 - s2.getPercentIdleCPU();
+				return cpu1.compareTo(cpu2);
+			}
+		};
+		
+		public static Comparator<SysInfo> MEMORY = new Comparator<SysInfo>() {
+			@Override
+			public int compare(SysInfo s1, SysInfo s2) {
+				Integer ram1 = s1.totalRAMAvail - s1.totalRAMFree;
+				Integer ram2 = s1.totalRAMAvail - s1.totalRAMFree;
+				return ram2.compareTo(ram1);
+			}
+		};
+		
+		public static Comparator<SysInfo> DISK = new Comparator<SysInfo>() {
+			@Override
+			public int compare(SysInfo s1, SysInfo s2) {
+				Integer disk1 = s1.getPercentSpaceUsed();
+				Integer disk2 = s2.getPercentSpaceUsed();
+				return disk2.compareTo(disk1);
+			}
+		};
+	}
 }
