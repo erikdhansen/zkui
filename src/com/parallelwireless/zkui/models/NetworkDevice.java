@@ -19,5 +19,5 @@ public interface NetworkDevice {
 	public TYPE getType();
 	public List<NetworkDeviceInterface> getNetworkInterfaces();
 	public SysInfo getSysInfo();
-	
+	public NetworkDeviceInfo getNetworkDeviceInfo();
 }

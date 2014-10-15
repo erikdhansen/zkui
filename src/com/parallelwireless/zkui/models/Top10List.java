@@ -12,6 +12,6 @@ public class Top10List {
 	
 	public Top10List(Collection<NetworkDevice> items, Comparator<NetworkDevice> comparator) {
 		this.comparator = comparator;
-		this.items = Collections.sort(items, comparator);
+		//this.items = Collections.sort(items, comparator);
 	}
 }

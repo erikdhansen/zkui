@@ -16,12 +16,12 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	
 	List<CwsModel> cwsList = new LinkedList<CwsModel>();
 	
-	public UnicloudModel(int id, String name, String ip, int lastSeenMinutes) {
+	public UnicloudModel(int id, String name, String ip, SysInfo sysInfo) {
 		this.id = id;
 		this.name = name;
-		this.lastSeenMinutes = lastSeenMinutes;
+		this.sysinfo = sysInfo;
 		refreshSysInfo();
-		refreshNetworkDeviceInterfaces(); 
+		refreshNetworkInterfaces(); 
 	}
 	
 	public String getName() {
@@ -89,11 +89,10 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	}
 	
 	public SysInfo refreshSysInfo() {
-		sysinfo = UnimanageDataUtil.fudgeNetDeviceSysInfo(NetworkDevice.TYPE.unicloud);
 		return sysinfo;
 	}
 	
-	public List<NetworkDeviceInterface> refreshNetworkDeviceInterfaces() {
+	public List<NetworkDeviceInterface> refreshNetworkInterfaces() {
 		networkDeviceInterfaces = UnimanageDataUtil.fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE.unicloud);
 		return networkDeviceInterfaces;
 	}

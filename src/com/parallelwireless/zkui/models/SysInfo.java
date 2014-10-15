@@ -1,5 +1,7 @@
 package com.parallelwireless.zkui.models;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Comparator;
 
 public class SysInfo {
@@ -40,7 +42,21 @@ public class SysInfo {
 	public SysInfo() {	
 	}
 
+	public SysInfo(String oneMin, String fiveMin, String fifteenMin) {
+		setOneMinLoad(oneMin);
+		setFiveMinLoad(fiveMin);
+		setFifteenMinLoad(fifteenMin);
+	}
 
+	public SysInfo setMemoryStats(int ramTotal, int ramUsed, int ramFree, int swapTotal, int swapFree) {
+		this.totalRAMAvail = ramTotal;
+		this.totalRAMUsed = ramUsed;
+		this.totalRAMFree = ramFree;
+		this.totalSwapSize = swapTotal;
+		this.availSwapSize = this.totalSwapSize - swapFree;
+		return this;
+	}
+	
 	public String getOneMinLoad() {
 		return oneMinLoad;
 	}
@@ -155,11 +171,13 @@ public class SysInfo {
 		return availSwapSize;
 	}
 
+	public int getUsedSwapSize() {
+		return totalSwapSize - availSwapSize;
+	}
 
 	public void setAvailSwapSize(int availSwapSize) {
 		this.availSwapSize = availSwapSize;
 	}
-
 
 	public int getTotalRAMAvail() {
 		return totalRAMAvail;
@@ -288,6 +306,34 @@ public class SysInfo {
 
 	public void setPercentInodeUsed(int percentInodeUsed) {
 		this.percentInodeUsed = percentInodeUsed;
+	}
+	
+	public String getTotalRAMAvailMB() {
+		return mbFormat(totalRAMAvail);
+	}
+	
+	public String getTotalRAMUsedMB() {
+		return mbFormat(totalRAMUsed);
+	}
+	
+	public String getTotalRAMFreeMB() {
+		return mbFormat(totalRAMFree);
+	}
+	
+	public String getTotalSwapSizeMB() {
+		return mbFormat(totalSwapSize);
+	}
+	
+	public String getUsedSwapSizeMB() {
+		return mbFormat(getUsedSwapSize());
+	}
+	
+	public String getAvailSwapSizeMB() {
+		return mbFormat(availSwapSize);
+	}
+	
+	private String mbFormat(Number n) {
+		return String.valueOf(new DecimalFormat("#,###.#").format(totalRAMAvail / 1024)).concat("M");
 	}
 	
 	public static class Comparators {

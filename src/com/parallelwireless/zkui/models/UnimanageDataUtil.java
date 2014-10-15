@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.zkoss.chart.Series;
+import org.zkoss.chart.model.CategoryModel;
 import org.zkoss.chart.model.ChartsModel;
+import org.zkoss.chart.model.DefaultCategoryModel;
 import org.zkoss.chart.model.DefaultPieModel;
 
 import com.parallelwireless.zkui.models.ChartDataModelFactory.TYPE;
@@ -18,10 +20,10 @@ public class UnimanageDataUtil {
 
 	static NetworkMap uniclouds = new NetworkMap();
 	static {
-		uniclouds.put(1, new UnicloudModel(1, "Unicloud EH", "10.10.10.122", 1));
-		uniclouds.put(2, new UnicloudModel(2, "Unicloud 2", "10.10.10.128", 1));
-		uniclouds.put(3, new UnicloudModel(3, "Unicloud 3", "10.10.10.3", 3));
-		uniclouds.put(4, new UnicloudModel(4, "Unicloud 4", "10.10.10.4", 4));
+		uniclouds.put(1, new UnicloudModel(1, "Unicloud EH", "10.10.10.122", new SysInfo("4","3","1").setMemoryStats(16337652, 12312728, 4024924, 8009428, 8009428)));
+		uniclouds.put(2, new UnicloudModel(2, "Unicloud 2", "10.10.10.128", new SysInfo("2","2","2").setMemoryStats(8009428, 2312728, 5696700, 8009428, 2837)));
+		uniclouds.put(3, new UnicloudModel(3, "Unicloud 3", "10.10.10.3", new SysInfo("0","0","0").setMemoryStats(16337652, 8072635, 8265107, 8009428, 918273)));
+		uniclouds.put(4, new UnicloudModel(4, "Unicloud 4", "10.10.10.4", new SysInfo("7","11","15").setMemoryStats(16337652, 15312728, 1024924, 8009428, 2736252)));
 	}
 	static {
 		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh, 0));
@@ -62,8 +64,25 @@ public class UnimanageDataUtil {
 		return model;
 	}
 	
-	public static SysInfo fudgeNetDeviceSysInfo(NetworkDevice.TYPE type) {
-		return new SysInfo();
+	public static CategoryModel getUnicloudCpuResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		for(Map.Entry<Integer,UnicloudModel> e : uniclouds.entrySet()) {
+			UnicloudModel u = e.getValue();
+			model.setValue("Last Minute", u.getName(), stoi(u.getSysInfo().getOneMinLoad()));
+			model.setValue("Last 5 Min", u.getName(), stoi(u.getSysInfo().getFiveMinLoad()));
+			model.setValue("Last 15 Min", u.getName(), stoi(u.getSysInfo().getFifteenMinLoad()));
+		}
+		return model;
+	}
+	
+	private static int stoi(String s) {
+		int i = -1;
+		try {
+			i = Integer.valueOf(s);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 	
 	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE type) {

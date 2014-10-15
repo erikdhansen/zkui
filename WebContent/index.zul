@@ -48,7 +48,7 @@
 								title="Uni-Cloud System Resource Utilization" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-									<include src="unicloud_cpu_memory.zul" />
+								    <include src="unicloud_cpu_memory.zul" />
 									<include src="unicloud_disk_network.zul" />
 								</panelchildren>
 							</panel>

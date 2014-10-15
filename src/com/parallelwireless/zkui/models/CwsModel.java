@@ -74,7 +74,6 @@ public class CwsModel extends NetworkDeviceImpl {
 	}
 	
 	public SysInfo refreshSysInfo() {
-		sysinfo = UnimanageDataUtil.fudgeNetDeviceSysInfo(getType());
 		return sysinfo;
 	}
 	

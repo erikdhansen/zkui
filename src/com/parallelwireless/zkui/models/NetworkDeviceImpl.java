@@ -31,4 +31,8 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 		return sysinfo;
 	}
 
+	@Override
+	public List<NetworkDeviceInterface> getNetworkInterfaces() {
+		return networkDeviceInterfaces;
+	}
 }
