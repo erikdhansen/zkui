@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 
 import com.parallelwireless.zkui.models.UnicloudModel;
+import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 @SuppressWarnings("serial")
@@ -32,11 +33,38 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 	
 	public void doAfterCompose(Div d) throws Exception {
 		super.doAfterCompose(d);
+		doCpuChart();
+		doMemChart();		
+	}
+	
+	private void doMemChart() {
+		memChart.setModel(UnimanageDataUtil.getUnicloudMemResourceModel());
+		
+		// Alternate RAM/SWAP as series stack since that's how the data was added
+		// This allows for stack grouping across all data
+		memChart.getSeries().setStack("RAM");
+ 		memChart.getSeries().setColor(Unimanage.RESOURCE_RAM_USED);
+//		memChart.getPlotOptions().getSeries().setThreshold(75);
+//		memChart.getPlotOptions().getSeries().setNegativeColor("#aaffaa");
+//		memChart.getPlotOptions().getSeries().setColor("#ff3333");
+		memChart.getSeries(1).setStack("RAM");
+		memChart.getSeries(1).setColor(Unimanage.RESOURCE_RAM_FREE);
+		memChart.getSeries(2).setStack("Swap");
+		memChart.getSeries(2).setColor(Unimanage.RESOURCE_SWAP_USED);
+		memChart.getSeries(3).setStack("Swap");
+		memChart.getSeries(3).setColor(Unimanage.RESOURCE_SWAP_FREE);
+
+		memChart.getXAxis().setTitle("");
+		memChart.getYAxis().setMin(0);
+		
+		memChart.getTooltip().setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>" + ": <b>{point.y}</b> ({point.percentage:.0f}%)</br>");
+		memChart.getTooltip().setShared(true);
+		memChart.getPlotOptions().getColumn().setStacking("percent");
+		memChart.setInverted(true);
+	}
+	private void doCpuChart() {
 		cpuChart.setModel(UnimanageDataUtil.getUnicloudCpuResourceModel());
 		cpuChart.getXAxis().setTitle("");
-		memChart.setModel(new DefaultCategoryModel());
-		memChart.getXAxis().setTitle("");
-		
 		YAxis y = cpuChart.getYAxis();
 		y.setMin(0);
 		y.setTitle("Load Avg");
@@ -56,6 +84,7 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 		legend.setBackgroundColor("#ffffff");
 		
 		cpuChart.getCredits().setEnabled(false);
+		
 	}
 	
 	public void toggleCpuChart() {

@@ -37,30 +37,30 @@
 			</auxhead>
 			<auxhead>
 				<auxheader colspan="1" label="Uni-Cloud"/>
-				<auxheader colspan="3" label="RAM"/>
-				<auxheader colspan="3" label="Swap"/>
+				<auxheader colspan="3" label="RAM (MB)"/>
+				<auxheader colspan="3" label="Swap (MB)"/>
 			</auxhead>
 			<listhead>
 				<listheader hflex="2" label="Name"/>
-				<listheader hflex="1" label="Total"/>
 				<listheader hflex="1"  label="Used"/>
 				<listheader hflex="1" label="Free"/>
 				<listheader hflex="1" label="Total"/>
 				<listheader hflex="1" label="Used"/>
 				<listheader hflex="1" label="Free"/>
+				<listheader hflex="1" label="Total"/>
 			</listhead>
 				<listitem forEach="${uniclouds}">
 					<listcell label="${each.name}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.totalRAMAvailMB}"/>
 					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.totalRAMUsedMB}"/>
 					<listcell style="color: green; text-align: right;" label="${each.sysInfo.totalRAMFreeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.totalSwapSizeMB}"/>
+					<listcell style="text-align: right" label="${each.sysInfo.totalRAMAvailMB}"/>
 					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.usedSwapSizeMB}"/>
 					<listcell style="color: green; text-align: right;" label="${each.sysInfo.availSwapSizeMB}"/>
+					<listcell style="text-align: right" label="${each.sysInfo.totalSwapSizeMB}"/>
 				</listitem>		
    		</listbox>
    		<div align="center">
-	   		<charts id="memChart" type="bar" title="" subtitle="Data Age: 2 min" height="260"/>
+	   		<charts id="memChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
    	</div>
 </hbox>

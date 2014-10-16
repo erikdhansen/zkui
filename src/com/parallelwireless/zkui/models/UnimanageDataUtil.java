@@ -75,6 +75,19 @@ public class UnimanageDataUtil {
 		return model;
 	}
 	
+	public static CategoryModel getUnicloudMemResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		for(Map.Entry<Integer, UnicloudModel> e : uniclouds.entrySet()) {
+			UnicloudModel u = e.getValue();
+			System.out.println("Unicloud: " + u.getName() + ": sysInfo(mem) = " + u.getSysInfo().dumpMemInfo());
+			model.setValue("RAM Used", u.getName(), u.getSysInfo().getTotalRAMUsed());
+			model.setValue("RAM Free", u.getName(), u.getSysInfo().getTotalRAMFree());
+			model.setValue("Swap Used", u.getName(), u.getSysInfo().getUsedSwapSize());
+			model.setValue("Swap Free", u.getName(), u.getSysInfo().getAvailSwapSize());
+		}
+		return model;
+	}
+	
 	private static int stoi(String s) {
 		int i = -1;
 		try {

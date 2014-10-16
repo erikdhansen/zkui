@@ -1,51 +1,68 @@
 <?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
 <zk>
 <zscript>
-	List summary = com.parallelwireless.zkui.models.UnimanageDataUtil.getNetworkSummary().getSummaryRows();
-	com.parallelwireless.zkui.models.AlarmStatusModel alarmSummary = com.parallelwireless.zkui.models.UnimanageDataUtil.getAlarmSummary();
-	List alarmRowModels = alarmSummary.getAlarmRowModels();
+	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
 </zscript>
 <style src="/css/parallel.css"/>
+<div apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
 <hbox>
-	<div apply="com.parallelwireless.zkui.NetworkStatusController">
-   		<grid id="network_status_table" sclass="unicloud-table">
+	<div id="cpu_section">
+		<grid id="cpu_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="3" label="Network Device Summary"/>
+   				<auxheader colspan="4" label="Disk"/>
    			</auxhead>
    			<columns>
-   				<column sclass="unicloud-table" hflex="4">Device Type</column>
-   				<column hflex="3">Up</column>
-				<column hflex="3">Down</column>
+   				<column sclass="unicloud-table" hflex="4">System</column>
+   				<column hflex="3">1 min</column>
+				<column hflex="3">5 min</column>
+				<column hflex="3">15 min</column>
    			</columns>
    			<rows>
-   				<row forEach="${summary}">
+   				<row forEach="${uniclouds}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
-   					<label sclass="unicloud-table" value="${each.up}"/>
-   					<label sclass="unicloud-table" style="color: #ff0000" value="${each.down}"/>
+   					<label sclass="unicloud-table" value="${each.sysInfo.oneMinLoad}"/>
+   					<label sclass="unicloud-table" value="${each.sysInfo.fiveMinLoad}"/>
+   					<label sclass="unicloud-table" value="${each.sysInfo.fifteenMinLoad}"/>
  	  			</row>
    			</rows>
    		</grid>
-   	   <charts id="chart" type="pie" title="Network Devices" width="340" height="260" />
-   	</div>		
-   	<div apply="com.parallelwireless.zkui.AlarmStatusController">
-		<listbox id="alarm_status_table" sclass="unicloud-table">
+   		<div align="middle" id="cpuchartdiv">
+	   	   <charts id="cpuChart" type="bar" title="" subtitle="Data Age: 2 min ago" height="260" />   		
+   		</div>
+   	</div>
+   	<div id="mem_section">
+   		<listbox id="unicloud_mem_resources" sclass="unicloud-table">
 			<auxhead>
-				<auxheader colspan="4" label="Alarm Summary"/>
+				<auxheader colspan="7" label="Memory/Swap"/>
+			</auxhead>
+			<auxhead>
+				<auxheader colspan="1" label="Uni-Cloud"/>
+				<auxheader colspan="3" label="RAM (MB)"/>
+				<auxheader colspan="3" label="Swap (MB)"/>
 			</auxhead>
 			<listhead>
-				<listheader hflex="4" label="Device Type"/>
-				<listheader hflex="2" label="Critical"/>
-				<listheader hflex="2" label="Major"/>
-				<listheader hflex="2" label="Minor"/>
+				<listheader hflex="2" label="Name"/>
+				<listheader hflex="1"  label="Used"/>
+				<listheader hflex="1" label="Free"/>
+				<listheader hflex="1" label="Total"/>
+				<listheader hflex="1" label="Used"/>
+				<listheader hflex="1" label="Free"/>
+				<listheader hflex="1" label="Total"/>
 			</listhead>
-				<listitem forEach="${alarmRowModels}" sclass="unicloud-table">
-					<listcell sclass="unicloud-table" label="${each.deviceType}"/>
-					<listcell sclass="unicloud-table" style="color: red" label="${each.critical}"/>
-					<listcell sclass="unicloud-table" style="color: orange" label="${each.major}"/>
-					<listcell sclass="unicloud-table" label="${each.minor}"/>
+				<listitem forEach="${uniclouds}">
+					<listcell label="${each.name}"/>
+					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.totalRAMUsedMB}"/>
+					<listcell style="color: green; text-align: right;" label="${each.sysInfo.totalRAMFreeMB}"/>
+					<listcell style="text-align: right" label="${each.sysInfo.totalRAMAvailMB}"/>
+					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.usedSwapSizeMB}"/>
+					<listcell style="color: green; text-align: right;" label="${each.sysInfo.availSwapSizeMB}"/>
+					<listcell style="text-align: right" label="${each.sysInfo.totalSwapSizeMB}"/>
 				</listitem>		
    		</listbox>
-   		<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" width="340" height="260"/>
+   		<div align="center">
+	   		<charts id="memChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
+   		</div>
    	</div>
 </hbox>
+</div>
 </zk>

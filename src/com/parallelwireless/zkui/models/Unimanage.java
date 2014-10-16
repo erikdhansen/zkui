@@ -12,6 +12,18 @@ public class Unimanage {
 	public final static String COLOR_MAJOR    = "#f39317";
 	public final static String COLOR_MINOR    = "#ebf317";
 	
+	public static enum RESOURCE_COLOR {
+		RESOURCE_RAM_FREE,
+		RESOURCE_RAM_USED,
+		RESOURCE_SWAP_USED,
+		RESOURCE_SWAP_FREE
+	}
+	
+	public static Color RESOURCE_RAM_FREE = new Color("#83ed48");
+	public static Color RESOURCE_RAM_USED = new Color("#309803");
+	public static Color RESOURCE_SWAP_FREE = new Color("#24cef8");
+	public static Color RESOURCE_SWAP_USED = new Color("#0079a3");
+
 	public final static List<Color> ALARM_COLOR_LIST = new ArrayList<Color>();
 	static {
 		ALARM_COLOR_LIST.add(new Color(COLOR_CRITICAL));
