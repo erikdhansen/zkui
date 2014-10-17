@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
-public class MemoryResource {
+public class MemoryResource implements SystemResource {
 	// Memory
 	int    totalSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.3.0
 	int    availSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.4.0
@@ -14,13 +14,22 @@ public class MemoryResource {
 	int    totalRAMShared   = 0;  // .1.3.6.1.4.1.2021.4.13.0
 	int    totalRAMBuffered = 0;  // .1.3.6.1.4.1.2021.4.14.0
 	int    totalCachedMem   = 0;  // .1.3.6.1.4.1.2021.4.15.0
-		
-	public MemoryResource() {
+	String systemName;
+	
+	public MemoryResource(String systemName) {
+		this.systemName = systemName;
 	}
 
 	@Override
 	public void addResources(ResourceConfig config) throws Exception {
-		setTotalSwapSize(String.valueOf(config.get(RESOURCE.MEM_SWAP_TOTAL) == null ? getTotalSwapSize() : config.get(RESOURCE.MEM_SWAP_TOTAL)));
+		setTotalSwapSize(config.get(RESOURCE.MEM_SWAP_TOTAL) == null ? getTotalSwapSize() : Integer.parseInt(config.get(RESOURCE.MEM_SWAP_TOTAL)));
+		setAvailSwapSize(config.get(RESOURCE.MEM_SWAP_FREE) == null ? getAvailSwapSize() : Integer.parseInt(config.get(RESOURCE.MEM_SWAP_FREE)));
+		setTotalRAMAvail(config.get(RESOURCE.MEM_RAM_TOTAL) == null ? getTotalRAMAvail() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_TOTAL)));
+		setTotalRAMUsed(config.get(RESOURCE.MEM_RAM_USED) == null ? getTotalRAMUsed() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_USED)));
+		setTotalRAMFree(config.get(RESOURCE.MEM_RAM_FREE) == null ? getTotalRAMFree() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_FREE)));
+		setTotalRAMShared(config.get(RESOURCE.MEM_RAM_SHARED) == null ? getTotalRAMShared() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_SHARED)));
+		setTotalRAMBuffered(config.get(RESOURCE.MEM_RAM_BUFFERED) == null ? getTotalRAMBuffered() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_BUFFERED)));
+		setTotalCachedMem(config.get(RESOURCE.MEM_RAM_CACHED) == null ? getTotalCachedMem() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_CACHED)));
 	}
 	
 	public int getTotalSwapSize() {
@@ -107,6 +116,10 @@ public class MemoryResource {
 	
 	public String dumpMemInfo() {
 		return "RAM: used=" + getTotalRAMUsedMB() + " free=" + getTotalRAMFreeMB() + " :: SWAP: used=" + getUsedSwapSizeMB() + " free=" + getAvailSwapSizeMB();
+	}
+	
+	public String getSystemName() {
+		return systemName;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.models;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,14 +17,14 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	
 	List<CwsModel> cwsList = new LinkedList<CwsModel>();
 	
-	public UnicloudModel(int id, String name, String ip, SysInfo sysInfo) {
+	public UnicloudModel(int id, String name, String ip) {
 		this.id = id;
 		this.name = name;
-		this.sysinfo = sysInfo;
+		this.sysinfo = new SysInfo(name);
 		refreshSysInfo();
 		refreshNetworkInterfaces(); 
 	}
-	
+		
 	public String getName() {
 		return name;
 	}

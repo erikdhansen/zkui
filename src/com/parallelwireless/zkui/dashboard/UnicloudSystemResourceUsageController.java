@@ -23,6 +23,10 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 	@Wire
 	Charts memChart;
 	@Wire
+	Charts diskChart;
+	@Wire
+	Charts netChart;
+	@Wire
 	Div cpuChartDiv;
 
 
@@ -34,9 +38,14 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 	public void doAfterCompose(Div d) throws Exception {
 		super.doAfterCompose(d);
 		doCpuChart();
-		doMemChart();		
+		doMemChart();
+		doDiskChart();
 	}
 	
+	private void doDiskChart() {
+		diskChart.setModel(UnimanageDataUtil.getUnicloudDiskResourceModel());
+		
+	}
 	private void doMemChart() {
 		memChart.setModel(UnimanageDataUtil.getUnicloudMemResourceModel());
 		
@@ -62,6 +71,7 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 		memChart.getPlotOptions().getColumn().setStacking("percent");
 		memChart.setInverted(true);
 	}
+	
 	private void doCpuChart() {
 		cpuChart.setModel(UnimanageDataUtil.getUnicloudCpuResourceModel());
 		cpuChart.getXAxis().setTitle("");

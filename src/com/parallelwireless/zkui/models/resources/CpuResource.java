@@ -1,9 +1,10 @@
 package com.parallelwireless.zkui.models.resources;
 
-import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
+import java.util.Comparator;
 
-
-public class CpuResource {
+public class CpuResource implements SystemResource, Comparator<CpuResource> {
+	String systemName;
+	
 	// Load						//
 	String oneMinLoad      = "";  // .1.3.6.1.4.1.2021.10.1.3.1
 	String fiveMinLoad     = "";  // .1.3.6.1.4.1.2021.10.1.3.2
@@ -18,13 +19,18 @@ public class CpuResource {
 	long   rawIdleCPU     = 0;  // .1.3.6.1.4.1.2021.11.53.0
 	long   rawNiceCPU     = 0;  // .1.3.6.1.4.1.2021.11.51.0
 
-	public CpuResource() {
+	public CpuResource(String systemName) {
+		this.systemName = systemName;
 	}
 	
-	public void addResources(ResourceConfig cfg) {
+	@Override
+	public void addResources(ResourceConfig cfg) throws Exception {
 		oneMinLoad     = cfg.get(RESOURCE.CPU_LOAD_ONE)     == null ? oneMinLoad : cfg.get(RESOURCE.CPU_LOAD_ONE);
-		fiveMinLoad    = cfg.get(RESOURCE.CPU_LOAD_FIVE)    == null ? oneMinLoad : cfg.get(RESOURCE.CPU_LOAD_FIVE);
-		fifteenMinLoad = cfg.get(RESOURCE.CPU_LOAD_FIFTEEN) == null ? oneMinLoad : cfg.get(RESOURCE.CPU_LOAD_FIFTEEN);
+		fiveMinLoad    = cfg.get(RESOURCE.CPU_LOAD_FIVE)    == null ? fiveMinLoad : cfg.get(RESOURCE.CPU_LOAD_FIVE);
+		fifteenMinLoad = cfg.get(RESOURCE.CPU_LOAD_FIFTEEN) == null ? fifteenMinLoad : cfg.get(RESOURCE.CPU_LOAD_FIFTEEN);
+		percentUserCPU = cfg.get(RESOURCE.CPU_USER_PCT)     == null ? percentUserCPU : Integer.parseInt(cfg.get(RESOURCE.CPU_USER_PCT));
+		percentSysCPU  = cfg.get(RESOURCE.CPU_SYS_PCT)   == null ? percentSysCPU : Integer.parseInt(cfg.get(RESOURCE.CPU_SYS_PCT));
+		percentIdleCPU = cfg.get(RESOURCE.CPU_IDLE_PCT)     == null ? percentIdleCPU : Integer.parseInt(cfg.get(RESOURCE.CPU_IDLE_PCT));
 	}
 	
 	public String getOneMinLoad() {
@@ -122,5 +128,20 @@ public class CpuResource {
 
 	public void setRawNiceCPU(long rawNiceCPU) {
 		this.rawNiceCPU = rawNiceCPU;
-	}		
+	}
+
+	public int getPercentCPUTotal() {
+		return getPercentUserCPU() + getPercentSysCPU();
+	}
+	
+	@Override
+	public String getSystemName() {
+		return systemName;
+	}	
+	
+	public int compare(CpuResource c1, CpuResource c2) {
+		Integer cpu1 = c1.getPercentCPUTotal();
+		Integer cpu2 = c2.getPercentCPUTotal();
+		return cpu2.compareTo(cpu1);
+	}	
 }
