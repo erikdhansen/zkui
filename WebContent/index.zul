@@ -48,15 +48,13 @@
 								title="Uni-Cloud System Resource Utilization" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-								    <include src="unicloud_system_resources_dashboard.zul" />
 								</panelchildren>
 							</panel>
 							<panel id="cws_system_resources"
 								title="CWS System Resource Utilization" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-									<include src="cws_cpu_memory.zul" />
-									<include src="cws_disk_network.zul" />
+								    <include src="unicloud_system_resources_dashboard.zul" />
 								</panelchildren>
 							</panel>
 							<panel id="unicloud_list"

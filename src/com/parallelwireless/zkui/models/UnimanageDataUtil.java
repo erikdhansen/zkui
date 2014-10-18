@@ -4,14 +4,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.zkoss.chart.model.CategoryModel;
 import org.zkoss.chart.model.DefaultCategoryModel;
 
-import com.parallelwireless.zkui.models.resources.NetworkDeviceComparators;
-import com.parallelwireless.zkui.models.resources.NetworkResource;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
@@ -142,17 +137,19 @@ public class UnimanageDataUtil {
 	public static CategoryModel getUnicloudDiskResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
 		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
-		Collections.sort(ucs, Collections.reverseOrder(new NetworkResource(null)));
+		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.DISK));
 		for(UnicloudModel u : ucs) {
 			model.setValue("Used", u.getName(), u.getSysInfo().getDisk().getUsedDiskSpaceInBytes());
 			model.setValue("Free", u.getName(), u.getSysInfo().getDisk().getAvailableDiskInBytes());
 		}
 		return model;
 	}
+	
 	public static CategoryModel getUnicloudCpuResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
-		for(Map.Entry<Integer,UnicloudModel> e : uniclouds.entrySet()) {
-			UnicloudModel u = e.getValue();
+		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
+		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.CPU));
+		for(UnicloudModel u : ucs) {			
 			model.setValue("Last Minute", u.getName(), stoi(u.getSysInfo().getCpu().getOneMinLoad()));
 			model.setValue("Last 5 Min", u.getName(), stoi(u.getSysInfo().getCpu().getFiveMinLoad()));
 			model.setValue("Last 15 Min", u.getName(), stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
@@ -162,8 +159,9 @@ public class UnimanageDataUtil {
 	
 	public static CategoryModel getUnicloudMemResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
-		for(Map.Entry<Integer, UnicloudModel> e : uniclouds.entrySet()) {
-			UnicloudModel u = e.getValue();
+		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
+		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.MEM));
+		for(UnicloudModel u : ucs) {
 			model.setValue("RAM Used", u.getName(), u.getSysInfo().getMem().getTotalRAMUsed());
 			model.setValue("RAM Free", u.getName(), u.getSysInfo().getMem().getTotalRAMFree());
 			model.setValue("Swap Used", u.getName(), u.getSysInfo().getMem().getUsedSwapSize());

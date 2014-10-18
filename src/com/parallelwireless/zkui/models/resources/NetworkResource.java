@@ -1,10 +1,8 @@
 package com.parallelwireless.zkui.models.resources;
 
-import java.util.Comparator;
-
-public class NetworkResource implements SystemResource,Comparator<NetworkResource> {
+public class NetworkResource implements SystemResource {
 	String systemName;
-	int bytes = 0;
+	int percentUtilization;
 	
 	public NetworkResource(String systemName) {
 		this.systemName = systemName;
@@ -20,10 +18,7 @@ public class NetworkResource implements SystemResource,Comparator<NetworkResourc
 
 	}
 
-	@Override
-	public int compare(NetworkResource o1, NetworkResource o2) {
-		Integer mem1 = o1.bytes;
-		Integer mem2 = o2.bytes;
-		return mem2.compareTo(mem1);
+	public int getPercentUtilization() {
+		return percentUtilization;
 	}
 }

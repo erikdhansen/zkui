@@ -3,7 +3,7 @@ package com.parallelwireless.zkui.models.resources;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 
-public class DiskResource implements SystemResource, Comparator<DiskResource> {
+public class DiskResource implements SystemResource {
 
 	private final static long KB = 1024;
 	private final static long MB = 1024*KB;
@@ -122,12 +122,5 @@ public class DiskResource implements SystemResource, Comparator<DiskResource> {
 			hr = String.valueOf(bytes).concat(" B");
 		}
 		return hr;
-	}
-	
-	@Override
-	public int compare(DiskResource o1, DiskResource o2) {
-		Integer disk1 = getPercentSpaceUsed();
-		Integer disk2 = getPercentSpaceUsed();
-		return disk2.compareTo(disk1);
 	}
 }

@@ -110,6 +110,9 @@ public class MemoryResource implements SystemResource {
 		return mbFormat(availSwapSize);
 	}
 	
+	public int getPercentUsed () {
+		return (100 * getTotalRAMUsed()) / (getTotalRAMUsed() + getTotalRAMFree());
+	}
 	private String mbFormat(Number n) {
 		return String.valueOf(new DecimalFormat("#,###.#").format(n.intValue() / 1024));
 	}

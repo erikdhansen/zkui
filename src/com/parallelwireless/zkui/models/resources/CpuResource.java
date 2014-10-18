@@ -1,8 +1,6 @@
 package com.parallelwireless.zkui.models.resources;
 
-import java.util.Comparator;
-
-public class CpuResource implements SystemResource, Comparator<CpuResource> {
+public class CpuResource implements SystemResource {
 	String systemName;
 	
 	// Load						//
@@ -137,11 +135,5 @@ public class CpuResource implements SystemResource, Comparator<CpuResource> {
 	@Override
 	public String getSystemName() {
 		return systemName;
-	}	
-	
-	public int compare(CpuResource c1, CpuResource c2) {
-		Integer cpu1 = c1.getPercentCPUTotal();
-		Integer cpu2 = c2.getPercentCPUTotal();
-		return cpu2.compareTo(cpu1);
-	}	
+	}		
 }
