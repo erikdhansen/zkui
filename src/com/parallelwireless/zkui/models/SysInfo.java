@@ -29,7 +29,8 @@ public class SysInfo {
 		try {
 			cpu.addResources(config);
 			mem.addResources(config);
-			disk.addResources(config);			
+			disk.addResources(config);
+			net.addResources(config);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

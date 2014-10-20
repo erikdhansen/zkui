@@ -2,8 +2,10 @@ package com.parallelwireless.zkui.models;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.zkoss.chart.model.CategoryModel;
 import org.zkoss.chart.model.DefaultCategoryModel;
 
@@ -24,14 +26,20 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
 		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
-		cfg.put(RESOURCE.MEM_RAM_USED, "123112728");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
 		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
 		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "210293928400");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(1, u);
 		// Unicloud Data
@@ -49,9 +57,15 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
 		cfg.put(RESOURCE.MEM_SWAP_FREE, "2837");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "210293928400");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "49923827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "21029392840");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "62");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "97 99 99 89 77 74 69 68 68 65");
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(2, u);
 		// Unicloud Data
@@ -69,9 +83,15 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
 		cfg.put(RESOURCE.MEM_SWAP_FREE, "918273");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "210293928400");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "411823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "329293928400");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "10");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "63 68 66 66 66 4 4 8 9 10");
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(3, u);
 		// Unicloud Data
@@ -92,6 +112,12 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
 		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "210293928400");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "52");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "71 52 59 57 52 54 53 52 51 51");
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(4, u);		
 	}
@@ -120,6 +146,12 @@ public class UnimanageDataUtil {
 		return uniclouds.values();
 	}
 	
+	public static Collection<UnicloudModel> getAllUniclouds(Comparator<NetworkDevice> comparator) {
+		List<UnicloudModel> unicloudList = new LinkedList<UnicloudModel>(uniclouds.values());
+		Collections.sort(unicloudList, comparator);
+		return unicloudList;
+	}
+	
 	public static NetworkSummary getNetworkSummary() {
 		return new NetworkSummary(uniclouds);
 	}
@@ -137,22 +169,21 @@ public class UnimanageDataUtil {
 	public static CategoryModel getUnicloudDiskResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
 		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
-		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.DISK));
 		for(UnicloudModel u : ucs) {
-			model.setValue("Used", u.getName(), u.getSysInfo().getDisk().getUsedDiskSpaceInBytes());
 			model.setValue("Free", u.getName(), u.getSysInfo().getDisk().getAvailableDiskInBytes());
+			model.setValue("Used", u.getName(), u.getSysInfo().getDisk().getUsedDiskSpaceInBytes());
 		}
 		return model;
 	}
 	
+	
 	public static CategoryModel getUnicloudCpuResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
 		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
-		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.CPU));
 		for(UnicloudModel u : ucs) {			
-			model.setValue("Last Minute", u.getName(), stoi(u.getSysInfo().getCpu().getOneMinLoad()));
-			model.setValue("Last 5 Min", u.getName(), stoi(u.getSysInfo().getCpu().getFiveMinLoad()));
-			model.setValue("Last 15 Min", u.getName(), stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
+			model.setValue(u.getName(), "-15 min", stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
+			model.setValue(u.getName(), "-5 min", stoi(u.getSysInfo().getCpu().getFiveMinLoad()));
+			model.setValue(u.getName(), "-1 min", stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
 		}
 		return model;
 	}
@@ -160,12 +191,22 @@ public class UnimanageDataUtil {
 	public static CategoryModel getUnicloudMemResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
 		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
-		Collections.sort(ucs, Collections.reverseOrder(NetworkDeviceImpl.MEM));
 		for(UnicloudModel u : ucs) {
 			model.setValue("RAM Used", u.getName(), u.getSysInfo().getMem().getTotalRAMUsed());
 			model.setValue("RAM Free", u.getName(), u.getSysInfo().getMem().getTotalRAMFree());
 			model.setValue("Swap Used", u.getName(), u.getSysInfo().getMem().getUsedSwapSize());
 			model.setValue("Swap Free", u.getName(), u.getSysInfo().getMem().getAvailSwapSize());
+		}
+		return model;
+	}
+	
+	public static CategoryModel getUnicloudNetResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<UnicloudModel> ucs = new LinkedList<UnicloudModel>(getAllUniclouds());
+		for(UnicloudModel u : ucs) {
+			for(int i=0; i < u.getSysInfo().getNetwork().getLastTenPercentUtilization().size(); i++) {
+				model.setValue(u.getName(), "-" + (u.getSysInfo().getNetwork().getLastTenPercentUtilization().size() - i) + " min", u.getSysInfo().getNetwork().getLastTenPercentUtilization().get(i));
+			}
 		}
 		return model;
 	}

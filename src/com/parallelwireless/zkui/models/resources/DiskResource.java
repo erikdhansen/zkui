@@ -76,7 +76,8 @@ public class DiskResource implements SystemResource {
 	}
 
 	public int getPercentSpaceUsed() {
-		return percentSpaceUsed;
+		Long pct = (100*availableDiskInBytes)/(availableDiskInBytes + usedDiskSpaceInBytes);
+		return pct.intValue();
 	}
 
 	public void setPercentSpaceUsed(int percentSpaceUsed) {

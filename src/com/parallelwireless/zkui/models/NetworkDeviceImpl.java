@@ -75,8 +75,8 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 			new Comparator<NetworkDevice>() {
 		    @Override
 		    public int compare(NetworkDevice n1, NetworkDevice n2) {
-		    	Integer net1 = n1.getSysInfo().getNetwork().getPercentUtilization();
-		    	Integer net2 = n2.getSysInfo().getNetwork().getPercentUtilization();
+		    	Integer net1 = n1.getSysInfo().getNetwork().getCurrentPercentUtilization();
+		    	Integer net2 = n2.getSysInfo().getNetwork().getCurrentPercentUtilization();
 		    	return net2.compareTo(net1);
 		    }
 	};

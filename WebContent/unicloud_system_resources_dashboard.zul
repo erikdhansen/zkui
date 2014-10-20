@@ -1,7 +1,10 @@
 <?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
 <zk>
 <zscript>
-	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
+	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.CPU);
+	Collection ucMem     = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.MEM);
+	Collection ucDisk    = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.DISK);
+	Collection ucNet     = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.NET);
 </zscript>
 <style src="/css/parallel.css"/>
 <div apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
@@ -51,7 +54,7 @@
 				<listheader hflex="1" label="Free"/>
 				<listheader hflex="1" label="Total"/>
 			</listhead>
-				<listitem forEach="${uniclouds}">
+				<listitem forEach="${ucMem}">
 					<listcell label="${each.name}"/>
 					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
 					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
@@ -78,10 +81,10 @@
 				<column hflex="3">Used</column>
 				<column hflex="3">Free</column>
 				<column hflex="3">Total</column>
-				<column hflex="3">% Free</column>
+				<column hflex="3">% Used</column>
    			</columns>
    			<rows>
-   				<row forEach="${uniclouds}">
+   				<row forEach="${ucDisk}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.partitionDevPath}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.usedDiskSpaceHR}"/>
@@ -101,24 +104,24 @@
 				<auxheader colspan="6" label="Network"/>
 			</auxhead>
 			<listhead>
-				<listheader hflex="2" label="Name"/>
-				<listheader hflex="1"  label="Interface"/>
-				<listheader hflex="1" label="RX Bytes"/>
-				<listheader hflex="1" label="TX Bytes"/>
-				<listheader hflex="1" label="Link Speed"/>
-				<listheader hflex="1" label="% Utilization"/>
+				<listheader hflex="3" label="Name"/>
+				<listheader hflex="2"  label="Interface"/>
+				<listheader hflex="2" label="RX Bytes"/>
+				<listheader hflex="2" label="TX Bytes"/>
+				<listheader hflex="2" label="Link Speed"/>
+				<listheader hflex="2" label="% Use"/>
 			</listhead>
-				<listitem forEach="${uniclouds}">
+				<listitem forEach="${ucNet}">
 					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="eth0"/>
-					<listcell style="color: green; text-align: right;" label="83746372"/>
-					<listcell style="text-align: right" label="83746253"/>
-					<listcell style="color: orange; text-align: right;" label="1000"/>
-					<listcell style="color: green; text-align: right;" label="62%"/>
+					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
+					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytes}"/>
+					<listcell style="text-align: right" label="${each.sysInfo.network.txBytes}"/>
+					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
+					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}"/>
 				</listitem>		
    		</listbox>
    		<div align="center">
-	   		<charts id="netChart" type="bar" title="" inverted="true" subtitle="Data Age: 2 min" height="260"/>
+	   		<charts id="netChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
    	</div>
 </hbox>

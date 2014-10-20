@@ -40,10 +40,22 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 		doCpuChart();
 		doMemChart();
 		doDiskChart();
+		doNetChart();
 	}
 	
+	private void doNetChart() {
+		netChart.setModel(UnimanageDataUtil.getUnicloudNetResourceModel());
+		netChart.getYAxis().setMin(0);
+		netChart.getYAxis().setMax(100);
+		netChart.getYAxis().setTitle("% Net");
+		
+	}
 	private void doDiskChart() {
 		diskChart.setModel(UnimanageDataUtil.getUnicloudDiskResourceModel());
+		//diskChart.getSeries().setStack("Used");
+		//diskChart.getSeries(1).setStack("Free");
+		diskChart.getYAxis().setTitle("% Disk");
+		diskChart.getPlotOptions().getColumn().setStacking("percent");
 		
 	}
 	private void doMemChart() {
@@ -63,9 +75,8 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 		memChart.getSeries(3).setStack("Swap");
 		memChart.getSeries(3).setColor(Unimanage.RESOURCE_SWAP_FREE);
 
-		memChart.getXAxis().setTitle("");
+		memChart.getXAxis().setTitle("% Memory");
 		memChart.getYAxis().setMin(0);
-		
 		memChart.getTooltip().setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>" + ": <b>{point.y}</b> ({point.percentage:.0f}%)</br>");
 		memChart.getTooltip().setShared(true);
 		memChart.getPlotOptions().getColumn().setStacking("percent");

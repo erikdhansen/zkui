@@ -22,7 +22,13 @@ public interface SystemResource {
 		DISK_INODE_USED_PCT("percentInodeUsed"),
 		DISK_SPACE_USED_PCT("percentSpaceUsed"),
 		DISK_TOTAL_PART_SIZE("totalPartSizeInBytes"),
-		DISK_USED_BYTES("usedDiskInBytes");
+		DISK_USED_BYTES("usedDiskInBytes"),
+		NET_INTF_NAME("interfaceName"),
+		NET_LINK_SPEED("linkSpeed"),
+		NET_RX_BYTES("rxBytes"),
+		NET_TX_BYTES("txBytes"),
+		NET_PCT_UTIL("percentUtilization"),
+		NET_LAST10_PCT_UTIL("lastTenPercentUtilization");
 		
 
 			private final String resource;
