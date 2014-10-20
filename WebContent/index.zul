@@ -55,14 +55,14 @@
 								title="CWS System Resource Utilization" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-								    <include src="unicloud_system_resources_dashboard.zul" />
+								    <include src="cws_system_resources_dashboard.zul" />
 								</panelchildren>
 							</panel>
-							<panel id="unicloud_list"
-								title="UniCloud Summary" border="normal" collapsible="true"
+							<panel id="cws_lte_statistics"
+								title="CWS LTE Statistics" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-									<include src="unicloud_list.zul" />
+									<include src="cws_lte_statistics.zul" />
 								</panelchildren>
 							</panel>														
 						</portalchildren>

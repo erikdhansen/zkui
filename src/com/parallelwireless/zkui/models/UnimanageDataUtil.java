@@ -122,20 +122,381 @@ public class UnimanageDataUtil {
 		uniclouds.put(4, u);		
 	}
 	static {
-		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-2", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-3", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw, 0));
-		uniclouds.get(1).getCwsList().add(new CwsModel("cws-uceh-3", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw, 60));
-		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-1", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-2", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw, 60));
-		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-3", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw, 60));
-		uniclouds.get(2).getCwsList().add(new CwsModel("cws-uc2-4", 2, "10.11.2.7", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(3).getCwsList().add(new CwsModel("cws-uc3-1", 3, "10.11.3.8", NetworkDevice.TYPE.cws_gw, 0));
-		uniclouds.get(3).getCwsList().add(new CwsModel("cws-uc3-2", 3, "10.11.3.9", NetworkDevice.TYPE.cws_mesh, 60));
-		uniclouds.get(3).getCwsList().add(new CwsModel("cws-uc3-3", 3, "10.11.3.10", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(4).getCwsList().add(new CwsModel("cws-uc4-1", 4, "10.11.4.11", NetworkDevice.TYPE.cws_gw, 0));
-		uniclouds.get(4).getCwsList().add(new CwsModel("cws-uc4-2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh, 0));
-		uniclouds.get(4).getCwsList().add(new CwsModel("cws-uc4-3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw, 60));
+		CwsModel cws = new CwsModel("cws-uca-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh, 0);
+		ResourceConfig cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(1).getCwsList().add(cws);
+		cws = new CwsModel("cws-uceh-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "2");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(1).getCwsList().add(cws);
+		cws = new CwsModel("cws-uceh-2", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "14");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "13");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "11");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(1).getCwsList().add(cws);
+		cws = new CwsModel("cws-uceh-3", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "0");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "1");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(1).getCwsList().add(cws);
+		cws = new CwsModel("cws-uceh-3", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw, 60);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "1");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(2).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc2-1", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "1");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "3");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(2).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc2-2", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw, 60);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "3");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(2).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc2-3", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw, 60);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "7");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "2");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(2).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc2-4", 2, "10.11.2.7", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "3");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(3).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc3-1", 3, "10.11.3.8", NetworkDevice.TYPE.cws_gw, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "3");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "4");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(3).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc3-2", 3, "10.11.3.9", NetworkDevice.TYPE.cws_mesh, 60);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "5");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(3).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc3-3", 3, "10.11.3.10", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "5");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(4).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc4-1", 4, "10.11.4.11", NetworkDevice.TYPE.cws_gw, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(4).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc4-2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh, 0);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "2");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(4).getCwsList().add(cws);
+		cws = new CwsModel("cws-uc4-3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw, 60);
+		cfg = new ResourceConfig();
+		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
+		cfg.put(RESOURCE.CPU_LOAD_FIVE, "0");
+		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
+		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
+		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
+		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
+		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
+		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
+		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
+		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
+		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
+		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
+		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
+		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
+		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
+		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");		
+		cws.getSysInfo().addResources(cfg);
+		uniclouds.get(4).getCwsList().add(cws);
 	}
 	
 	public static UnicloudModel getUnicloud(int id) {
@@ -144,6 +505,30 @@ public class UnimanageDataUtil {
 	
 	public static Collection<UnicloudModel> getAllUniclouds() {
 		return uniclouds.values();
+	}
+	
+	public static Collection<CwsModel> getAllCwsModels() {
+		List<CwsModel> cwsList = new LinkedList<CwsModel>();
+		for(UnicloudModel u : getAllUniclouds()) {
+			cwsList.addAll(u.getCwsList());
+		}
+		return cwsList;
+	}
+	
+	public static Collection<CwsModel> getAllCwsModels(Comparator<NetworkDevice> comparator) {
+		List<CwsModel> cwsList = new LinkedList<CwsModel>(getAllCwsModels());
+		Collections.sort(cwsList, comparator);
+		return cwsList;
+	}
+	
+	public static List<CwsModel> getTop10CwsModels(Comparator<NetworkDevice> comparator) {
+		List<CwsModel> cwsList = new LinkedList<CwsModel>(getAllCwsModels());
+		List<CwsModel> top10 = new LinkedList<CwsModel>();
+		Collections.sort(cwsList, comparator);
+		for(int i = 0; i < 10; i++) {
+			top10.add(cwsList.get(i));
+		}
+		return top10;
 	}
 	
 	public static Collection<UnicloudModel> getAllUniclouds(Comparator<NetworkDevice> comparator) {
@@ -176,6 +561,14 @@ public class UnimanageDataUtil {
 		return model;
 	}
 	
+	public static CategoryModel getCwsDiskResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		for(CwsModel c : getTop10CwsModels(NetworkDeviceImpl.DISK)) {
+			model.setValue("Free", c.getName(), c.getSysInfo().getDisk().getAvailableDiskInBytes());
+			model.setValue("Used", c.getName(), c.getSysInfo().getDisk().getUsedDiskSpaceInBytes());
+		}
+		return model;
+	}
 	
 	public static CategoryModel getUnicloudCpuResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
@@ -183,7 +576,18 @@ public class UnimanageDataUtil {
 		for(UnicloudModel u : ucs) {			
 			model.setValue(u.getName(), "-15 min", stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
 			model.setValue(u.getName(), "-5 min", stoi(u.getSysInfo().getCpu().getFiveMinLoad()));
-			model.setValue(u.getName(), "-1 min", stoi(u.getSysInfo().getCpu().getFifteenMinLoad()));
+			model.setValue(u.getName(), "-1 min", stoi(u.getSysInfo().getCpu().getOneMinLoad()));
+		}
+		return model;
+	}
+	
+	public static CategoryModel getCwsCpuResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwss = new LinkedList<CwsModel>(getTop10CwsModels(NetworkDeviceImpl.CPU));
+		for(CwsModel c : cwss) {
+			model.setValue(c.getName(), "-15 min", stoi(c.getSysInfo().getCpu().getFifteenMinLoad()));
+			model.setValue(c.getName(), "-10 min", stoi(c.getSysInfo().getCpu().getFiveMinLoad()));
+			model.setValue(c.getName(), "-5 min", stoi(c.getSysInfo().getCpu().getOneMinLoad()));
 		}
 		return model;
 	}
@@ -199,6 +603,18 @@ public class UnimanageDataUtil {
 		}
 		return model;
 	}
+
+	public static CategoryModel getCwsMemResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwss = new LinkedList<CwsModel>(getTop10CwsModels(NetworkDeviceImpl.MEM));
+		for(CwsModel c : cwss) {
+			model.setValue("RAM Used", c.getName(), c.getSysInfo().getMem().getTotalRAMUsed());
+			model.setValue("RAM Free", c.getName(), c.getSysInfo().getMem().getTotalRAMFree());
+			model.setValue("Swap Used", c.getName(), c.getSysInfo().getMem().getUsedSwapSize());
+			model.setValue("Swap Free", c.getName(), c.getSysInfo().getMem().getAvailSwapSize());
+		}
+		return model;
+	}
 	
 	public static CategoryModel getUnicloudNetResourceModel() {
 		CategoryModel model = new DefaultCategoryModel();
@@ -210,6 +626,17 @@ public class UnimanageDataUtil {
 		}
 		return model;
 	}
+
+	public static CategoryModel getCwsNetResourceModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwss = new LinkedList<CwsModel>(getTop10CwsModels(NetworkDeviceImpl.NET));
+		for(CwsModel c : cwss) {
+			for(int i=0; i < c.getSysInfo().getNetwork().getLastTenPercentUtilization().size(); i++) {
+				model.setValue(c.getName(), "-" + (c.getSysInfo().getNetwork().getLastTenPercentUtilization().size() - i) + " min", c.getSysInfo().getNetwork().getLastTenPercentUtilization().get(i));
+			}
+		}
+		return model;
+	}	
 	
 	private static int stoi(String s) {
 		int i = -1;

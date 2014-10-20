@@ -1,9 +1,16 @@
 package com.parallelwireless.zkui.models.resources;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NetworkResource implements SystemResource {
+
+	private final static long KB = 1024;
+	private final static long MB = 1024*KB;
+	private final static long GB = 1024*MB;
+	private final static long TB = 1024*GB;	
+	
 	String systemName;
 	String interfaceName;
 	long   rxBytes;
@@ -68,6 +75,14 @@ public class NetworkResource implements SystemResource {
 		this.txBytes = txBytes;
 	}
 
+	public String getRxBytesHR() {
+		return humanize(getRxBytes());
+	}
+	
+	public String getTxBytesHR() {
+		return humanize(getTxBytes());
+	}
+	
 	public int getLinkSpeed() {
 		return linkSpeed;
 	}
@@ -96,5 +111,19 @@ public class NetworkResource implements SystemResource {
 		this.systemName = systemName;
 	}
 
-	
+	public String humanize(long bytes) {
+		String hr = null;
+		if(bytes > TB) {
+			hr = new DecimalFormat("##.## TB").format(bytes/TB);
+		} else if(bytes > GB) {
+			hr = new DecimalFormat("##.## GB").format(bytes/GB);
+		} else if(bytes > MB) {
+			hr = new DecimalFormat("##.## MB").format(bytes/MB);
+		} else if(bytes > KB) {
+			hr = new DecimalFormat("##.## KB").format(bytes/KB);
+		} else {
+			hr = String.valueOf(bytes).concat(" B");
+		}
+		return hr;
+	}	
 }
