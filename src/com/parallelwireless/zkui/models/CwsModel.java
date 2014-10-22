@@ -3,7 +3,7 @@ package com.parallelwireless.zkui.models;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.parallelwireless.zkui.models.lte.LteStatistics;
+import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
 
 
 public class CwsModel extends NetworkDeviceImpl {
@@ -23,7 +23,7 @@ public class CwsModel extends NetworkDeviceImpl {
 
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 
-	LteStatistics lteStats = new LteStatistics();
+	LteStatisticsImpl lteStats = new LteStatisticsImpl();
 	
 	public CwsModel(String name, int unicloudId, String ip, NetworkDevice.TYPE type, int lastSeenMinutes) {
 		this.id = globalCwsId++;
@@ -91,11 +91,11 @@ public class CwsModel extends NetworkDeviceImpl {
 		return networkDeviceInterfaces;
 	}
 	
-	public LteStatistics getLteStats() {
+	public LteStatisticsImpl getLteStats() {
 		return lteStats;
 	}
 	
-	public void setLteStats(LteStatistics lteStats) {
+	public void setLteStats(LteStatisticsImpl lteStats) {
 		this.lteStats = lteStats;
 	}
 }
