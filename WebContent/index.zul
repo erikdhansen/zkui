@@ -62,7 +62,7 @@
 								title="CWS LTE Statistics" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-									<include src="cws_lte_statistics.zul" />
+									<include src="cws_lte_statistics.zul"/>
 								</panelchildren>
 							</panel>														
 						</portalchildren>

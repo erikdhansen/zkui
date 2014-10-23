@@ -36,6 +36,11 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	public List<CwsModel> getCwsList() {
 		return cwsList;
 	}
+
+	public void addCws(CwsModel cws) {
+		cws.setUnicloud(this.name);
+		this.cwsList.add(cws);
+	}
 	
 	public String getStatusColor() {
 		String c = "#ccffcc";

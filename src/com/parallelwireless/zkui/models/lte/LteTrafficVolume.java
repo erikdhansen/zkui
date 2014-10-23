@@ -24,4 +24,19 @@ public class LteTrafficVolume {
 		this.qciTrafficUL = qciTrafficUL;
 	}
 
+	public long getTotalTrafficVolumeUL() {
+		long totalVolume = 0;
+		for(int i=0; i < 9; i++) {
+			totalVolume += qciTrafficUL[i];
+		}
+		return totalVolume;
+	}
+	
+	public long getTotalTrafficVolumeDL() {
+		long totalVolume = 0;
+		for(int i=0; i < 9; i++) {
+			totalVolume += qciTrafficUL[i];
+		}
+		return totalVolume;
+	}
 }

@@ -83,11 +83,11 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 	}
 	
 	private void doCpuChart() {
-		cpuChart.setModel(UnimanageDataUtil.getCwsCpuResourceModel());
+		cpuChart.setModel(UnimanageDataUtil.getCwsLteSetupSuccessRate());
 		cpuChart.getXAxis().setTitle("");
 		YAxis y = cpuChart.getYAxis();
 		y.setMin(0);
-		y.setTitle("Load Avg");
+		y.setTitle("Setup Success Rate");
 		y.getTitle().setAlign("high");
 		y.getLabels().setOverflow("justify");
 		cpuChart.getPlotOptions().getBar().getDataLabels().setEnabled(true);
@@ -102,12 +102,12 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 		legend.setBorderWidth(1);
 		legend.setShadow(true);
 		legend.setBackgroundColor("#ffffff");
-		
+		cpuChart.getPlotOptions().getColumn().setStacking("percent");
 		cpuChart.getCredits().setEnabled(false);
 		
 	}
 	
-	public void toggleCpuChart() {
+	public void togglecpuChart() {
 		cpuChartDiv.setVisible( cpuChartDiv.isVisible() ? false : true );
 	}
 }

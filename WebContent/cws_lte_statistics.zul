@@ -1,66 +1,61 @@
 <?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
 <zk>
 <zscript>
-	List cwsCPU  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModels(com.parallelwireless.zkui.models.NetworkDeviceImpl.CPU);
-	List cwsMEM  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModels(com.parallelwireless.zkui.models.NetworkDeviceImpl.MEM);
-	List cwsDisk = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModels(com.parallelwireless.zkui.models.NetworkDeviceImpl.DISK);
-	List cwsNet  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModels(com.parallelwireless.zkui.models.NetworkDeviceImpl.NET);
+    List cwsLteSetupSuccess = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTEReverse(com.parallelwireless.zkui.models.CwsModel.LTE_SETUP_SUCCESS_RATE);
+	List cwsLteServiceDrop  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTEReverse(com.parallelwireless.zkui.models.CwsModel.LTE_SERVICE_DROP_RATE);
+	List cwsLteHandoverIn   = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTEReverse(com.parallelwireless.zkui.models.CwsModel.LTE_HANDOVER_SUCCESS_RATE_IN);
+	List cwsLteHandoverOut  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTEReverse(com.parallelwireless.zkui.models.CwsModel.LTE_HANDOVER_SUCCESS_RATE_OUT);
 </zscript>
 <style src="/css/parallel.css"/>
 <div apply="com.parallelwireless.zkui.dashboard.CwsLteStatisticsDisplayController">
+<hbox>
 	<div id="cpu_section">
-		<grid id="cpu_grid" sclass="unicloud-table">
+		<grid id="lte_setup_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="5" label="CPU Load Average (Top 10)"/>
+   				<auxheader colspan="5" label="LTE Call Setup Statistics (Top 10)"/>
    			</auxhead>
    			<columns>
    				<column sclass="unicloud-table" hflex="4">System</column>
-   				<column hflex="3">1 min</column>
-				<column hflex="3">5 min</column>
-				<column hflex="3">15 min</column>
-				<column hflex="3">% use</column>
+   				<column hflex="3">Attempts</column>
+				<column hflex="3">Success</column>
+				<column hflex="3">Failure</column>
+				<column hflex="3">% Failure</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsCPU}">
+   				<row forEach="${cwsLteSetupSuccess}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.oneMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fiveMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fifteenMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.percentCPUTotal}"/>
+	   				<label value="${each.unicloud}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.setupSuccessRateTotal.setupAttempts}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.setupSuccessRateTotal.setupSuccesses}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.setupSuccessRateTotal.setupFailures}"/>
+   					<label sclass="unicloud-table" style="text-align: right;" value="${each.lteStats.setupSuccessRateTotal.setupFailureRate}%"/>
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="middle" id="cpuchartdiv">
-	   	   <charts id="avgDLThroughput" type="line" title="" subtitle="Data Age: 2 min ago" height="260" />   		
+   		<div align="middle" id="ltesetupsuccesschart">
+	   	   <charts id="lteSetupSuccessChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
    		</div>
    	</div>
    	<div id="mem_section">
-   		<listbox id="unicloud_mem_resources" sclass="unicloud-table">
+   		<listbox id="lte_release_listbox" sclass="unicloud-table">
 			<auxhead>
-				<auxheader colspan="7" label="Memory/Swap (Top 10)"/>
-			</auxhead>
-			<auxhead>
-				<auxheader colspan="1" label="Uni-Cloud"/>
-				<auxheader colspan="3" label="RAM (MB)"/>
-				<auxheader colspan="3" label="Swap (MB)"/>
+				<auxheader colspan="6" label="LTE Call Release Statistics (Top 10)"/>
 			</auxhead>
 			<listhead>
-				<listheader hflex="2" label="Name"/>
-				<listheader hflex="1"  label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
-				<listheader hflex="1" label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
+				<listheader hflex="2" label="CWS"/>
+				<listheader hflex="2" label="Uni-Cloud"/>
+				<listheader label="Abnormal Releases"/>
+				<listheader label="Normal Releases"/>
+				<listheader label="Total Releases"/>
+				<listheader label="% Abnormal"/>
 			</listhead>
-				<listitem forEach="${cwsMEM}">
+				<listitem forEach="cwsLteServiceDrop">
 					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalRAMAvailMB}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.usedSwapSizeMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.availSwapSizeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalSwapSizeMB}"/>
+					<listcell label="${each.unicloud}"/>
+					<listcell label="${each.lte.lteServiceDropRate.abnormalReleases}"/>
+					<listcell label="${each.lte.lteServiceDropRate.normalReleases}"/>
+					<listcell label="${each.lte.lteServiceDropRate.totalReleases}"/>
+					<listcell label="${each.lte.lteServiceDropRate.abnormalDropRate}"/>
 				</listitem>		
    		</listbox>
    		<div align="center">
@@ -72,10 +67,11 @@
 	<div id="disk_section">
 		<grid id="disk_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="6" label="Disk (Top 10)"/>
+   				<auxheader colspan="7" label="Disk (Top 10)"/>
    			</auxhead>
    			<columns>
    				<column sclass="unicloud-table" hflex="4">System</column>
+   				<column hflex="4">Uni-Cloud</column>
    				<column hflex="3">Disk</column>
 				<column hflex="3">Used</column>
 				<column hflex="3">Free</column>
@@ -85,11 +81,12 @@
    			<rows>
    				<row forEach="${cwsDisk}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
+	   				<label value="${each.unicloud}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.partitionDevPath}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.usedDiskSpaceHR}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.freeDiskSpaceHR}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.totalDiskSpaceHR}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.percentSpaceUsed} %"/>
+   					<label sclass="unicloud-table" style="text-align: right;" value="${each.sysInfo.disk.percentSpaceUsed}%"/>
  	  			</row>
    			</rows>
    		</grid>
@@ -100,10 +97,11 @@
    	<div id="net_section">
    		<listbox id="unicloud_net_resources" sclass="unicloud-table">
 			<auxhead>
-				<auxheader colspan="6" label="Network (Top 10)"/>
+				<auxheader colspan="7" label="Network (Top 10)"/>
 			</auxhead>
 			<listhead>
 				<listheader hflex="3" label="Name"/>
+				<listheader hflex="3" label="Uni-Cloud"/>
 				<listheader hflex="2"  label="Interface"/>
 				<listheader hflex="2" label="RX Bytes"/>
 				<listheader hflex="2" label="TX Bytes"/>
@@ -112,11 +110,12 @@
 			</listhead>
 				<listitem forEach="${cwsNet}">
 					<listcell label="${each.name}"/>
+					<listcell label="${each.unicloud}"/>
 					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
 					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytesHR}"/>
 					<listcell style="text-align: right" label="${each.sysInfo.network.txBytesHR}"/>
 					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}"/>
+					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}%"/>
 				</listitem>		
    		</listbox>
    		<div align="center">

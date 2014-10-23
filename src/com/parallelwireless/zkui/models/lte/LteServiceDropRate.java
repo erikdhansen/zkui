@@ -25,8 +25,13 @@ public class LteServiceDropRate {
 		this.totalReleases = totalReleases;
 	}
 	
-	public int getPercentAbnormalDrops() {
-		Long pctLong = (100 * abnormalReleases) / totalReleases;
+	public long getNormalReleases() {
+		return totalReleases - abnormalReleases;
+	}
+	
+	public int getAbnormalDropRate() {
+		long dividend = (totalReleases == 0) ? 1 : totalReleases;
+		Long pctLong = (100 * abnormalReleases) / dividend;
 		return pctLong.intValue();
 	}
 }

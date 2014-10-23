@@ -23,8 +23,17 @@ public class LteErabSetupSuccessRateAll {
 		this.setupSuccesses = setupSuccesses;
 	}
 	
+	public long getSetupFailures() {
+		return setupAttempts - setupSuccesses;
+	}
+	
 	public int getSetupSuccessRate() {
-		Long pctLong = (100 * setupSuccesses) / setupAttempts;
-		return pctLong.intValue();
+		long dividend = (setupAttempts == 0) ? 1 : setupAttempts;
+		return new Long((100 * setupSuccesses) / dividend).intValue();
+	}
+	
+	public int getSetupFailureRate() {
+		long dividend = (setupAttempts == 0) ? 1 : setupAttempts;
+		return new Long(100 * getSetupFailures()/dividend).intValue();
 	}
 }

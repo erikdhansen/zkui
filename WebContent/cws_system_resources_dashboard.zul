@@ -27,7 +27,7 @@
    					<label sclass="unicloud-table" value="${each.sysInfo.cpu.oneMinLoad}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fiveMinLoad}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fifteenMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.percentCPUTotal}"/>
+   					<label sclass="unicloud-table" style="text-align: right;" value="${each.sysInfo.cpu.percentCPUTotal}%"/>
  	  			</row>
    			</rows>
    		</grid>
@@ -54,14 +54,14 @@
 				<listheader hflex="1" label="Free"/>
 				<listheader hflex="1" label="Total"/>
 			</listhead>
-				<listitem forEach="${cwsMEM}">
-					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalRAMAvailMB}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.usedSwapSizeMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.availSwapSizeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalSwapSizeMB}"/>
+				<listitem sclass="unicloud-table" forEach="${cwsMEM}">
+					<listcell sclass="unicloud-table" label="${each.name}"/>
+					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
+					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
+					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.mem.totalRAMAvailMB}"/>
+					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.mem.usedSwapSizeMB}"/>
+					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.mem.availSwapSizeMB}"/>
+					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.mem.totalSwapSizeMB}"/>
 				</listitem>		
    		</listbox>
    		<div align="center">
@@ -90,7 +90,7 @@
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.usedDiskSpaceHR}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.freeDiskSpaceHR}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.totalDiskSpaceHR}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.percentSpaceUsed} %"/>
+   					<label sclass="unicloud-table" value="${each.sysInfo.disk.percentSpaceUsed}%"/>
  	  			</row>
    			</rows>
    		</grid>
@@ -112,12 +112,12 @@
 				<listheader hflex="2" label="% Use"/>
 			</listhead>
 				<listitem forEach="${cwsNet}">
-					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytesHR}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.network.txBytesHR}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}"/>
+					<listcell sclass="unicloud-table" label="${each.name}"/>
+					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
+					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytesHR}"/>
+					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.network.txBytesHR}"/>
+					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
+					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}%"/>
 				</listitem>		
    		</listbox>
    		<div align="center">

@@ -9,7 +9,7 @@ public class LteStatisticsImpl implements LteStatistics {
 	LteServiceAverageThroughput serviceAverageThroughput = new LteServiceAverageThroughput();
 	LteTrafficVolume serviceTrafficVolume                = new LteTrafficVolume();
 
-	final static String QCI_ROOT_ATTEMPT       = "LTE_ERAB_EST_ATTMEMPT_QCI_";
+	final static String QCI_ROOT_ATTEMPT       = "LTE_ERAB_EST_ATTEMPT_QCI_";
     final static String QCI_ROOT_SUCCESS       = "LTE_ERAB_SUCCESS_ATTMEPT_QCI_";
     final static String QCI_AVG_THRU_DL_QCI    = "LTE_SERVICE_AVG_THRU_DL_QCI_";
     final static String QCI_AVG_THRU_UL_QCI    = "LTE_SERVICE_AVG_THRU_UL_QCI_";
@@ -23,8 +23,6 @@ public class LteStatisticsImpl implements LteStatistics {
 	}
 
 	public void addStatistics(Statistics statistics) {
-		// LteErabSetupSuccessRateAll and LteErabSetupSuccessQCI
-		parseAllSetupStatsQCIs(statistics);
 		// LteServiceDropRate
 		serviceDropRate.setAbnormalReleases(Long.parseLong(statistics.get(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL)));
 		serviceDropRate.setTotalReleases(Long.parseLong(statistics.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)));
@@ -32,9 +30,10 @@ public class LteStatisticsImpl implements LteStatistics {
 		serviceHandoverSuccess.setInSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_IN)));
 		serviceHandoverSuccess.setOutAttempt(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)));
 		serviceHandoverSuccess.setOutSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_OUT)));
-		parseAllSetupStatsQCIs(statistics);
-		parseAllTrafficVolumeQCI(statistics);
-		parseAllAverageThroughputQCI(statistics);
+		setupSuccessRateTotal.setSetupAttempts(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_ATTEMPT_ALL)));
+		setupSuccessRateTotal.setSetupSuccesses(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)));
+		//parseAllTrafficVolumeQCI(statistics);
+		//parseAllAverageThroughputQCI(statistics);
 	}
 
 	public void parseAllAverageThroughputQCI(Statistics statistics) {
@@ -64,8 +63,9 @@ public class LteStatisticsImpl implements LteStatistics {
 		long totalAttempts  = 0;
 		long totalSuccesses = 0;
 		for(int i=0; i < 9; i++) {
-			STAT stat = STAT.valueOf(QCI_ROOT_ATTEMPT + String.valueOf(i));
-			LteErabSetupSuccessRateAll ssra = qci[i+1];
+			STAT stat = STAT.valueOf(QCI_ROOT_ATTEMPT + String.valueOf(i+1));
+			LteErabSetupSuccessRateAll ssra = qci[i];
+			System.out.println("statistics.get(stat) == " + statistics + " stat: " + stat.name());
 			ssra.setSetupAttempts(Long.parseLong(statistics.get(stat)));
 			totalAttempts += ssra.getSetupAttempts();
 			stat = STAT.valueOf(QCI_ROOT_SUCCESS + String.valueOf(i));

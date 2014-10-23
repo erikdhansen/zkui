@@ -2,9 +2,8 @@ package com.parallelwireless.zkui.models.lte;
 
 public interface LteStatistics {
 	public enum STAT {
-		LTE_ERAB_EST_ATTMEMPT_QCI_1("lteErabEstabAttemptQC1"),
-		LTE_ERAB_EST_ATTEMPT_ALL("lteErabEstabAttemptAll"),
-		LTE_ERAB_EST_SUCCESS_ALL("lteErabEstabSuccessAll"),
+		LTE_ERAB_SSR_ATTEMPT_ALL("lteErabEstabAttemptAll"),
+		LTE_ERAB_SSR_SUCCESS_ALL("lteErabEstabSuccessAll"),
 		LTE_SERVICE_DROP_RATE_ABNORMAL("lteServiceDropRateAbnormal"),
 		LTE_SERVICE_DROP_RATE_TOTAL("lteServiceDropRateTotal"),
 		LTE_HANDOVER_ATTEMPTS_IN("lteHandoverAttemptsIn"),

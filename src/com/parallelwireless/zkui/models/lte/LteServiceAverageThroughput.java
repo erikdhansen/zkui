@@ -23,4 +23,21 @@ public class LteServiceAverageThroughput {
 	public void setQciAverageUL(long[] qciAverageUL) {
 		this.qciAverageUL = qciAverageUL;
 	}
+	
+	public long getTotalThroughputDL() {
+		long totalThroughput = 0;
+		for(int i=0; i < 9; i++) {
+			totalThroughput += qciAverageDL[i];
+		}
+		return totalThroughput;
+	}
+
+	public long getTotalThroughputUL() {
+		long totalThroughput = 0;
+		for(int i=0; i < 9; i++) {
+			totalThroughput += qciAverageUL[i];
+		}
+		return totalThroughput;
+	}
+	
 }

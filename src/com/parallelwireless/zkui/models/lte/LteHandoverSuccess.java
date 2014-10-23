@@ -33,6 +33,10 @@ public class LteHandoverSuccess {
 		this.inSuccess = inSuccess;
 	}
 
+	public long getInFailures() {
+		return this.inAttempt - this.inSuccess;
+	}
+	
 	public long getOutAttempt() {
 		return outAttempt;
 	}
@@ -49,5 +53,17 @@ public class LteHandoverSuccess {
 		this.outSuccess = outSuccess;
 	}
 	
+	public long getOutFailures() {
+		return this.outAttempt - this.outSuccess;
+	}
 	
+	public int getHandoverInFailureRate() {
+		long dividend = (getInAttempt() == 0) ? 1 : getInAttempt();
+		return new Long((100 * getInFailures())/dividend).intValue();
+	}
+	
+	public int getHandoverOutFailureRate() {
+		long dividend = (getOutAttempt() == 0) ? 1 : getOutAttempt();
+		return new Long((100 * getOutFailures())/dividend).intValue();
+	}
 }
