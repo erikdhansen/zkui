@@ -8,21 +8,15 @@ import org.zkoss.zul.Div;
 @SuppressWarnings("serial")
 public class CwsLteStatisticsDisplayController extends SelectorComposer<Div>{
 
-//	@Wire
-//	Charts setSuccessRate;
-//	@Wire
-//	Charts serviceDropRate;
-//	@Wire
-//	Charts avgDLThroughput;
-//	@Wire
-//	Charts avgULThroughput;
-//	@Wire
-//	Charts avgDLVolume;
-//	@Wire
-//	Charts avgULVolume;
-//	@Wire 
-//	Charts handoverSuccessRate;
-	
+	@Wire
+	Charts lteSetupChart;
+	@Wire
+	Charts lteReleaseChart;
+	@Wire
+	Charts lteHandoverInChart;
+	@Wire
+	Charts lteHandoverOutChart;
+
 	public void doAfterCompose(Div d) throws Exception {
 		
 	}

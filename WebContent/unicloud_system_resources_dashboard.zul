@@ -15,19 +15,19 @@
    				<auxheader colspan="5" label="CPU Load Average"/>
    			</auxhead>
    			<columns>
-   				<column sclass="unicloud-table" hflex="4">System</column>
-   				<column hflex="3">1 min</column>
-				<column hflex="3">5 min</column>
-				<column hflex="3">15 min</column>
-				<column hflex="3">% use</column>
+   				<column hflex="3">System</column>
+   				<column hflex="2">1 min</column>
+				<column hflex="2">5 min</column>
+				<column hflex="2">15 min</column>
+				<column hflex="1">% use</column>
    			</columns>
    			<rows>
    				<row forEach="${uniclouds}">
-	   				<label sclass="unicloud-table" value="${each.name}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.oneMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fiveMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fifteenMinLoad}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.cpu.percentCPUTotal}"/>
+	   				<label value="${each.name}"/>
+   					<label value="${each.sysInfo.cpu.oneMinLoad}"/>
+   					<label value="${each.sysInfo.cpu.fiveMinLoad}"/>
+   					<label value="${each.sysInfo.cpu.fifteenMinLoad}"/>
+   					<label style="text-align: right;" value="${each.sysInfo.cpu.percentCPUTotal}"/>
  	  			</row>
    			</rows>
    		</grid>
@@ -46,13 +46,13 @@
 				<auxheader colspan="3" label="Swap (MB)"/>
 			</auxhead>
 			<listhead>
-				<listheader hflex="2" label="Name"/>
-				<listheader hflex="1"  label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
-				<listheader hflex="1" label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
+				<listheader hflex="4" label="Name"/>
+				<listheader hflex="2"  label="Used"/>
+				<listheader hflex="2" label="Free"/>
+				<listheader hflex="2" label="Total"/>
+				<listheader hflex="2" label="Used"/>
+				<listheader hflex="2" label="Free"/>
+				<listheader hflex="2" label="Total"/>
 			</listhead>
 				<listitem forEach="${ucMem}">
 					<listcell label="${each.name}"/>

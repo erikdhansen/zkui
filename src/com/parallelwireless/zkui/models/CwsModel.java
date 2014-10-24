@@ -131,10 +131,11 @@ public class CwsModel extends NetworkDeviceImpl {
 	
 	public final static Comparator<CwsModel> LTE_SERVICE_DROP_RATE = 
 			new Comparator<CwsModel>() {
+
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Integer s1 = c1.getLteStats().getServiceDropRate().getAbnormalDropRate();
-		    	Integer s2 = c1.getLteStats().getServiceDropRate().getAbnormalDropRate();
+		    	Integer s2 = c2.getLteStats().getServiceDropRate().getAbnormalDropRate();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -154,7 +155,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Integer s1 = c1.getLteStats().getServiceHandoverSuccess().getHandoverOutFailureRate();
-		    	Integer s2 = c1.getLteStats().getServiceHandoverSuccess().getHandoverOutFailureRate();
+		    	Integer s2 = c2.getLteStats().getServiceHandoverSuccess().getHandoverOutFailureRate();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -164,7 +165,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Long s1 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputUL();
-		    	Long s2 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputUL();
+		    	Long s2 = c2.getLteStats().getServiceAverageThroughput().getTotalThroughputUL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -174,7 +175,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Long s1 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputDL();
-		    	Long s2 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputDL();
+		    	Long s2 = c2.getLteStats().getServiceAverageThroughput().getTotalThroughputDL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -185,7 +186,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Long s1 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeUL();
-		    	Long s2 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeUL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeUL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -195,7 +196,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
 		    	Long s1 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeDL();
-		    	Long s2 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeDL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeDL();
 		    	return s2.compareTo(s1);
 		    }
 	};

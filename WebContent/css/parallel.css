@@ -1,56 +1,37 @@
 @CHARSET "UTF-8";
 
-.unicloud-table-smaller .z-listitem-content .z-listcell-content {
-	font-size: 10px;
-	padding: 0px 2px 0px;
-	line-height: 14px;
-}
-
 .unicloud-table .z-row-content {
-	font-size: 11px;
-	line-height: 14px;
-	color: #555;
+	padding: 4px 4px;
+	line-height: 18px;
 }
 
+.unicloud-table .z-label {
+	font-size: 12px;
+}
+.unicloud-table .z-column-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
+
+.unicloud-table .z-listheader-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
+
+.unicloud-table .z-listcell-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
+
+.unicloud-table .z-auxheader-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
 
 .unicloud-table .z-detail-icon {
 	font-size: 11px;
-}
-
-.unicloud-table .z-column-content {
-	font-size: 12px;
-	line-height: 20px;
-	padding: 4px 4px;
-}
-
-.unicloud-table .z-listitem-content .z-listcell .z-listcell-content .z-label {
-	font-size: 11px;
-	padding: 0px 2px 0px;
-	line-height: 14px;
-	color: #222;
-}
-
-
-.unicloud-table-rj .z-listitem-content .z-listcell .z-listcell-content .z-label {
-	font-size: 11px;
-	padding: 0px 2px 0px;
-	line-height: 14px;
-	color: #222;
-	text-align: right;
-}
-
-.unicloud-table .z-auxheader .z-auxheader-content {
-	font-size: 12px;
-	padding: 4px 4px;
-	line-height: 20px;
-}
-
-.unicloud-table .z-listhead .z-listheader-content {
-	font-size: 12px;
-	line-height: 20px;
-	padding: 4px 4px;
-}
-
-.unimanage .z-nav .z-navitem-content .z-navcontent {
-	border: 1px solid;
 }
