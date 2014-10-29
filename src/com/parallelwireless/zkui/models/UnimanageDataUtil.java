@@ -12,6 +12,7 @@ import org.zkoss.chart.model.DefaultCategoryModel;
 
 import com.parallelwireless.zkui.models.lte.LteStatistics;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
+import com.parallelwireless.zkui.models.lte.QCI;
 import com.parallelwireless.zkui.models.lte.Statistics;
 import com.parallelwireless.zkui.models.lte.LteStatistics.STAT;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
@@ -159,12 +160,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(1).addCws(cws);
@@ -200,12 +198,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(1).addCws(cws);
@@ -241,12 +236,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(1).addCws(cws);
@@ -282,12 +274,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(1).addCws(cws);
@@ -323,12 +312,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(2).addCws(cws);
@@ -364,12 +350,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(2).addCws(cws);
@@ -405,12 +388,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(2).addCws(cws);
@@ -446,12 +426,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(2).addCws(cws);
@@ -487,12 +464,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(3).addCws(cws);
@@ -528,12 +502,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(3).addCws(cws);
@@ -569,12 +540,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(3).addCws(cws);
@@ -610,12 +578,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);		
 		uniclouds.get(4).addCws(cws);
@@ -651,12 +616,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(4).addCws(cws);
@@ -692,12 +654,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), new Random().nextInt(30) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), new Random().nextInt(30) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf(Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 7 / 10));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), new Random().nextInt(20))));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(4).addCws(cws);
@@ -733,12 +692,9 @@ public class UnimanageDataUtil {
 		stats.put(STAT.LTE_HANDOVER_ATTEMPTS_OUT, String.valueOf(getRandomLong(100000)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_IN, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)), (new Random().nextInt(30) + 1) + 70)));
 		stats.put(STAT.LTE_HANDOVER_SUCCESSES_OUT, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)), (new Random().nextInt(30) + 1) + 70)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_UL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_AVG_THRU_DL, String.valueOf(getRandomLong(9999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_UL, String.valueOf(getRandomLong(999999999)));
-		stats.put(STAT.LTE_SERVICE_TRAFFIC_DL, String.valueOf(getRandomLong(999999999)));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_TOTAL, String.valueOf((Long.parseLong(stats.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)) * 100)/(new Random().nextInt(40) + 1) + 60));
 		stats.put(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL, String.valueOf(getPercentOfLong(Long.parseLong(stats.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)), (new Random().nextInt(20) + 1) + 80)));
+		lte.setQCI(getRandomQCI());
 		lte.addStatistics(stats);
 		cws.setLteStats(lte);
 		uniclouds.get(4).addCws(cws);
@@ -965,6 +921,14 @@ public class UnimanageDataUtil {
 		long fraction = (total * percent)/100;
 		System.out.println("Attempts: " + total + " percent: " + percent + " success/failure: " + fraction);
 		return fraction;
+	}
+	
+	public static QCI[] getRandomQCI() {
+		QCI[] q = new QCI[9];
+		for(int i=0; i < 9; i++) {
+			q[i] = new QCI(getRandomLong(10000), getRandomLong(10000), getRandomLong(1000), getRandomLong(10000));
+		}
+		return q;
 	}
 	
 }

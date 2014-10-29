@@ -164,8 +164,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Long s1 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputUL();
-		    	Long s2 = c2.getLteStats().getServiceAverageThroughput().getTotalThroughputUL();
+		    	Long s1 = c1.getLteStats().getServiceTrafficStats().getTotalThroughputUL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficStats().getTotalThroughputUL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -174,8 +174,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Long s1 = c1.getLteStats().getServiceAverageThroughput().getTotalThroughputDL();
-		    	Long s2 = c2.getLteStats().getServiceAverageThroughput().getTotalThroughputDL();
+		    	Long s1 = c1.getLteStats().getServiceTrafficStats().getTotalThroughputDL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficStats().getTotalThroughputDL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -185,8 +185,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Long s1 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeUL();
-		    	Long s2 = c2.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeUL();
+		    	Long s1 = c1.getLteStats().getServiceTrafficStats().getTotalTrafficVolumeUL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficStats().getTotalTrafficVolumeUL();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -195,8 +195,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Long s1 = c1.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeDL();
-		    	Long s2 = c2.getLteStats().getServiceTrafficVolume().getTotalTrafficVolumeDL();
+		    	Long s1 = c1.getLteStats().getServiceTrafficStats().getTotalTrafficVolumeDL();
+		    	Long s2 = c2.getLteStats().getServiceTrafficStats().getTotalTrafficVolumeDL();
 		    	return s2.compareTo(s1);
 		    }
 	};

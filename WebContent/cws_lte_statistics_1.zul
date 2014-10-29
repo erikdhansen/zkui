@@ -1,0 +1,123 @@
+<?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+	List cwsLteDlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTE(com.parallelwireless.zkui.models.CwsModel.LTE_AVG_THROUGHPUT_DL);
+	List cwsLteUlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTE(com.parallelwireless.zkui.models.CwsModel.LTE_AVG_THROUGHPUT_UL);
+	List cwsLteDlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTE(com.parallelwireless.zkui.models.CwsModel.LTE_TRAFFIC_VOLUME_DL);
+	List cwsLteUlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTE(com.parallelwireless.zkui.models.CwsModel.LTE_TRAFFIC_VOLUME_UL);
+
+</zscript>
+<style src="/css/parallel.css"/>
+<div apply="com.parallelwireless.zkui.dashboard.CwsLteStatisticsDisplayController">
+<hbox>
+	<div id="lte_avg_dl_thru_section">
+		<grid id="lte_avg_dl_thru_grid" sclass="unicloud-table">
+   			<auxhead>
+   				<auxheader colspan="3" label="LTE Average Throughput (Downlink) (Top 10)"/>
+   			</auxhead>
+   			<columns>
+   				<column hflex="2">CWS</column>
+   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">Avg. Throughput (DL)</column>
+   			</columns>
+   			<rows>
+   				<row forEach="${cwsLteDlAvgThru}">
+	   				<label value="${each.name}"/>
+	   				<label value="${each.unicloud}"/>
+   					<label value="${each.lteStats.serviceAverageThroughput.totalThroughputDL}"/>
+ 	  			</row>
+   			</rows>
+   		</grid>
+   		<div id="ltesetupsuccesschart">
+	   	   <charts id="lteSetupChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260"/>   		
+   		</div>
+   	</div>
+   	<div id="lte_avg_ul_thru_grid">
+   		<listbox id="lte_avg_thru_ul_listbox" sclass="unicloud-table">
+			<auxhead>
+				<auxheader colspan="3" label="LTE Average Throughput (Uplink) (Top 10)"/>
+			</auxhead>
+			<listhead>
+				<listheader hflex="2" label="CWS"/>
+				<listheader hflex="2" label="Uni-Cloud"/>
+				<listheader hflex="1" label="Avg. Throughput (UL)"/>
+			</listhead>
+				<listitem forEach="${cwsLteULAvgThru}">
+					<listcell label="${each.name}"/>
+					<listcell label="${each.unicloud}"/>
+					<listcell label="${each.lteStats.serviceAverageThroughput.totalThroughputUL}"/>
+				</listitem>		
+   		</listbox>
+   		<div align="center">
+	   		<charts id="lteReleaseChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
+   		</div>
+   	</div>
+</hbox>
+<!-- <hbox>
+	<div id="handover_in_section">
+		<grid id="handover_in_grid" sclass="unicloud-table">
+   			<auxhead>
+   				<auxheader colspan="6" label="LTE Handover Statistics [Incoming] (Top 10)"/>
+   			</auxhead>
+   			<auxhead>
+   				<auxheader colspan="2" label="System"/>
+   				<auxheader colspan="3" label="Incoming Results"/>
+   			</auxhead>
+   			<columns>
+   				<column hflex="2">System</column>
+   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">Failures</column>
+				<column hflex="1">Success</column>
+				<column hflex="1">Total</column>
+				<column hflex="1">Error %</column>
+   			</columns>
+   			<rows>
+   				<row forEach="${cwsLteHandoverIn}">
+	   				<label sclass="unicloud-table" value="${each.name}"/>
+	   				<label value="${each.unicloud}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inFailures}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inSuccess}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inAttempt}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.handoverInFailureRate}%"/>
+ 	  			</row>
+   			</rows>
+   		</grid>
+   		<div id="handoverInChartSection">
+	   	   <charts id="lteHandoverInChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
+   		</div>
+   	</div>
+   	<div id="hondover_out_section">
+  		<grid id="handover_out_grid" sclass="unicloud-table">
+   			<auxhead>
+   				<auxheader colspan="6" label="LTE Handover Statistics [Outgoing] (Top 10)"/>
+   			</auxhead>
+   			<auxhead>
+   				<auxheader colspan="2" label="System"/>
+   				<auxheader colspan="3" label="Outgoing Results"/>
+   			</auxhead>
+   			<columns>
+   				<column hflex="2">System</column>
+   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">Failures</column>
+				<column hflex="1">Success</column>
+				<column hflex="1">Total</column>
+				<column hflex="1">Error %</column>
+   			</columns>
+   			<rows>
+   				<row forEach="${cwsLteHandoverOut}">
+	   				<label sclass="unicloud-table" value="${each.name}"/>
+	   				<label value="${each.unicloud}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outFailures}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outSuccess}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outAttempt}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.handoverOutFailureRate}%"/>
+ 	  			</row>
+   			</rows>
+   		</grid>
+   		<div align="center">
+	   		<charts id="lteHandoverOutChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
+   		</div>
+   	</div>
+</hbox> -->
+</div>
+</zk>

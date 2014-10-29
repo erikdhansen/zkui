@@ -58,11 +58,18 @@
 								    <include src="cws_system_resources_dashboard.zul" />
 								</panelchildren>
 							</panel>
-							<panel id="cws_lte_statistics"
+							<panel id="cws_lte_statistics_1"
 								title="CWS LTE Statistics" border="normal" collapsible="true"
 								closable="true" style="margin-bottom: 10px; overflow: auto">
 								<panelchildren>
-									<include src="cws_lte_statistics.zul"/>
+									<include src="cws_lte_statistics_1.zul"/>
+								</panelchildren>
+							</panel>														
+							<panel id="cws_lte_statistics_2"
+								title="CWS LTE Statistics" border="normal" collapsible="true"
+								closable="true" style="margin-bottom: 10px; overflow: auto">
+								<panelchildren>
+									<include src="cws_lte_statistics_2.zul"/>
 								</panelchildren>
 							</panel>														
 						</portalchildren>
