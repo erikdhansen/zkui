@@ -34,6 +34,9 @@ public class LteStatisticsImpl implements LteStatistics {
 		serviceHandoverSuccess.setOutSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_OUT)));
 		setupSuccessRateTotal.setSetupAttempts(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_ATTEMPT_ALL)));
 		setupSuccessRateTotal.setSetupSuccesses(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)));
+		for(int i=0; i < 9; i++) {
+			qcis[i].setSystemName(systemName);
+		}
 	}
 	
 	public LteErabSetupSuccessRateAll getSetupSuccessRateTotal() {

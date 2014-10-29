@@ -7,7 +7,7 @@
 	List cwsLteHandoverOut  = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10CwsModelsLTE(com.parallelwireless.zkui.models.CwsModel.LTE_HANDOVER_SUCCESS_RATE_OUT);
 </zscript>
 <style src="/css/parallel.css"/>
-<div apply="com.parallelwireless.zkui.dashboard.CwsLteStatisticsDisplayController">
+<div apply="com.parallelwireless.zkui.dashboard.CwsLteStatisticsDisplayController2">
 <hbox>
 	<div id="lte_setup_section">
 		<grid id="lte_setup_grid" sclass="unicloud-table">
@@ -134,7 +134,7 @@
    			</rows>
    		</grid>
    		<div align="center">
-	   		<charts id="lteHandoverOutChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
+	   		<charts id="lteHandoverOutChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
    	</div>
 </hbox>

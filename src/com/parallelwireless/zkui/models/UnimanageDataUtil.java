@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.models;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -889,6 +890,82 @@ public class UnimanageDataUtil {
 		return model;
 	}	
 	
+	public static CategoryModel getCwsAvgThruDLModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<QCI> qcis = getTop10QCI(QCI.AVG_THRU_DL);
+		for(QCI q : qcis) {
+			model.setValue(q.getQciName(), q.getSystemName(), q.getServiceAvgThruDL());
+		}
+		return model;
+	}
+
+	public static CategoryModel getCwsAvgThruULModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<QCI> qcis = getTop10QCI(QCI.AVG_THRU_UL);
+		for(QCI q : qcis) {
+			model.setValue(q.getQciName(), q.getSystemName(), q.getServiceAvgThruUL());
+		}
+		return model;
+	}
+
+	public static CategoryModel getTrafficVolULModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<QCI> qcis = getTop10QCI(QCI.TRAF_VOL_UL);
+		for(QCI q : qcis) {
+			model.setValue(q.getQciName(), q.getSystemName(), q.getServiceTrafficVolUL());
+		}
+		return model;
+	}
+
+	public static CategoryModel getTrafficVolDLModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<QCI> qcis = getTop10QCI(QCI.TRAF_VOL_DL);
+		for(QCI q : qcis) {
+			model.setValue(q.getQciName(), q.getSystemName(), q.getServiceTrafficVolDL());
+		}
+		return model;
+	}
+	
+	public static CategoryModel getLteSetupModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwsList = getTop10CwsModelsLTEReverse(CwsModel.LTE_SETUP_SUCCESS_RATE);
+		for(CwsModel cws : cwsList) {
+			model.setValue("Success", cws.getName(), cws.getLteStats().getSetupSuccessRateTotal().getSetupSuccesses());
+			model.setValue("Failure", cws.getName(), cws.getLteStats().getSetupSuccessRateTotal().getSetupFailures());
+		}
+		return model;
+	}
+	
+	public static CategoryModel getLteReleaseModel() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwsList = getTop10CwsModelsLTE(CwsModel.LTE_SERVICE_DROP_RATE);
+		for(CwsModel cws : cwsList) {
+			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceDropRate().getNormalReleases());
+			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceDropRate().getAbnormalReleases());
+		}
+		return model;
+	}
+
+	public static CategoryModel getLteHandoverIn() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwsList = getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_IN);
+		for(CwsModel cws : cwsList) {
+			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInSuccess());
+			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInFailures());
+		}
+		return model;
+	}
+
+	public static CategoryModel getLteHandoverOut() {
+		CategoryModel model = new DefaultCategoryModel();
+		List<CwsModel> cwsList = getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_OUT);
+		for(CwsModel cws : cwsList) {
+			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getOutSuccess());
+			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getOutFailures());
+		}
+		return model;
+	}
+	
 	private static int stoi(String s) {
 		int i = -1;
 		try {
@@ -926,9 +1003,29 @@ public class UnimanageDataUtil {
 	public static QCI[] getRandomQCI() {
 		QCI[] q = new QCI[9];
 		for(int i=0; i < 9; i++) {
-			q[i] = new QCI(getRandomLong(10000), getRandomLong(10000), getRandomLong(1000), getRandomLong(10000));
+			q[i] = new QCI(i, getRandomLong(10000), getRandomLong(10000), getRandomLong(1000), getRandomLong(10000));
 		}
 		return q;
+	}
+	
+	public static List<QCI> getNQCI(int n, Comparator<QCI> comparator) {
+		List<QCI> qcis = new LinkedList<QCI>();
+		Collection<CwsModel> cwsList = getAllCwsModels();
+		for(CwsModel cws : cwsList) {
+			qcis.addAll(Arrays.asList(cws.getLteStats().getQCI()));
+		}
+		Collections.sort(qcis, comparator);
+		return qcis.subList(0,  n-1);
+	}
+	
+	public static List<QCI> getTop10QCI(Comparator<QCI> comparator) {
+		List<QCI> qcis = new LinkedList<QCI>();
+		Collection<CwsModel> cwsList = getAllCwsModels();
+		for(CwsModel cws : cwsList) {
+			qcis.addAll(Arrays.asList(cws.getLteStats().getQCI()));
+		}
+		Collections.sort(qcis, comparator);
+		return qcis.subList(0, 9);
 	}
 	
 }
