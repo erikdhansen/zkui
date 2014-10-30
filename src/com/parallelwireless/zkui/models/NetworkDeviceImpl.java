@@ -40,7 +40,7 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	public List<NetworkDeviceInterface> getNetworkInterfaces() {
 		return networkDeviceInterfaces;
 	}
-	
+		
 	public static final Comparator<NetworkDevice> CPU =
 			new Comparator<NetworkDevice>() {
 			@Override

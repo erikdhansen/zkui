@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NetworkResource implements SystemResource {
+public class NetworkResource extends AbstractSystemResource {
 
 	private final static long KB = 1024;
 	private final static long MB = 1024*KB;
@@ -21,6 +21,9 @@ public class NetworkResource implements SystemResource {
 	
 	public NetworkResource(String systemName) {
 		this.systemName = systemName;
+		CRITICAL = 80;
+		MAJOR    = 60;
+		MINOR    = 50;		
 	}
 	
 	@Override
@@ -111,6 +114,21 @@ public class NetworkResource implements SystemResource {
 		this.systemName = systemName;
 	}
 
+	public int getAverageUtilization() {
+		List<Integer> last10 = getLastTenPercentUtilization();
+		int total = 0;
+		int i = 0;
+		for(Integer util : last10) {
+			total += util;
+			i++;
+		}
+		return total / i;
+	}
+	
+	public int getMonitoredValue() {
+		return getAverageUtilization();
+	}
+	
 	public String humanize(long bytes) {
 		String hr = null;
 		if(bytes > TB) {

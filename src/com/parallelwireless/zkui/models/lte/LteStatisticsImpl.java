@@ -5,7 +5,8 @@ public class LteStatisticsImpl implements LteStatistics {
 	LteErabSetupSuccessRateAll setupSuccessRateTotal     = new LteErabSetupSuccessRateAll();
 	LteErabSetupSuccessRateQCI setupSuccessRatePerQCI    = new LteErabSetupSuccessRateQCI();
 	LteServiceDropRate serviceDropRate                   = new LteServiceDropRate();
-	LteHandoverSuccess serviceHandoverSuccess            = new LteHandoverSuccess();
+	LteHandoverSuccess serviceHandoverInbound            = new LteHandoverSuccess(true);
+	LteHandoverSuccess serviceHandoverOutbound           = new LteHandoverSuccess(false);
 	LteServiceTrafficStats serviceTrafficStats           = new LteServiceTrafficStats();
 	LteTrafficVolume serviceTrafficVolume                = new LteTrafficVolume();
 
@@ -18,6 +19,10 @@ public class LteStatisticsImpl implements LteStatistics {
     final static String QCI_TRAFFIC_VOL_DL_QCI = "LTE_DL_TRAFFIC_VOLUME_QCI_";
     final static String QCI_TRAFFIC_VOL_UL_QCI = "LTE_UL_TRAFFIC_VOLUME_QCI_";
     
+	int CRITICAL;
+	int MAJOR;
+	int MINOR;
+
 	String systemName;
 	
 	public LteStatisticsImpl(String systemName) {
@@ -28,10 +33,10 @@ public class LteStatisticsImpl implements LteStatistics {
 		// LteServiceDropRate
 		serviceDropRate.setAbnormalReleases(Long.parseLong(statistics.get(STAT.LTE_SERVICE_DROP_RATE_ABNORMAL)));
 		serviceDropRate.setTotalReleases(Long.parseLong(statistics.get(STAT.LTE_SERVICE_DROP_RATE_TOTAL)));
-		serviceHandoverSuccess.setInAttempt(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)));
-		serviceHandoverSuccess.setInSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_IN)));
-		serviceHandoverSuccess.setOutAttempt(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)));
-		serviceHandoverSuccess.setOutSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_OUT)));
+		serviceHandoverInbound.setAttempt(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_ATTEMPTS_IN)));
+		serviceHandoverInbound.setSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_IN)));
+		serviceHandoverOutbound.setAttempt(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_ATTEMPTS_OUT)));
+		serviceHandoverOutbound.setSuccess(Long.parseLong(statistics.get(STAT.LTE_HANDOVER_SUCCESSES_OUT)));
 		setupSuccessRateTotal.setSetupAttempts(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_ATTEMPT_ALL)));
 		setupSuccessRateTotal.setSetupSuccesses(Long.parseLong(statistics.get(STAT.LTE_ERAB_SSR_SUCCESS_ALL)));
 		for(int i=0; i < 9; i++) {
@@ -65,12 +70,20 @@ public class LteStatisticsImpl implements LteStatistics {
 		this.serviceDropRate = serviceDropRate;
 	}
 
-	public LteHandoverSuccess getServiceHandoverSuccess() {
-		return serviceHandoverSuccess;
+	public LteHandoverSuccess getServiceHandoverInbound() {
+		return serviceHandoverInbound;
 	}
 
-	public void setServiceHandoverSuccess(LteHandoverSuccess serviceHandoverSuccess) {
-		this.serviceHandoverSuccess = serviceHandoverSuccess;
+	public void setServiceHandoverInbound(LteHandoverSuccess serviceHandoverInbound) {
+		this.serviceHandoverInbound = serviceHandoverInbound;
+	}
+
+	public LteHandoverSuccess getServiceHandoverOutbound() {
+		return serviceHandoverOutbound;
+	}
+
+	public void setServiceHandoverOutbound(LteHandoverSuccess serviceHandoverOutbound) {
+		this.serviceHandoverOutbound = serviceHandoverOutbound;
 	}
 
 	public LteServiceTrafficStats getServiceTrafficStats() {

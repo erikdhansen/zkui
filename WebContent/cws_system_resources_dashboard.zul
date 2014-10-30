@@ -22,7 +22,7 @@
 				<column hflex="3">% use</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsCPU}">
+   				<row forEach="${cwsCPU}" sclass="${each.sysInfo.cpu.cssClass}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.cpu.oneMinLoad}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.cpu.fiveMinLoad}"/>
@@ -36,7 +36,7 @@
    		</div>
    	</div>
    	<div id="mem_section">
-   		<listbox id="unicloud_mem_resources" sclass="unicloud-table">
+   		<grid id="unicloud_mem_resources" sclass="unicloud-table">
 			<auxhead>
 				<auxheader colspan="7" label="Memory/Swap (Top 10)"/>
 			</auxhead>
@@ -45,28 +45,27 @@
 				<auxheader colspan="3" label="RAM (MB)"/>
 				<auxheader colspan="3" label="Swap (MB)"/>
 			</auxhead>
-			<listhead>
-				<listheader hflex="2" label="Name"/>
-				<listheader hflex="1"  label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
-				<listheader hflex="1" label="Used"/>
-				<listheader hflex="1" label="Free"/>
-				<listheader hflex="1" label="Total"/>
-			</listhead>
-				<listitem sclass="unicloud-table" forEach="${cwsMEM}">
-					<listcell sclass="unicloud-table" label="${each.name}"/>
-					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
-					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
-					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.mem.totalRAMAvailMB}"/>
-					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.mem.usedSwapSizeMB}"/>
-					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.mem.availSwapSizeMB}"/>
-					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.mem.totalSwapSizeMB}"/>
-				</listitem>		
-   		</listbox>
-   		<div align="center">
-	   		<charts id="memChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
+			<columns>
+				<column hflex="2" label="Name"/>
+				<column hflex="1"  label="Used"/>
+				<column hflex="1" label="Free"/>
+				<column hflex="1" label="Total"/>
+				<column hflex="1" label="Used"/>
+				<column hflex="1" label="Free"/>
+				<column hflex="1" label="Total"/>
+			</columns>
+			<rows>
+				<row forEach="${cwsMEM}" sclass="${each.sysInfo.mem.cssClass}">
+					<label sclass="unicloud-table" value="${each.name}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMUsedMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMFreeMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMAvailMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.usedSwapSizeMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.availSwapSizeMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalSwapSizeMB}"/>
+				</row>
+			</rows>		
+   		</grid>
    	</div>
 </hbox>
 <hbox>
@@ -84,7 +83,7 @@
 				<column hflex="3">% Used</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsDisk}">
+   				<row forEach="${cwsDisk}" sclass="${each.sysInfo.disk.cssClass}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.partitionDevPath}"/>
    					<label sclass="unicloud-table" value="${each.sysInfo.disk.usedDiskSpaceHR}"/>
@@ -99,27 +98,29 @@
    		</div>
    	</div>
    	<div id="net_section">
-   		<listbox id="unicloud_net_resources" sclass="unicloud-table">
+   		<grid id="unicloud_net_resources" sclass="unicloud-table">
 			<auxhead>
 				<auxheader colspan="6" label="Network (Top 10)"/>
 			</auxhead>
-			<listhead>
-				<listheader hflex="3" label="Name"/>
-				<listheader hflex="2"  label="Interface"/>
-				<listheader hflex="2" label="RX Bytes"/>
-				<listheader hflex="2" label="TX Bytes"/>
-				<listheader hflex="2" label="Link Speed"/>
-				<listheader hflex="2" label="% Use"/>
-			</listhead>
-				<listitem forEach="${cwsNet}">
-					<listcell sclass="unicloud-table" label="${each.name}"/>
-					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
-					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytesHR}"/>
-					<listcell sclass="unicloud-table" style="text-align: right" label="${each.sysInfo.network.txBytesHR}"/>
-					<listcell sclass="unicloud-table" style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
-					<listcell sclass="unicloud-table" style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}%"/>
-				</listitem>		
-   		</listbox>
+			<columns>
+				<column hflex="3">Name</column>
+				<column hflex="2">Interface</column>
+				<column hflex="2">RX Bytes</column>
+				<column hflex="2">TX Bytes</column>
+				<column hflex="2">Link Speed</column>
+				<column hflex="2">% Use</column>
+			</columns>
+			<rows>
+				<row forEach="${cwsNet}" sclass="${each.sysInfo.network.cssClass}">
+					<label sclass="unicloud-table" value="${each.name}"/>
+					<label sclass="unicloud-table" style="color: orange; text-align: right;" value="${each.sysInfo.network.interfaceName}"/>
+					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.rxBytesHR}"/>
+					<label sclass="unicloud-table" style="text-align: right" value="${each.sysInfo.network.txBytesHR}"/>
+					<label sclass="unicloud-table" style="color: orange; text-align: right;" value="${each.sysInfo.network.linkSpeed}"/>
+					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.currentPercentUtilization}%"/>
+				</row>
+			</rows>						
+   		</grid>
    		<div align="center">
 	   		<charts id="netChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>

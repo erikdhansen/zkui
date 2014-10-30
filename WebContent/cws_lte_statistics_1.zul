@@ -33,21 +33,23 @@
    		</div>
    	</div>
    	<div id="lte_avg_ul_thru_grid">
-   		<listbox id="lte_avg_thru_ul_listbox" sclass="unicloud-table">
+   		<grid id="lte_avg_thru_ul_grid" sclass="unicloud-table">
 			<auxhead>
 				<auxheader colspan="3" label="LTE Average Throughput [Uplink] (Top 10)"/>
 			</auxhead>
-			<listhead>
-				<listheader hflex="2" label="CWS"/>
-				<listheader hflex="2" label="QCI"/>
-				<listheader hflex="2" label="Avg. Throughput (UL)"/>
-			</listhead>
-				<listitem forEach="${cwsLteUlAvgThru}">
-					<listcell label="${each.systemName}"/>
-					<listcell label="${each.qciName}"/>
-					<listcell label="${each.serviceAvgThruUL}"/>
-				</listitem>		
-   		</listbox>
+			<columns>
+				<column hflex="2" label="CWS"/>
+				<column hflex="2" label="QCI"/>
+				<column hflex="2" label="Avg. Throughput (UL)"/>
+			</columns>
+			<rows>
+				<row forEach="${cwsLteUlAvgThru}">
+					<label value="${each.systemName}"/>
+					<label value="${each.qciName}"/>
+					<label value="${each.serviceAvgThruUL}"/>
+				</row>
+			</rows>						
+   		</grid>
    		<div align="center">
 	   		<charts id="uplinkThroughput" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
@@ -65,7 +67,7 @@
    				<column hflex="1">Traffic Volume</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteDlTrafVol}">
+   				<row forEach="${cwsLteDlTrafVol}" style="bgcolor: rgba(255, 0, 0, .33); color: rgb(255, 255, 255); font-style: bold;">
 	   				<label sclass="unicloud-table" value="${each.systemName}"/>
 	   				<label value="${each.qciName}"/>
    					<label sclass="unicloud-table" value="${each.serviceTrafficVolDL}"/>

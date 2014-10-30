@@ -1,12 +1,14 @@
 package com.parallelwireless.zkui.models.lte;
 
-public class LteServiceDropRate {
+public class LteServiceDropRate extends AbstractLteStatisticType {
 
 	long abnormalReleases = 0;
 	long totalReleases   = 0;
 	
 	public LteServiceDropRate() {
-		
+		CRITICAL = 50;
+		MAJOR    = 30;
+		MINOR    = 10;
 	}
 
 	public long getAbnormalReleases() {
@@ -33,5 +35,10 @@ public class LteServiceDropRate {
 		long dividend = (totalReleases == 0) ? 1 : totalReleases;
 		Long pctLong = (100 * abnormalReleases) / dividend;
 		return pctLong.intValue();
+	}
+
+	@Override
+	public int getMonitoredValue() {
+		return getAbnormalDropRate();
 	}
 }

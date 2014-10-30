@@ -63,7 +63,8 @@ public interface LteStatistics {
 				return statistic;
 			}
 	};
-
+	
 	public String getSystemName();
 	public void addStatistics(Statistics statistics) throws Exception;
+
 }

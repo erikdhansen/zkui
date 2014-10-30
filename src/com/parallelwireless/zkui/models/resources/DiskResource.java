@@ -3,7 +3,7 @@ package com.parallelwireless.zkui.models.resources;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 
-public class DiskResource implements SystemResource {
+public class DiskResource extends  AbstractSystemResource {
 
 	private final static long KB = 1024;
 	private final static long MB = 1024*KB;
@@ -22,6 +22,9 @@ public class DiskResource implements SystemResource {
 	
 	public DiskResource(String systemName) {
 		this.systemName = systemName;
+		CRITICAL = 95;
+		MAJOR    = 85;
+		MINOR    = 75;		
 	}
 	
 	@Override
@@ -76,7 +79,7 @@ public class DiskResource implements SystemResource {
 	}
 
 	public int getPercentSpaceUsed() {
-		Long pct = (100*availableDiskInBytes)/(availableDiskInBytes + usedDiskSpaceInBytes);
+		Long pct = (100*usedDiskSpaceInBytes)/(availableDiskInBytes + usedDiskSpaceInBytes);
 		return pct.intValue();
 	}
 
@@ -108,6 +111,9 @@ public class DiskResource implements SystemResource {
 		return humanize(getAvailableDiskInBytes() + getUsedDiskSpaceInBytes());
 	}
 	
+	public int getMonitoredValue() {
+		return getPercentSpaceUsed();
+	}
 
 	public String humanize(long bytes) {
 		String hr = null;

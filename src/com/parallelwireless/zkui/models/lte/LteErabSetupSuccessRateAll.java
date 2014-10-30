@@ -1,10 +1,13 @@
 package com.parallelwireless.zkui.models.lte;
 
-public class LteErabSetupSuccessRateAll {
+public class LteErabSetupSuccessRateAll extends AbstractLteStatisticType {
 	long setupAttempts  = 0;
 	long setupSuccesses = 0;
 	
 	public LteErabSetupSuccessRateAll() {
+		CRITICAL = 50;
+		MAJOR    = 30;
+		MINOR    = 15;
 	}
 
 	public long getSetupAttempts() {
@@ -35,5 +38,10 @@ public class LteErabSetupSuccessRateAll {
 	public int getSetupFailureRate() {
 		long dividend = (setupAttempts == 0) ? 1 : setupAttempts;
 		return new Long(100 * getSetupFailures()/dividend).intValue();
+	}
+
+	@Override
+	public int getMonitoredValue() {
+		return getSetupFailureRate();
 	}
 }

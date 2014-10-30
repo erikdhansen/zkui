@@ -46,4 +46,5 @@ public interface SystemResource {
 
 	public String getSystemName();
 	public void addResources(ResourceConfig config) throws Exception;
+	public String getCssClass();
 }

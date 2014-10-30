@@ -27,7 +27,7 @@
 				<column hflex="1">Error %</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteSetupSuccess}">
+   				<row forEach="${cwsLteSetupSuccess}" sclass="${each.lteStats.setupSuccessRateTotal.cssClass}">
 	   				<label value="${each.name}"/>
 	   				<label value="${each.unicloud}"/>
    					<label value="${each.lteStats.setupSuccessRateTotal.setupFailures}"/>
@@ -42,7 +42,7 @@
    		</div>
    	</div>
    	<div id="lte_release_section">
-   		<listbox id="lte_release_listbox" sclass="unicloud-table">
+   		<grid id="lte_release_grid" sclass="unicloud-table">
 			<auxhead>
 				<auxheader colspan="6" label="LTE Call Release Statistics (Top 10)"/>
 			</auxhead>
@@ -50,23 +50,25 @@
 				<auxheader colspan="2" label="System"/>
 				<auxheader colspan="3" label="Release Type"/>
 			</auxhead>
-			<listhead>
-				<listheader hflex="2" label="CWS"/>
-				<listheader hflex="2" label="Uni-Cloud"/>
-				<listheader hflex="1" label="Abnormal"/>
-				<listheader hflex="1" label="Normal"/>
-				<listheader hflex="1" label="Total"/>
-				<listheader hflex="1" label="Error %"/>
-			</listhead>
-				<listitem forEach="${cwsLteServiceDrop}">
-					<listcell label="${each.name}"/>
-					<listcell label="${each.unicloud}"/>
-					<listcell label="${each.lteStats.serviceDropRate.abnormalReleases}"/>
-					<listcell label="${each.lteStats.serviceDropRate.normalReleases}"/>
-					<listcell label="${each.lteStats.serviceDropRate.totalReleases}"/>
-					<listcell label="${each.lteStats.serviceDropRate.abnormalDropRate}%"/>
-				</listitem>		
-   		</listbox>
+			<columns>
+				<column hflex="2" label="CWS"/>
+				<column hflex="2" label="Uni-Cloud"/>
+				<column hflex="1" label="Abnormal"/>
+				<column hflex="1" label="Normal"/>
+				<column hflex="1" label="Total"/>
+				<column hflex="1" label="Error %"/>
+			</columns>
+			<rows>
+				<row forEach="${cwsLteServiceDrop}" sclass="${each.lteStats.serviceDropRate.cssClass}">
+					<label value="${each.name}"/>
+					<label value="${each.unicloud}"/>
+					<label value="${each.lteStats.serviceDropRate.abnormalReleases}"/>
+					<label value="${each.lteStats.serviceDropRate.normalReleases}"/>
+					<label value="${each.lteStats.serviceDropRate.totalReleases}"/>
+					<label value="${each.lteStats.serviceDropRate.abnormalDropRate}%"/>
+				</row>
+			</rows>		
+   		</grid>
    		<div align="center">
 	   		<charts id="lteReleaseChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
@@ -91,13 +93,13 @@
 				<column hflex="1">Error %</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteHandoverIn}">
+   				<row forEach="${cwsLteHandoverIn}" sclass="${each.lteStats.serviceHandoverInbound.cssClass}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
 	   				<label value="${each.unicloud}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inFailures}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inSuccess}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.inAttempt}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.handoverInFailureRate}%"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverInbound.failures}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverInbound.success}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverInbound.attempt}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverInbound.handoverFailureRate}%"/>
  	  			</row>
    			</rows>
    		</grid>
@@ -123,13 +125,13 @@
 				<column hflex="1">Error %</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteHandoverOut}">
+   				<row forEach="${cwsLteHandoverOut}" sclass="${each.lteStats.serviceHandoverOutbound.cssClass}">
 	   				<label sclass="unicloud-table" value="${each.name}"/>
 	   				<label value="${each.unicloud}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outFailures}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outSuccess}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.outAttempt}"/>
-   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverSuccess.handoverOutFailureRate}%"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverOutbound.failures}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverOutbound.success}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverOutbound.attempt}"/>
+   					<label sclass="unicloud-table" value="${each.lteStats.serviceHandoverOutbound.handoverFailureRate}%"/>
  	  			</row>
    			</rows>
    		</grid>

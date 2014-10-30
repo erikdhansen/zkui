@@ -19,8 +19,8 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 
 	@Wire
 	Charts cpuChart;
-	@Wire
-	Charts memChart;
+//	@Wire
+//	Charts memChart;
 	@Wire
 	Charts diskChart;
 	@Wire
@@ -58,28 +58,28 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 		
 	}
 	private void doMemChart() {
-		memChart.setModel(UnimanageDataUtil.getCwsMemResourceModel());
-		
-		// Alternate RAM/SWAP as series stack since that's how the data was added
-		// This allows for stack grouping across all data
-		memChart.getSeries().setStack("RAM");
- 		memChart.getSeries().setColor(Unimanage.RESOURCE_RAM_USED);
+//		memChart.setModel(UnimanageDataUtil.getCwsMemResourceModel());
+//		
+//		// Alternate RAM/SWAP as series stack since that's how the data was added
+//		// This allows for stack grouping across all data
+//		memChart.getSeries().setStack("RAM");
+// 		memChart.getSeries().setColor(Unimanage.RESOURCE_RAM_USED);
 //		memChart.getPlotOptions().getSeries().setThreshold(75);
 //		memChart.getPlotOptions().getSeries().setNegativeColor("#aaffaa");
 //		memChart.getPlotOptions().getSeries().setColor("#ff3333");
-		memChart.getSeries(1).setStack("RAM");
-		memChart.getSeries(1).setColor(Unimanage.RESOURCE_RAM_FREE);
-		memChart.getSeries(2).setStack("Swap");
-		memChart.getSeries(2).setColor(Unimanage.RESOURCE_SWAP_USED);
-		memChart.getSeries(3).setStack("Swap");
-		memChart.getSeries(3).setColor(Unimanage.RESOURCE_SWAP_FREE);
-
-		memChart.getXAxis().setTitle("% Memory");
-		memChart.getYAxis().setMin(0);
-		memChart.getTooltip().setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>" + ": <b>{point.y}</b> ({point.percentage:.0f}%)</br>");
-		memChart.getTooltip().setShared(true);
-		memChart.getPlotOptions().getColumn().setStacking("percent");
-		memChart.setInverted(true);
+//		memChart.getSeries(1).setStack("RAM");
+//		memChart.getSeries(1).setColor(Unimanage.RESOURCE_RAM_FREE);
+//		memChart.getSeries(2).setStack("Swap");
+//		memChart.getSeries(2).setColor(Unimanage.RESOURCE_SWAP_USED);
+//		memChart.getSeries(3).setStack("Swap");
+//		memChart.getSeries(3).setColor(Unimanage.RESOURCE_SWAP_FREE);
+//
+//		memChart.getXAxis().setTitle("% Memory");
+//		memChart.getYAxis().setMin(0);
+//		memChart.getTooltip().setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>" + ": <b>{point.y}</b> ({point.percentage:.0f}%)</br>");
+//		memChart.getTooltip().setShared(true);
+//		memChart.getPlotOptions().getColumn().setStacking("percent");
+//		memChart.setInverted(true);
 	}
 	
 	private void doCpuChart() {

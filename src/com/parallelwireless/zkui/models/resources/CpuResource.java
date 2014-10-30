@@ -1,6 +1,6 @@
 package com.parallelwireless.zkui.models.resources;
 
-public class CpuResource implements SystemResource {
+public class CpuResource extends AbstractSystemResource {
 	String systemName;
 	
 	// Load						//
@@ -16,9 +16,12 @@ public class CpuResource implements SystemResource {
 	int    percentIdleCPU = 0;  // .1.3.6.1.4.1.2021.11.11.0
 	long   rawIdleCPU     = 0;  // .1.3.6.1.4.1.2021.11.53.0
 	long   rawNiceCPU     = 0;  // .1.3.6.1.4.1.2021.11.51.0
-
+	
 	public CpuResource(String systemName) {
 		this.systemName = systemName;
+		CRITICAL = 90;
+		MAJOR    = 75;
+		MINOR    = 50;
 	}
 	
 	@Override
@@ -73,7 +76,6 @@ public class CpuResource implements SystemResource {
 	public long getRawUserCPU() {
 		return rawUserCPU;
 	}
-
 
 	public void setRawUserCPU(long rawUserCPU) {
 		this.rawUserCPU = rawUserCPU;
@@ -130,6 +132,11 @@ public class CpuResource implements SystemResource {
 
 	public int getPercentCPUTotal() {
 		return getPercentUserCPU() + getPercentSysCPU();
+	}
+	
+	@Override
+	public int getMonitoredValue() {
+		return getPercentCPUTotal();
 	}
 	
 	@Override

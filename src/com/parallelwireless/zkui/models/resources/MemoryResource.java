@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
-public class MemoryResource implements SystemResource {
+public class MemoryResource extends AbstractSystemResource {
 	// Memory
 	int    totalSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.3.0
 	int    availSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.4.0
@@ -18,6 +18,9 @@ public class MemoryResource implements SystemResource {
 	
 	public MemoryResource(String systemName) {
 		this.systemName = systemName;
+		CRITICAL = 95;
+		MAJOR    = 80;
+		MINOR    = 75;		
 	}
 
 	@Override
@@ -113,6 +116,11 @@ public class MemoryResource implements SystemResource {
 	public int getPercentUsed () {
 		return (100 * getTotalRAMUsed()) / (getTotalRAMUsed() + getTotalRAMFree());
 	}
+	
+	public int getMonitoredValue() {
+		return getPercentUsed();
+	}
+	
 	private String mbFormat(Number n) {
 		return String.valueOf(new DecimalFormat("#,###.#").format(n.intValue() / 1024));
 	}

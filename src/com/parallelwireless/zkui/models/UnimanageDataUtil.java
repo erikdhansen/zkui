@@ -30,8 +30,8 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
 		cfg.put(RESOURCE.CPU_USER_PCT, "42");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "43");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "15");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -64,7 +64,7 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
 		cfg.put(RESOURCE.MEM_SWAP_FREE, "2837");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "49923827600");
+		cfg.put(RESOURCE.DISK_USED_BYTES, "499238276000");
 		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "21029392840");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
 		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
@@ -91,7 +91,7 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.MEM_SWAP_FREE, "918273");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
 		cfg.put(RESOURCE.DISK_USED_BYTES, "411823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "329293928400");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "29293928400");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
 		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
 		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
@@ -107,9 +107,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE,     "7");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE,    "11");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "15");
-		cfg.put(RESOURCE.CPU_USER_PCT,    "82");
-		cfg.put(RESOURCE.CPU_SYS_PCT,     "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT,    "8");
+		cfg.put(RESOURCE.CPU_USER_PCT,    "10");
+		cfg.put(RESOURCE.CPU_SYS_PCT,     "8");
+		cfg.put(RESOURCE.CPU_IDLE_PCT,    "82");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL,   "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED,    "15312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE,    "1024924");
@@ -117,7 +117,7 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.MEM_SWAP_FREE,   "2736252");
 		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
 		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "210293928400");
+		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
 		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
 		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
 		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
@@ -134,9 +134,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_USER_PCT, "82");
 		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "8");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -172,9 +172,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "2");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "2");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "2");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_USER_PCT, "62");
 		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "28");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -210,9 +210,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "14");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "13");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "11");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_USER_PCT, "22");
 		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "68");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -248,9 +248,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "0");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "1");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
+		cfg.put(RESOURCE.CPU_USER_PCT, "52");
 		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "38");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -286,9 +286,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "1");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_USER_PCT, "12");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "30");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "58");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -362,9 +362,9 @@ public class UnimanageDataUtil {
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "3");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
+		cfg.put(RESOURCE.CPU_USER_PCT, "52");
+		cfg.put(RESOURCE.CPU_SYS_PCT, "28");
+		cfg.put(RESOURCE.CPU_IDLE_PCT, "20");
 		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
 		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
 		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
@@ -778,8 +778,8 @@ public class UnimanageDataUtil {
 		CategoryModel model = new DefaultCategoryModel();
 		List<CwsModel> cwss = new LinkedList<CwsModel>(getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_IN));
 		for(CwsModel cws : cwss) {
-			model.setValue("Successful", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInSuccess());
-			model.setValue("Unsuccessful", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInFailures());
+			model.setValue("Successful", cws.getName(), cws.getLteStats().getServiceHandoverInbound().getSuccess());
+			model.setValue("Unsuccessful", cws.getName(), cws.getLteStats().getServiceHandoverInbound().getFailures());
 		}
 		return model;
 	}
@@ -950,8 +950,8 @@ public class UnimanageDataUtil {
 		CategoryModel model = new DefaultCategoryModel();
 		List<CwsModel> cwsList = getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_IN);
 		for(CwsModel cws : cwsList) {
-			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInSuccess());
-			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getInFailures());
+			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverInbound().getSuccess());
+			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverInbound().getFailures());
 		}
 		return model;
 	}
@@ -960,8 +960,8 @@ public class UnimanageDataUtil {
 		CategoryModel model = new DefaultCategoryModel();
 		List<CwsModel> cwsList = getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_OUT);
 		for(CwsModel cws : cwsList) {
-			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getOutSuccess());
-			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverSuccess().getOutFailures());
+			model.setValue("Normal", cws.getName(), cws.getLteStats().getServiceHandoverOutbound().getSuccess());
+			model.setValue("Abormal", cws.getName(), cws.getLteStats().getServiceHandoverOutbound().getFailures());
 		}
 		return model;
 	}

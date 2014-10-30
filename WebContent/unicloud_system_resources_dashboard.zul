@@ -1,129 +1,167 @@
 <?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
 <zk>
-<zscript>
-	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.CPU);
-	Collection ucMem     = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.MEM);
-	Collection ucDisk    = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.DISK);
-	Collection ucNet     = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.NET);
+	<zscript>
+	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.CPU);
+	Collection ucMem = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.MEM);
+	Collection ucDisk = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.DISK);
+	Collection ucNet = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.NET);
 </zscript>
-<style src="/css/parallel.css"/>
-<div apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
-<hbox>
-	<div id="cpu_section">
-		<grid id="cpu_grid" sclass="unicloud-table">
-   			<auxhead>
-   				<auxheader colspan="5" label="CPU Load Average"/>
-   			</auxhead>
-   			<columns>
-   				<column hflex="3">System</column>
-   				<column hflex="2">1 min</column>
-				<column hflex="2">5 min</column>
-				<column hflex="2">15 min</column>
-				<column hflex="1">% use</column>
-   			</columns>
-   			<rows>
-   				<row forEach="${uniclouds}">
-	   				<label value="${each.name}"/>
-   					<label value="${each.sysInfo.cpu.oneMinLoad}"/>
-   					<label value="${each.sysInfo.cpu.fiveMinLoad}"/>
-   					<label value="${each.sysInfo.cpu.fifteenMinLoad}"/>
-   					<label style="text-align: right;" value="${each.sysInfo.cpu.percentCPUTotal}"/>
- 	  			</row>
-   			</rows>
-   		</grid>
-   		<div align="middle" id="cpuchartdiv">
-	   	   <charts id="cpuChart" type="line" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
-   	</div>
-   	<div id="mem_section">
-   		<listbox id="unicloud_mem_resources" sclass="unicloud-table">
-			<auxhead>
-				<auxheader colspan="7" label="Memory/Swap"/>
-			</auxhead>
-			<auxhead>
-				<auxheader colspan="1" label="Uni-Cloud"/>
-				<auxheader colspan="3" label="RAM (MB)"/>
-				<auxheader colspan="3" label="Swap (MB)"/>
-			</auxhead>
-			<listhead>
-				<listheader hflex="4" label="Name"/>
-				<listheader hflex="2"  label="Used"/>
-				<listheader hflex="2" label="Free"/>
-				<listheader hflex="2" label="Total"/>
-				<listheader hflex="2" label="Used"/>
-				<listheader hflex="2" label="Free"/>
-				<listheader hflex="2" label="Total"/>
-			</listhead>
-				<listitem forEach="${ucMem}">
-					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.totalRAMUsedMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.totalRAMFreeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalRAMAvailMB}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.mem.usedSwapSizeMB}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.mem.availSwapSizeMB}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.mem.totalSwapSizeMB}"/>
-				</listitem>		
-   		</listbox>
-   		<div align="center">
-	   		<charts id="memChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
-   	</div>
-</hbox>
-<hbox>
-	<div id="disk_section">
-		<grid id="disk_grid" sclass="unicloud-table">
-   			<auxhead>
-   				<auxheader colspan="6" label="Disk"/>
-   			</auxhead>
-   			<columns>
-   				<column sclass="unicloud-table" hflex="4">System</column>
-   				<column hflex="3">Disk</column>
-				<column hflex="3">Used</column>
-				<column hflex="3">Free</column>
-				<column hflex="3">Total</column>
-				<column hflex="3">% Used</column>
-   			</columns>
-   			<rows>
-   				<row forEach="${ucDisk}">
-	   				<label sclass="unicloud-table" value="${each.name}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.partitionDevPath}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.usedDiskSpaceHR}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.freeDiskSpaceHR}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.totalDiskSpaceHR}"/>
-   					<label sclass="unicloud-table" value="${each.sysInfo.disk.percentSpaceUsed} %"/>
- 	  			</row>
-   			</rows>
-   		</grid>
-   		<div align="middle" id="diskchartdiv">
-	   	   <charts id="diskChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
-   	</div>
-   	<div id="net_section">
-   		<listbox id="unicloud_net_resources" sclass="unicloud-table">
-			<auxhead>
-				<auxheader colspan="6" label="Network"/>
-			</auxhead>
-			<listhead>
-				<listheader hflex="3" label="Name"/>
-				<listheader hflex="2"  label="Interface"/>
-				<listheader hflex="2" label="RX Bytes"/>
-				<listheader hflex="2" label="TX Bytes"/>
-				<listheader hflex="2" label="Link Speed"/>
-				<listheader hflex="2" label="% Use"/>
-			</listhead>
-				<listitem forEach="${ucNet}">
-					<listcell label="${each.name}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.interfaceName}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.rxBytes}"/>
-					<listcell style="text-align: right" label="${each.sysInfo.network.txBytes}"/>
-					<listcell style="color: orange; text-align: right;" label="${each.sysInfo.network.linkSpeed}"/>
-					<listcell style="color: green; text-align: right;" label="${each.sysInfo.network.currentPercentUtilization}"/>
-				</listitem>		
-   		</listbox>
-   		<div align="center">
-	   		<charts id="netChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
-   	</div>
-</hbox>
-</div>
+	<style src="/css/parallel.css" />
+	<div
+		apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
+		<hbox>
+			<div id="cpu_section">
+				<grid id="cpu_grid" sclass="unicloud-table">
+					<auxhead>
+						<auxheader colspan="5" label="CPU Load Average" />
+					</auxhead>
+					<columns>
+						<column hflex="3">System</column>
+						<column hflex="2">1 min</column>
+						<column hflex="2">5 min</column>
+						<column hflex="2">15 min</column>
+						<column hflex="1">% use</column>
+					</columns>
+					<rows>
+						<row forEach="${uniclouds}"
+							sclass="${each.sysInfo.cpu.cssClass}">
+							<label value="${each.name}" />
+							<label
+								value="${each.sysInfo.cpu.oneMinLoad}" />
+							<label
+								value="${each.sysInfo.cpu.fiveMinLoad}" />
+							<label
+								value="${each.sysInfo.cpu.fifteenMinLoad}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.cpu.percentCPUTotal}" />
+						</row>
+					</rows>
+				</grid>
+				<div align="middle" id="cpuchartdiv">
+					<charts id="cpuChart" type="line" title=""
+						subtitle="Data Age: 2 min ago" height="260" />
+				</div>
+			</div>
+			<div id="mem_section">
+				<grid id="unicloud_mem_resources"
+					sclass="unicloud-table">
+					<auxhead>
+						<auxheader colspan="7" label="Memory/Swap" />
+					</auxhead>
+					<auxhead>
+						<auxheader colspan="1" label="Uni-Cloud" />
+						<auxheader colspan="3" label="RAM (MB)" />
+						<auxheader colspan="3" label="Swap (MB)" />
+					</auxhead>
+					<columns>
+						<column hflex="4" label="Name" />
+						<column hflex="2" label="Used" />
+						<column hflex="2" label="Free" />
+						<column hflex="2" label="Total" />
+						<column hflex="2" label="Used" />
+						<column hflex="2" label="Free" />
+						<column hflex="2" label="Total" />
+					</columns>
+					<rows>
+						<row forEach="${ucMem}"
+							sclass="${each.sysInfo.mem.cssClass}">
+							<label value="${each.name}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.totalRAMUsedMB}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.totalRAMFreeMB}" />
+							<label style="text-align: right"
+								value="${each.sysInfo.mem.totalRAMAvailMB}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.usedSwapSizeMB}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.availSwapSizeMB}" />
+							<label style="text-align: right"
+								value="${each.sysInfo.mem.totalSwapSizeMB}" />
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</hbox>
+		<hbox>
+			<div id="disk_section">
+				<grid id="disk_grid" sclass="unicloud-table">
+					<auxhead>
+						<auxheader colspan="6" label="Disk" />
+					</auxhead>
+					<columns>
+						<column sclass="unicloud-table" hflex="4">
+							System
+						</column>
+						<column hflex="3">Disk</column>
+						<column hflex="3">Used</column>
+						<column hflex="3">Free</column>
+						<column hflex="3">Total</column>
+						<column hflex="3">% Used</column>
+					</columns>
+					<rows>
+						<row forEach="${ucDisk}"
+							sclass="${each.sysInfo.disk.cssClass}">
+							<label sclass="unicloud-table"
+								value="${each.name}" />
+							<label sclass="unicloud-table"
+								value="${each.sysInfo.disk.partitionDevPath}" />
+							<label sclass="unicloud-table"
+								value="${each.sysInfo.disk.usedDiskSpaceHR}" />
+							<label sclass="unicloud-table"
+								value="${each.sysInfo.disk.freeDiskSpaceHR}" />
+							<label sclass="unicloud-table"
+								value="${each.sysInfo.disk.totalDiskSpaceHR}" />
+							<label sclass="unicloud-table"
+								value="${each.sysInfo.disk.percentSpaceUsed} %" />
+						</row>
+					</rows>
+				</grid>
+				<div align="middle" id="diskchartdiv">
+					<charts id="diskChart" type="column" title=""
+						subtitle="Data Age: 2 min ago" height="260" />
+				</div>
+			</div>
+			<div id="net_section">
+				<grid id="unicloud_net_resources"
+					sclass="unicloud-table">
+					<auxhead>
+						<auxheader colspan="6" label="Network" />
+					</auxhead>
+					<columns>
+						<column hflex="3">Name</column>
+						<column hflex="2">Interface</column>
+						<column hflex="2">RX Bytes</column>
+						<column hflex="2">TX Bytes</column>
+						<column hflex="2">Link Speed</column>
+						<column hflex="2">% Use</column>
+					</columns>
+					<rows>
+						<row forEach="${ucNet}"
+							sclass="${each.sysInfo.network.cssClass}">
+							<label value="${each.name}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.network.interfaceName}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.network.rxBytes}" />
+							<label style="text-align: right"
+								value="${each.sysInfo.network.txBytes}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.network.linkSpeed}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.network.currentPercentUtilization}" />
+						</row>
+					</rows>
+				</grid>
+				<div align="center">
+					<charts id="netChart" type="line" title=""
+						subtitle="Data Age: 2 min" height="260" />
+				</div>
+			</div>
+		</hbox>
+	</div>
 </zk>

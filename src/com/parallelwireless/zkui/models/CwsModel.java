@@ -66,6 +66,7 @@ public class CwsModel extends NetworkDeviceImpl {
 	public int getLastSeenMinutes() {
 		return lastSeenMinutes;
 	}
+	// TODO Auto-generated method stub
 
 	public void setLastSeenMinutes(int lastSeenMinutes) {
 		this.lastSeenMinutes = lastSeenMinutes;
@@ -144,8 +145,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Integer s1 = new Long((100 * c1.getLteStats().getServiceHandoverSuccess().getHandoverInFailureRate())).intValue();
-		    	Integer s2 = new Long((100 * c2.getLteStats().getServiceHandoverSuccess().getHandoverInFailureRate())).intValue();
+		    	Integer s1 = new Long((100 * c1.getLteStats().getServiceHandoverInbound().getHandoverFailureRate())).intValue();
+		    	Integer s2 = new Long((100 * c2.getLteStats().getServiceHandoverInbound().getHandoverFailureRate())).intValue();
 		    	return s2.compareTo(s1);
 		    }
 	};
@@ -154,8 +155,8 @@ public class CwsModel extends NetworkDeviceImpl {
 			new Comparator<CwsModel>() {
 		    @Override
 		    public int compare(CwsModel c1, CwsModel c2) {
-		    	Integer s1 = c1.getLteStats().getServiceHandoverSuccess().getHandoverOutFailureRate();
-		    	Integer s2 = c2.getLteStats().getServiceHandoverSuccess().getHandoverOutFailureRate();
+		    	Integer s1 = c1.getLteStats().getServiceHandoverOutbound().getHandoverFailureRate();
+		    	Integer s2 = c2.getLteStats().getServiceHandoverOutbound().getHandoverFailureRate();
 		    	return s2.compareTo(s1);
 		    }
 	};
