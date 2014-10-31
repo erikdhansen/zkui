@@ -66,8 +66,8 @@ public class SysInfo {
 		public static Comparator<SysInfo> MEMORY = new Comparator<SysInfo>() {
 			@Override
 			public int compare(SysInfo s1, SysInfo s2) {
-				Integer ram1 = s1.mem.getTotalRAMAvail() - s1.mem.getTotalRAMAvail();
-				Integer ram2 = s1.mem.getTotalRAMFree() - s1.mem.getTotalRAMFree();
+				Long ram1 = s1.mem.getTotalRAMAvail() - s1.mem.getTotalRAMAvail();
+				Long ram2 = s1.mem.getTotalRAMFree() - s1.mem.getTotalRAMFree();
 				return ram2.compareTo(ram1);
 			}
 		};

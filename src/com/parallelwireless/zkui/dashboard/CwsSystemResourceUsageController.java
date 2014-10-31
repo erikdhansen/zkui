@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.zkoss.chart.Charts;
 import org.zkoss.chart.Legend;
+import org.zkoss.chart.XAxis;
 import org.zkoss.chart.YAxis;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -21,8 +22,8 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 	Charts cpuChart;
 //	@Wire
 //	Charts memChart;
-	@Wire
-	Charts diskChart;
+//	@Wire
+//	Charts diskChart;
 	@Wire
 	Charts netChart;
 	@Wire
@@ -38,7 +39,7 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 		super.doAfterCompose(d);
 		doCpuChart();
 		doMemChart();
-		doDiskChart();
+//		doDiskChart();
 		doNetChart();
 	}
 	
@@ -49,14 +50,14 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 		netChart.getYAxis().setTitle("% Net");
 		
 	}
-	private void doDiskChart() {
-		diskChart.setModel(UnimanageDataUtil.getCwsDiskResourceModel());
-		//diskChart.getSeries().setStack("Used");
-		//diskChart.getSeries(1).setStack("Free");
-		diskChart.getYAxis().setTitle("% Disk");
-		diskChart.getPlotOptions().getColumn().setStacking("percent");
-		
-	}
+//	private void doDiskChart() {
+//		diskChart.setModel(UnimanageDataUtil.getCwsDiskResourceModel());
+//		//diskChart.getSeries().setStack("Used");
+//		//diskChart.getSeries(1).setStack("Free");
+//		diskChart.getYAxis().setTitle("% Disk");
+//		diskChart.getPlotOptions().getColumn().setStacking("percent");
+//		
+//	}
 	private void doMemChart() {
 //		memChart.setModel(UnimanageDataUtil.getCwsMemResourceModel());
 //		
@@ -83,15 +84,14 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 	}
 	
 	private void doCpuChart() {
-		cpuChart.setModel(UnimanageDataUtil.getCwsLteSetupSuccessRate());
+		cpuChart.setModel(UnimanageDataUtil.getCwsCpuResourceModel());
 		cpuChart.getXAxis().setTitle("");
 		YAxis y = cpuChart.getYAxis();
 		y.setMin(0);
-		y.setTitle("Setup Success Rate");
+		y.setTitle("System Load Average");
 		y.getTitle().setAlign("high");
 		y.getLabels().setOverflow("justify");
 		cpuChart.getPlotOptions().getBar().getDataLabels().setEnabled(true);
-		
 		Legend legend = cpuChart.getLegend();
 		legend.setLayout("vertical");
 		legend.setAlign("right");
@@ -102,7 +102,6 @@ public class CwsSystemResourceUsageController extends SelectorComposer<Div>{
 		legend.setBorderWidth(1);
 		legend.setShadow(true);
 		legend.setBackgroundColor("#ffffff");
-		cpuChart.getPlotOptions().getColumn().setStacking("percent");
 		cpuChart.getCredits().setEnabled(false);
 		
 	}

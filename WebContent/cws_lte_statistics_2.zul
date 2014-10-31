@@ -37,9 +37,6 @@
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="middle" id="ltesetupsuccesschart">
-	   	   <charts id="lteSetupChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260"/>   		
-   		</div>
    	</div>
    	<div id="lte_release_section">
    		<grid id="lte_release_grid" sclass="unicloud-table">
@@ -69,9 +66,6 @@
 				</row>
 			</rows>		
    		</grid>
-   		<div align="center">
-	   		<charts id="lteReleaseChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
    	</div>
 </hbox>
 <hbox>
@@ -103,9 +97,6 @@
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="middle" id="handoverInChartSection">
-	   	   <charts id="lteHandoverInChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
    	</div>
    	<div id="hondover_out_section">
   		<grid id="handover_out_grid" sclass="unicloud-table">
@@ -135,9 +126,6 @@
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="center">
-	   		<charts id="lteHandoverOutChart" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
    	</div>
 </hbox>
 </div>

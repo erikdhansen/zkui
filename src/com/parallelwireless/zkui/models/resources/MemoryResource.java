@@ -6,14 +6,14 @@ import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
 public class MemoryResource extends AbstractSystemResource {
 	// Memory
-	int    totalSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.3.0
-	int    availSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.4.0
-	int    totalRAMAvail    = 0;  // .1.3.6.1.4.1.2021.4.5.0
-	int    totalRAMUsed     = 0;  // .1.3.6.1.4.1.2021.4.6.0
-	int    totalRAMFree     = 0;  // .1.3.6.1.4.1.2021.4.11.0
-	int    totalRAMShared   = 0;  // .1.3.6.1.4.1.2021.4.13.0
-	int    totalRAMBuffered = 0;  // .1.3.6.1.4.1.2021.4.14.0
-	int    totalCachedMem   = 0;  // .1.3.6.1.4.1.2021.4.15.0
+	long   totalSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.3.0
+	long   availSwapSize    = 0;  // .1.3.6.1.4.1.2021.4.4.0
+	long   totalRAMAvail    = 0;  // .1.3.6.1.4.1.2021.4.5.0
+	long   totalRAMUsed     = 0;  // .1.3.6.1.4.1.2021.4.6.0
+	long   totalRAMFree     = 0;  // .1.3.6.1.4.1.2021.4.11.0
+	long   totalRAMShared   = 0;  // .1.3.6.1.4.1.2021.4.13.0
+	long   totalRAMBuffered = 0;  // .1.3.6.1.4.1.2021.4.14.0
+	long   totalCachedMem   = 0;  // .1.3.6.1.4.1.2021.4.15.0
 	String systemName;
 	
 	public MemoryResource(String systemName) {
@@ -25,67 +25,67 @@ public class MemoryResource extends AbstractSystemResource {
 
 	@Override
 	public void addResources(ResourceConfig config) throws Exception {
-		setTotalSwapSize(config.get(RESOURCE.MEM_SWAP_TOTAL) == null ? getTotalSwapSize() : Integer.parseInt(config.get(RESOURCE.MEM_SWAP_TOTAL)));
-		setAvailSwapSize(config.get(RESOURCE.MEM_SWAP_FREE) == null ? getAvailSwapSize() : Integer.parseInt(config.get(RESOURCE.MEM_SWAP_FREE)));
-		setTotalRAMAvail(config.get(RESOURCE.MEM_RAM_TOTAL) == null ? getTotalRAMAvail() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_TOTAL)));
-		setTotalRAMUsed(config.get(RESOURCE.MEM_RAM_USED) == null ? getTotalRAMUsed() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_USED)));
-		setTotalRAMFree(config.get(RESOURCE.MEM_RAM_FREE) == null ? getTotalRAMFree() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_FREE)));
-		setTotalRAMShared(config.get(RESOURCE.MEM_RAM_SHARED) == null ? getTotalRAMShared() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_SHARED)));
-		setTotalRAMBuffered(config.get(RESOURCE.MEM_RAM_BUFFERED) == null ? getTotalRAMBuffered() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_BUFFERED)));
-		setTotalCachedMem(config.get(RESOURCE.MEM_RAM_CACHED) == null ? getTotalCachedMem() : Integer.parseInt(config.get(RESOURCE.MEM_RAM_CACHED)));
+		setTotalSwapSize(config.get(RESOURCE.MEM_SWAP_TOTAL) == null ? getTotalSwapSize() : Long.parseLong(config.get(RESOURCE.MEM_SWAP_TOTAL)));
+		setAvailSwapSize(config.get(RESOURCE.MEM_SWAP_FREE) == null ? getAvailSwapSize() : Long.parseLong(config.get(RESOURCE.MEM_SWAP_FREE)));
+		setTotalRAMAvail(config.get(RESOURCE.MEM_RAM_TOTAL) == null ? getTotalRAMAvail() : Long.parseLong(config.get(RESOURCE.MEM_RAM_TOTAL)));
+		setTotalRAMUsed(config.get(RESOURCE.MEM_RAM_USED) == null ? getTotalRAMUsed() : Long.parseLong(config.get(RESOURCE.MEM_RAM_USED)));
+		setTotalRAMFree(config.get(RESOURCE.MEM_RAM_FREE) == null ? getTotalRAMFree() : Long.parseLong(config.get(RESOURCE.MEM_RAM_FREE)));
+		setTotalRAMShared(config.get(RESOURCE.MEM_RAM_SHARED) == null ? getTotalRAMShared() : Long.parseLong(config.get(RESOURCE.MEM_RAM_SHARED)));
+		setTotalRAMBuffered(config.get(RESOURCE.MEM_RAM_BUFFERED) == null ? getTotalRAMBuffered() : Long.parseLong(config.get(RESOURCE.MEM_RAM_BUFFERED)));
+		setTotalCachedMem(config.get(RESOURCE.MEM_RAM_CACHED) == null ? getTotalCachedMem() : Long.parseLong(config.get(RESOURCE.MEM_RAM_CACHED)));
 	}
 	
-	public int getTotalSwapSize() {
+	public long getTotalSwapSize() {
 		return totalSwapSize;
 	}
-	public void setTotalSwapSize(int totalSwapSize) {
+	public void setTotalSwapSize(long totalSwapSize) {
 		this.totalSwapSize = totalSwapSize;
 	}
-	public int getAvailSwapSize() {
+	public long getAvailSwapSize() {
 		return availSwapSize;
 	}
-	public void setAvailSwapSize(int availSwapSize) {
+	public void setAvailSwapSize(long availSwapSize) {
 		this.availSwapSize = availSwapSize;
 	}
 	
-	public int getUsedSwapSize() {
+	public long getUsedSwapSize() {
 		return totalSwapSize - availSwapSize;
 	}
 	
-	public int getTotalRAMAvail() {
+	public long getTotalRAMAvail() {
 		return totalRAMAvail;
 	}
-	public void setTotalRAMAvail(int totalRAMAvail) {
+	public void setTotalRAMAvail(long totalRAMAvail) {
 		this.totalRAMAvail = totalRAMAvail;
 	}
-	public int getTotalRAMUsed() {
+	public long getTotalRAMUsed() {
 		return totalRAMUsed;
 	}
-	public void setTotalRAMUsed(int totalRAMUsed) {
+	public void setTotalRAMUsed(long totalRAMUsed) {
 		this.totalRAMUsed = totalRAMUsed;
 	}
-	public int getTotalRAMFree() {
+	public long getTotalRAMFree() {
 		return totalRAMFree;
 	}
-	public void setTotalRAMFree(int totalRAMFree) {
+	public void setTotalRAMFree(long totalRAMFree) {
 		this.totalRAMFree = totalRAMFree;
 	}
-	public int getTotalRAMShared() {
+	public long getTotalRAMShared() {
 		return totalRAMShared;
 	}
-	public void setTotalRAMShared(int totalRAMShared) {
+	public void setTotalRAMShared(long totalRAMShared) {
 		this.totalRAMShared = totalRAMShared;
 	}
-	public int getTotalRAMBuffered() {
+	public long getTotalRAMBuffered() {
 		return totalRAMBuffered;
 	}
-	public void setTotalRAMBuffered(int totalRAMBuffered) {
+	public void setTotalRAMBuffered(long totalRAMBuffered) {
 		this.totalRAMBuffered = totalRAMBuffered;
 	}
-	public int getTotalCachedMem() {
+	public long getTotalCachedMem() {
 		return totalCachedMem;
 	}
-	public void setTotalCachedMem(int totalCachedMem) {
+	public void setTotalCachedMem(long totalCachedMem) {
 		this.totalCachedMem = totalCachedMem;
 	}
 
@@ -114,7 +114,7 @@ public class MemoryResource extends AbstractSystemResource {
 	}
 	
 	public int getPercentUsed () {
-		return (100 * getTotalRAMUsed()) / (getTotalRAMUsed() + getTotalRAMFree());
+		return new Long((100 * getTotalRAMUsed()) / (getTotalRAMUsed() + getTotalRAMFree())).intValue();
 	}
 	
 	public int getMonitoredValue() {

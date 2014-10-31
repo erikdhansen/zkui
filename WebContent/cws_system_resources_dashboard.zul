@@ -10,7 +10,7 @@
 <div apply="com.parallelwireless.zkui.dashboard.CwsSystemResourceUsageController">
 <hbox>
 	<div id="cpu_section">
-		<grid id="cpu_grid" sclass="unicloud-table">
+		<grid id="cpu_grid" sclass="unicloud-table" popup="cpu_load_average_chart">
    			<auxhead>
    				<auxheader colspan="5" label="CPU Load Average (Top 10)"/>
    			</auxhead>
@@ -31,9 +31,6 @@
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="middle" id="cpuchartdiv">
-	   	   <charts id="cpuChart" type="line" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
    	</div>
    	<div id="mem_section">
    		<grid id="unicloud_mem_resources" sclass="unicloud-table">
@@ -93,9 +90,6 @@
  	  			</row>
    			</rows>
    		</grid>
-   		<div align="middle" id="diskchartdiv">
-	   	   <charts id="diskChart" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
    	</div>
    	<div id="net_section">
    		<grid id="unicloud_net_resources" sclass="unicloud-table">
@@ -126,5 +120,11 @@
    		</div>
    	</div>
 </hbox>
+<popup id="cpu_load_average_chart">
+   		<div align="center">
+	   		<charts id="cpuChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
+   		</div>
+</popup>
 </div>
+
 </zk>

@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.parallelwireless.zkui.models.lte.LteErabSetupSuccessRateAll;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
+import com.parallelwireless.zkui.models.lte.QCI;
+import com.parallelwireless.zkui.models.lte.Statistics;
+import com.parallelwireless.zkui.models.resources.ResourceConfig;
 
 
 public class CwsModel extends NetworkDeviceImpl {
@@ -27,16 +30,16 @@ public class CwsModel extends NetworkDeviceImpl {
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 	LteStatisticsImpl lteStats = null;
 	
-	public CwsModel(String name, int unicloudId, String ip, NetworkDevice.TYPE type, int lastSeenMinutes) {
+	public CwsModel(String name, int unicloudId, String ip, NetworkDevice.TYPE type) {
 		this.id = globalCwsId++;
 		this.name = name;
 		this.unicloudId = unicloudId;
 		this.type = type;
-		this.lastSeenMinutes = lastSeenMinutes;
-		lteStats = new LteStatisticsImpl(name);		
 		this.sysinfo = new SysInfo(name);
-		refreshSysInfo();
-		refreshNetworkDeviceInterfaces();
+		this.sysinfo.addResources(ResourceConfig.generate());
+		lteStats = new LteStatisticsImpl(name);		
+		lteStats.setQCI(QCI.generateRandomQCIs());
+		lteStats.addStatistics(new Statistics());		
 	}
 
 	public int getId() {

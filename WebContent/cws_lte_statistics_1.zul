@@ -21,16 +21,13 @@
    				<column hflex="2">Avg. Throughput (DL)</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteDlAvgThru}">
+   				<row forEach="${cwsLteDlAvgThru}" sclass="${each.cssClassName}">
 	   				<label value="${each.systemName}"/>
 	   				<label value="${each.qciName}"/>
    					<label style="text-align: right;" value="${each.serviceAvgThruDL}"/>
  	  			</row>
    			</rows>
    		</grid>
-   		<div id="ltesetupsuccesschart">
-	   	   <charts id="downlinkThroughput" type="column" title="" subtitle="Data Age: 2 min ago" height="260"/>   		
-   		</div>
    	</div>
    	<div id="lte_avg_ul_thru_grid">
    		<grid id="lte_avg_thru_ul_grid" sclass="unicloud-table">
@@ -43,16 +40,13 @@
 				<column hflex="2" label="Avg. Throughput (UL)"/>
 			</columns>
 			<rows>
-				<row forEach="${cwsLteUlAvgThru}">
+				<row forEach="${cwsLteUlAvgThru}" sclass="${each.cssClassName}">
 					<label value="${each.systemName}"/>
 					<label value="${each.qciName}"/>
 					<label value="${each.serviceAvgThruUL}"/>
 				</row>
 			</rows>						
    		</grid>
-   		<div align="center">
-	   		<charts id="uplinkThroughput" type="column" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
    	</div>
 </hbox>
 <hbox>
@@ -67,16 +61,13 @@
    				<column hflex="1">Traffic Volume</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteDlTrafVol}" style="bgcolor: rgba(255, 0, 0, .33); color: rgb(255, 255, 255); font-style: bold;">
+   				<row forEach="${cwsLteDlTrafVol}"  sclass="${each.cssClassName}">
 	   				<label sclass="unicloud-table" value="${each.systemName}"/>
 	   				<label value="${each.qciName}"/>
    					<label sclass="unicloud-table" value="${each.serviceTrafficVolDL}"/>
  	  			</row>
    			</rows>
    		</grid>
-   		<div id="traffic_vol_dl_chart_section">
-	   	   <charts id="downlinkVolume" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
    	</div>
 	<div id="traffic_vol_ul_section">
 		<grid id="traffic_vol_ul_grid" sclass="unicloud-table">
@@ -89,16 +80,13 @@
    				<column hflex="1">Traffic Volume</column>
    			</columns>
    			<rows>
-   				<row forEach="${cwsLteUlTrafVol}">
+   				<row forEach="${cwsLteUlTrafVol}" sclass="${each.cssClassName}">
 	   				<label sclass="unicloud-table" value="${each.systemName}"/>
 	   				<label value="${each.qciName}"/>
    					<label sclass="unicloud-table" value="${each.serviceTrafficVolUL}"/>
  	  			</row>
    			</rows>
    		</grid>
-   		<div id="traffic_vol_ul_chart_section">
-	   	   <charts id="uplinkVolume" type="column" title="" subtitle="Data Age: 2 min ago" height="260" />   		
-   		</div>
    	</div>
 </hbox>
 </div>
