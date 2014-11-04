@@ -7,7 +7,7 @@
 </zscript>
 <style src="/css/parallel.css"/>
 <hbox>
-	<div apply="com.parallelwireless.zkui.NetworkStatusController">
+	<div>
    		<grid id="network_status_table" sclass="unicloud-table">
    			<auxhead>
    				<auxheader colspan="3" label="Network Device Summary"/>
@@ -25,10 +25,9 @@
  	  			</row>
    			</rows>
    		</grid>
-   	   <charts id="chart" type="pie" title="Network Devices" width="340" height="260" />
    	</div>		
-   	<div apply="com.parallelwireless.zkui.AlarmStatusController">
-		<listbox id="alarm_status_table" sclass="unicloud-table">
+   	<div>
+		<listbox id="alarm_status_table" sclass="unicloud-table" popup="alarm_summary_chart_popup">
 			<auxhead>
 				<auxheader colspan="4" label="Alarm Summary"/>
 			</auxhead>
@@ -45,7 +44,11 @@
 					<listcell sclass="unicloud-table" label="${each.minor}"/>
 				</listitem>		
    		</listbox>
-   		<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" width="340" height="260"/>
    	</div>
 </hbox>
+<popup id="alarm_summary_chart_popup">
+	<window title="Alarm Summary: Chart by Severity" apply="com.parallelwireless.zkui.AlarmStatusController">
+		<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" height="260"/>
+	</window>
+</popup>
 </zk>
