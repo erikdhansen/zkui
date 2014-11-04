@@ -11,11 +11,10 @@
 			.getAllUniclouds(com.parallelwireless.zkui.models.NetworkDeviceImpl.NET);
 </zscript>
 	<style src="/css/parallel.css" />
-	<div
-		apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
 		<hbox>
 			<div id="cpu_section">
-				<grid id="cpu_grid" sclass="unicloud-table">
+				<grid id="cpu_grid" sclass="unicloud-table"
+					popup="load_average_chart_popup">
 					<auxhead>
 						<auxheader colspan="5" label="CPU Load Average" />
 					</auxhead>
@@ -41,20 +40,16 @@
 						</row>
 					</rows>
 				</grid>
-				<div align="middle" id="cpuchartdiv">
-					<charts id="cpuChart" type="line" title=""
-						subtitle="Data Age: 2 min ago" height="260" />
-				</div>
 			</div>
 			<div id="mem_section">
 				<grid id="unicloud_mem_resources"
 					sclass="unicloud-table">
 					<auxhead>
-						<auxheader colspan="7" label="Memory/Swap" />
+						<auxheader colspan="8" label="Memory/Swap" />
 					</auxhead>
 					<auxhead>
 						<auxheader colspan="1" label="Uni-Cloud" />
-						<auxheader colspan="3" label="RAM (MB)" />
+						<auxheader colspan="4" label="RAM (MB)" />
 						<auxheader colspan="3" label="Swap (MB)" />
 					</auxhead>
 					<columns>
@@ -62,6 +57,7 @@
 						<column hflex="2" label="Used" />
 						<column hflex="2" label="Free" />
 						<column hflex="2" label="Total" />
+						<column hflex="2" label="% Used"/>
 						<column hflex="2" label="Used" />
 						<column hflex="2" label="Free" />
 						<column hflex="2" label="Total" />
@@ -71,17 +67,19 @@
 							sclass="${each.sysInfo.mem.cssClass}">
 							<label value="${each.name}" />
 							<label style="text-align: right;"
-								value="${each.sysInfo.mem.totalRAMUsedMB}" />
+								value="${each.sysInfo.mem.totalRAMUsedHR}" />
 							<label style="text-align: right;"
-								value="${each.sysInfo.mem.totalRAMFreeMB}" />
+								value="${each.sysInfo.mem.totalRAMFreeHR}" />
 							<label style="text-align: right"
-								value="${each.sysInfo.mem.totalRAMAvailMB}" />
-							<label style="text-align: right;"
-								value="${each.sysInfo.mem.usedSwapSizeMB}" />
-							<label style="text-align: right;"
-								value="${each.sysInfo.mem.availSwapSizeMB}" />
+								value="${each.sysInfo.mem.totalRAMAvailHR}" />
 							<label style="text-align: right"
-								value="${each.sysInfo.mem.totalSwapSizeMB}" />
+								value="${each.sysInfo.mem.percentUsed}%"/>
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.usedSwapSizeHR}" />
+							<label style="text-align: right;"
+								value="${each.sysInfo.mem.availSwapSizeHR}" />
+							<label style="text-align: right"
+								value="${each.sysInfo.mem.totalSwapSizeHR}" />
 						</row>
 					</rows>
 				</grid>
@@ -121,14 +119,10 @@
 						</row>
 					</rows>
 				</grid>
-				<div align="middle" id="diskchartdiv">
-					<charts id="diskChart" type="column" title=""
-						subtitle="Data Age: 2 min ago" height="260" />
-				</div>
 			</div>
 			<div id="net_section">
 				<grid id="unicloud_net_resources"
-					sclass="unicloud-table">
+					sclass="unicloud-table" popup="network_utilization_chart_popup">
 					<auxhead>
 						<auxheader colspan="6" label="Network" />
 					</auxhead>
@@ -158,10 +152,22 @@
 					</rows>
 				</grid>
 				<div align="center">
-					<charts id="netChart" type="line" title=""
-						subtitle="Data Age: 2 min" height="260" />
+
 				</div>
 			</div>
 		</hbox>
-	</div>
+		<popup id="load_average_chart_popup">
+			<window apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController" title="Uni-Cloud System Load Averages (All Systems)">
+				<charts id="cpuChart" type="line"
+					title="System Load Average" subtitle="Data Age: 2 min ago"
+					height="260" />
+			</window>
+		</popup>
+		<popup id="network_utilization_chart_popup">
+			<window title="Uni-Cloud Network Utilization" apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController">
+				<charts id="netChart" type="line"
+					title="Network Utilization" subtitle="Data Age: 2 min"
+					height="260" />
+			</window>
+		</popup>
 </zk>

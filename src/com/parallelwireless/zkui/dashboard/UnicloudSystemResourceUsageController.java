@@ -10,76 +10,47 @@ import org.zkoss.chart.model.DefaultCategoryModel;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Window;
 
 import com.parallelwireless.zkui.models.UnicloudModel;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 @SuppressWarnings("serial")
-public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>{
+public class UnicloudSystemResourceUsageController extends SelectorComposer<Window>{
 
 	@Wire
 	Charts cpuChart;
-	// @Wire
-	// Charts memChart;
-	@Wire
-	Charts diskChart;
 	@Wire
 	Charts netChart;
-	@Wire
-	Div cpuChartDiv;
-
 
 	List<UnicloudModel>	top10CPU  = new LinkedList<UnicloudModel>();
 	List<UnicloudModel> top10Mem  = new LinkedList<UnicloudModel>();
 	List<UnicloudModel> top10Disk = new LinkedList<UnicloudModel>();
 	List<UnicloudModel> top10Net  = new LinkedList<UnicloudModel>();
 	
-	public void doAfterCompose(Div d) throws Exception {
+	public void doAfterCompose(Window d) throws Exception {
 		super.doAfterCompose(d);
 		doCpuChart();
 		//doMemChart();
-		doDiskChart();
 		doNetChart();
 	}
 	
 	private void doNetChart() {
+		if(netChart == null) {
+			return;
+		}
 		netChart.setModel(UnimanageDataUtil.getUnicloudNetResourceModel());
 		netChart.getYAxis().setMin(0);
 		netChart.getYAxis().setMax(100);
 		netChart.getYAxis().setTitle("% Net");
 		
 	}
-	private void doDiskChart() {
-		diskChart.setModel(UnimanageDataUtil.getUnicloudDiskResourceModel());
-		//diskChart.getSeries().setStack("Used");
-		//diskChart.getSeries(1).setStack("Free");
-		diskChart.getYAxis().setTitle("% Disk");
-		diskChart.getPlotOptions().getColumn().setStacking("percent");
-		
-	}
-	
-	private void doMemChart() {
-// 		memChart.getSeries().setColor(Unimanage.RESOURCE_RAM_USED);
-//		memChart.getPlotOptions().getSeries().setThreshold(75);
-//		memChart.getPlotOptions().getSeries().setNegativeColor("#aaffaa");
-//		memChart.getPlotOptions().getSeries().setColor("#ff3333");
-//		memChart.getSeries(1).setStack("RAM");
-//		memChart.getSeries(1).setColor(Unimanage.RESOURCE_RAM_FREE);
-//		memChart.getSeries(2).setStack("Swap");
-//		memChart.getSeries(2).setColor(Unimanage.RESOURCE_SWAP_USED);
-//		memChart.getSeries(3).setStack("Swap");
-//		memChart.getSeries(3).setColor(Unimanage.RESOURCE_SWAP_FREE);
-//
-//		memChart.getXAxis().setTitle("% Memory");
-//		memChart.getYAxis().setMin(0);
-//		memChart.getTooltip().setPointFormat("<span style=\"color:{series.color}\">{series.name}</span>" + ": <b>{point.y}</b> ({point.percentage:.0f}%)</br>");
-//		memChart.getTooltip().setShared(true);
-//		memChart.getPlotOptions().getColumn().setStacking("percent");
-//		memChart.setInverted(true);
-	}
 	
 	private void doCpuChart() {
+		if(cpuChart == null) {
+			return;
+		}
 		cpuChart.setModel(UnimanageDataUtil.getUnicloudCpuResourceModel());
 		cpuChart.getXAxis().setTitle("");
 		YAxis y = cpuChart.getYAxis();
@@ -102,9 +73,5 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Div>
 		
 		cpuChart.getCredits().setEnabled(false);
 		
-	}
-	
-	public void toggleCpuChart() {
-		cpuChartDiv.setVisible( cpuChartDiv.isVisible() ? false : true );
 	}
 }

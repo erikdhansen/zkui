@@ -175,6 +175,9 @@ public class UnimanageDataUtil {
 		List<CwsModel> top10 = new LinkedList<CwsModel>();
 		Collections.sort(cwsList, comparator);
 		for(int i = 0; i < 10; i++) {
+			if(comparator.hashCode() == CwsModel.MEM.hashCode()) {
+				System.out.println("getTop10CwsModels[memory]: " + cwsList.get(i).getName() + " => " + cwsList.get(i).getSysInfo().getMem().getTotalRAMAvail());
+			}
 			top10.add(cwsList.get(i));
 		}
 		return top10;
@@ -437,13 +440,16 @@ public class UnimanageDataUtil {
 	public static long getRandomLong(long max) {
 		Random rand = new Random();
 		long randomNum = rand.nextInt(new Long((max - (max * 7 / 10) + 1) + (max * 7 / 10)).intValue());
-		System.out.println("Generated new TOTAL: " + randomNum);
 		return randomNum;
 	}
 	
+	public static int getRandomIntFromZero(int max) throws IllegalArgumentException {
+		Random rand = new Random();
+		int randomNum = rand.nextInt(new Long(max).intValue());
+		return randomNum;
+	}
 	public static long getPercentOfLong(long total, int percent) {
 		long fraction = (total * percent)/100;
-		System.out.println("Attempts: " + total + " percent: " + percent + " success/failure: " + fraction);
 		return fraction;
 	}
 	
@@ -527,5 +533,10 @@ public class UnimanageDataUtil {
 		}
 		System.out.println(output);
 		return slices;
+	}
+	
+	public static int getRandomChoice(int[] choices) {
+		int randomIndex = new Random().nextInt(choices.length - 1);
+		return choices[randomIndex];
 	}
 }

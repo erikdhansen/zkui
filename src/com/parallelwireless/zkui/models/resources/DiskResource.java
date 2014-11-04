@@ -8,7 +8,6 @@ public class DiskResource extends  AbstractSystemResource {
 	private final static long KB = 1024;
 	private final static long MB = 1024*KB;
 	private final static long GB = 1024*MB;
-	private final static long TB = 1024*GB;
 			
 	String diskMountPath        = ""; // .1.3.6.1.4.1.2021.9.1.2.1
 	String partitionDevPath     = ""; // .1.3.6.1.4.1.2021.9.1.3.1
@@ -108,7 +107,7 @@ public class DiskResource extends  AbstractSystemResource {
 	}
 	
 	public String getTotalDiskSpaceHR() {
-		return humanize(getAvailableDiskInBytes() + getUsedDiskSpaceInBytes());
+		return humanize(getTotalPartSizeInBytes());
 	}
 	
 	public int getMonitoredValue() {
@@ -117,17 +116,9 @@ public class DiskResource extends  AbstractSystemResource {
 
 	public String humanize(long bytes) {
 		String hr = null;
-		if(bytes > TB) {
-			hr = new DecimalFormat("##.## TB").format(bytes/TB);
-		} else if(bytes > GB) {
-			hr = new DecimalFormat("##.## GB").format(bytes/GB);
-		} else if(bytes > MB) {
-			hr = new DecimalFormat("##.## MB").format(bytes/MB);
-		} else if(bytes > KB) {
-			hr = new DecimalFormat("##.## KB").format(bytes/KB);
-		} else {
-			hr = String.valueOf(bytes).concat(" B");
-		}
+		Double dubs = new Double(bytes);
+		Double inGB = dubs / new Double(GB);
+		hr = new DecimalFormat("#,###.## GB").format(inGB);
 		return hr;
 	}
 }

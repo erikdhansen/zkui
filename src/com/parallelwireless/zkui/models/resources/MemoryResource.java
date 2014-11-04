@@ -16,11 +16,16 @@ public class MemoryResource extends AbstractSystemResource {
 	long   totalCachedMem   = 0;  // .1.3.6.1.4.1.2021.4.15.0
 	String systemName;
 	
+	static final long KB = 1024;
+	static final long MB = KB * 1024;
+	static final long GB = MB * 1024;
+	static final long TB = GB * 1024;
+	
 	public MemoryResource(String systemName) {
 		this.systemName = systemName;
-		CRITICAL = 95;
-		MAJOR    = 80;
-		MINOR    = 75;		
+		CRITICAL = 87;
+		MAJOR    = 75;
+		MINOR    = 70;		
 	}
 
 	@Override
@@ -89,44 +94,49 @@ public class MemoryResource extends AbstractSystemResource {
 		this.totalCachedMem = totalCachedMem;
 	}
 
-	public String getTotalRAMAvailMB() {
-		return mbFormat(totalRAMAvail);
+	public String getTotalRAMAvailHR() {
+		return humanize(totalRAMAvail);
 	}
 	
-	public String getTotalRAMUsedMB() {
-		return mbFormat(totalRAMUsed);
+	public String getTotalRAMUsedHR() {
+		return humanize(totalRAMUsed);
 	}
 	
-	public String getTotalRAMFreeMB() {
-		return mbFormat(totalRAMFree);
+	public String getTotalRAMFreeHR() {
+		return humanize(totalRAMFree);
 	}
 	
-	public String getTotalSwapSizeMB() {
-		return mbFormat(totalSwapSize);
+	public String getTotalSwapSizeHR() {
+		return humanize(totalSwapSize);
 	}
 	
-	public String getUsedSwapSizeMB() {
-		return mbFormat(getUsedSwapSize());
+	public String getUsedSwapSizeHR() {
+		return humanize(getUsedSwapSize());
 	}
 	
-	public String getAvailSwapSizeMB() {
-		return mbFormat(availSwapSize);
+	public String getAvailSwapSizeHR() {
+		return humanize(availSwapSize);
 	}
+	
+	public String humanize(long bytes) {
+		String hr = null;
+		// Display everything in MB -- regardless of value -- to three decimal places if necessary
+		Double dubs = new Double(bytes);
+		Double inMB = dubs / new Double(MB);
+		hr = new DecimalFormat("#,###.### MB").format(inMB);
+		return hr;
+	}	
 	
 	public int getPercentUsed () {
-		return new Long((100 * getTotalRAMUsed()) / (getTotalRAMUsed() + getTotalRAMFree())).intValue();
+		return new Long((100 * getTotalRAMUsed()) / getTotalRAMAvail()).intValue();
 	}
 	
 	public int getMonitoredValue() {
 		return getPercentUsed();
 	}
 	
-	private String mbFormat(Number n) {
-		return String.valueOf(new DecimalFormat("#,###.#").format(n.intValue() / 1024));
-	}
-	
 	public String dumpMemInfo() {
-		return "RAM: used=" + getTotalRAMUsedMB() + " free=" + getTotalRAMFreeMB() + " :: SWAP: used=" + getUsedSwapSizeMB() + " free=" + getAvailSwapSizeMB();
+		return "RAM: used=" + getTotalRAMUsedHR() + " free=" + getTotalRAMFreeHR() + " :: SWAP: used=" + getUsedSwapSizeHR() + " free=" + getAvailSwapSizeHR();
 	}
 	
 	public String getSystemName() {

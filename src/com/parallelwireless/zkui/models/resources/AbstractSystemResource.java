@@ -22,6 +22,7 @@ public abstract class AbstractSystemResource implements SystemResource {
 		} else if (getMonitoredValue() >= MINOR) {
 			cssClass = "minor";
 		}
+		System.out.println("getCssClass(): monitoredValue=" + getMonitoredValue() + "  C/MJ/MN=" + CRITICAL + "/" + MAJOR + "/" + MINOR);
 		return cssClass;
 	}
 	

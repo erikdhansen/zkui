@@ -54,12 +54,12 @@
 			<rows>
 				<row forEach="${cwsMEM}" sclass="${each.sysInfo.mem.cssClass}">
 					<label sclass="unicloud-table" value="${each.name}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMUsedMB}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMFreeMB}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMAvailMB}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.usedSwapSizeMB}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.availSwapSizeMB}"/>
-					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalSwapSizeMB}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMUsedHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMFreeHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalRAMAvailHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.usedSwapSizeHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.availSwapSizeHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.mem.totalSwapSizeHR}"/>
 				</row>
 			</rows>		
    		</grid>
@@ -92,7 +92,7 @@
    		</grid>
    	</div>
    	<div id="net_section">
-   		<grid id="unicloud_net_resources" sclass="unicloud-table">
+   		<grid id="unicloud_net_resources" sclass="unicloud-table" popup="cws_network_utilization_chart_popup">
 			<auxhead>
 				<auxheader colspan="6" label="Network (Top 10)"/>
 			</auxhead>
@@ -102,7 +102,7 @@
 				<column hflex="2">RX Bytes</column>
 				<column hflex="2">TX Bytes</column>
 				<column hflex="2">Link Speed</column>
-				<column hflex="2">% Use</column>
+				<column hflex="2">Avg % Util</column>
 			</columns>
 			<rows>
 				<row forEach="${cwsNet}" sclass="${each.sysInfo.network.cssClass}">
@@ -111,18 +111,20 @@
 					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.rxBytesHR}"/>
 					<label sclass="unicloud-table" style="text-align: right" value="${each.sysInfo.network.txBytesHR}"/>
 					<label sclass="unicloud-table" style="color: orange; text-align: right;" value="${each.sysInfo.network.linkSpeed}"/>
-					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.currentPercentUtilization}%"/>
+					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.averageUtilization}%"/>
 				</row>
 			</rows>						
    		</grid>
-   		<div align="center">
-	   		<charts id="netChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
-   		</div>
    	</div>
 </hbox>
 <popup id="cpu_load_average_chart">
    		<div align="center">
 	   		<charts id="cpuChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
+   		</div>
+</popup>
+<popup id="cws_network_utilization_chart_popup">
+   		<div align="center">
+	   		<charts id="netChart" type="line" title="" subtitle="Data Age: 2 min" height="260"/>
    		</div>
 </popup>
 </div>

@@ -131,17 +131,9 @@ public class NetworkResource extends AbstractSystemResource {
 	
 	public String humanize(long bytes) {
 		String hr = null;
-		if(bytes > TB) {
-			hr = new DecimalFormat("##.## TB").format(bytes/TB);
-		} else if(bytes > GB) {
-			hr = new DecimalFormat("##.## GB").format(bytes/GB);
-		} else if(bytes > MB) {
-			hr = new DecimalFormat("##.## MB").format(bytes/MB);
-		} else if(bytes > KB) {
-			hr = new DecimalFormat("##.## KB").format(bytes/KB);
-		} else {
-			hr = String.valueOf(bytes).concat(" B");
-		}
+		Double dubs = new Double(bytes);
+		Double inMB = dubs / new Double(MB);
+		hr = new DecimalFormat("#,###.## MB").format(inMB);
 		return hr;
 	}	
 }
