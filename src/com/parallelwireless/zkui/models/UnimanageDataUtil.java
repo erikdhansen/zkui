@@ -26,28 +26,7 @@ public class UnimanageDataUtil {
 	static {
 		// Unicloud Data
 		UnicloudModel u = new UnicloudModel(1, "Unicloud A", "10.10.10.122");
-		ResourceConfig cfg = new ResourceConfig();
-		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
-		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
-		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "43");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "15");
-		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
-		cfg.put(RESOURCE.MEM_RAM_USED, "12312728");
-		cfg.put(RESOURCE.MEM_RAM_FREE, "4024924");
-		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
-		cfg.put(RESOURCE.MEM_SWAP_FREE, "8009428");
-		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "521823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
-		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE, "612345678900");
-		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
-		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
-		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
-		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
-		cfg.put(RESOURCE.NET_PCT_UTIL, "22");
-		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "83 64 89 57 46 38 20 29 26 22");
+		ResourceConfig cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(1, u);
 		// Unicloud Data

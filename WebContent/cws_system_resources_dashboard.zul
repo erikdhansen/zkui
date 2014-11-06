@@ -74,9 +74,9 @@
    			<columns>
    				<column sclass="unicloud-table" hflex="4">System</column>
    				<column hflex="3">Disk</column>
-				<column hflex="3">Used</column>
-				<column hflex="3">Free</column>
-				<column hflex="3">Total</column>
+				<column hflex="3">Used (GB)</column>
+				<column hflex="3">Free (GB)</column>
+				<column hflex="3">Total (GB)</column>
 				<column hflex="3">% Used</column>
    			</columns>
    			<rows>
@@ -107,11 +107,11 @@
 			<rows>
 				<row forEach="${cwsNet}" sclass="${each.sysInfo.network.cssClass}">
 					<label sclass="unicloud-table" value="${each.name}"/>
-					<label sclass="unicloud-table" style="color: orange; text-align: right;" value="${each.sysInfo.network.interfaceName}"/>
-					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.rxBytesHR}"/>
-					<label sclass="unicloud-table" style="text-align: right" value="${each.sysInfo.network.txBytesHR}"/>
-					<label sclass="unicloud-table" style="color: orange; text-align: right;" value="${each.sysInfo.network.linkSpeed}"/>
-					<label sclass="unicloud-table" style="color: green; text-align: right;" value="${each.sysInfo.network.averageUtilization}%"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.network.interfaceName}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.network.rxBytesHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.network.txBytesHR}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.network.linkSpeed}"/>
+					<label sclass="unicloud-table" value="${each.sysInfo.network.averageUtilization}%"/>
 				</row>
 			</rows>						
    		</grid>

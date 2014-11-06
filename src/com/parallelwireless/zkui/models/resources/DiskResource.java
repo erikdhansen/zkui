@@ -118,7 +118,7 @@ public class DiskResource extends  AbstractSystemResource {
 		String hr = null;
 		Double dubs = new Double(bytes);
 		Double inGB = dubs / new Double(GB);
-		hr = new DecimalFormat("#,###.## GB").format(inGB);
+		hr = new DecimalFormat("#,###.##").format(inGB);
 		return hr;
 	}
 }

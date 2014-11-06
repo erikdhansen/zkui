@@ -123,7 +123,7 @@ public class MemoryResource extends AbstractSystemResource {
 		// Display everything in MB -- regardless of value -- to three decimal places if necessary
 		Double dubs = new Double(bytes);
 		Double inMB = dubs / new Double(MB);
-		hr = new DecimalFormat("#,###.### MB").format(inMB);
+		hr = new DecimalFormat("#,###.##").format(inMB);
 		return hr;
 	}	
 	

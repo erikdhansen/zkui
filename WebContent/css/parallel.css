@@ -7,13 +7,13 @@
 }
 
 .unicloud-table .z-row-content .major {
-	background-color: rgba(255, 255, 0, .65);
+	background-color: rgba(255, 255, 0, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
 
 .unicloud-table .z-row-content .minor {
-	background-color: rgba(255, 0, 255, .65);
+	background-color: rgba(255, 0, 255, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
@@ -40,37 +40,37 @@
 }
 
 .critical .z-row-content {
-	background-color: rgba(255,0,0,.65);
+	background-color: rgba(255,0,0,.40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
 
 .major .z-row-content {
-	background-color: rgba(255, 102, 0, .65);
+	background-color: rgba(255, 102, 0, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
 
 .minor .z-row-content {
-	background-color: rgba(253, 255, 120, .65);
+	background-color: rgba(253, 255, 120, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
 
 .critical .z-listitem {
-	background-color: rgba(255,0,0,.65);
+	background-color: rgba(255,0,0,.40);
 	color: rgb(255,255,255);
 	font-style: bold;
 }
 
 .major .z-listitem {
-	background-color: rgba(255, 102, 0, .65);
+	background-color: rgba(255, 102, 0, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
 
 .minor .z-listitem {
-	background-color: rgba(253, 255, 120, .65);
+	background-color: rgba(253, 255, 120, .40);
 	color: rgb(0, 0, 0);
 	font-style: bold;
 }
