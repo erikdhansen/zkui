@@ -154,16 +154,12 @@ public class UnimanageDataUtil {
 		List<CwsModel> top10 = new LinkedList<CwsModel>();
 		Collections.sort(cwsList, comparator);
 		for(int i = 0; i < 10; i++) {
-			if(comparator.hashCode() == CwsModel.MEM.hashCode()) {
-				System.out.println("getTop10CwsModels[memory]: " + cwsList.get(i).getName() + " => " + cwsList.get(i).getSysInfo().getMem().getTotalRAMAvail());
-			}
 			top10.add(cwsList.get(i));
 		}
 		return top10;
 	}
 	
 	public static List<CwsModel> getTop10CwsModelsLTE(Comparator<CwsModel> comparator) {
-		System.out.println("getTop10CwsModelsLTE: called with sort by: " + comparator);
 		List<CwsModel> cwsList = new LinkedList<CwsModel>(getAllCwsModels());
 		List<CwsModel> top10   = new LinkedList<CwsModel>();
 		Collections.sort(cwsList, comparator);
@@ -510,7 +506,6 @@ public class UnimanageDataUtil {
 		for(int i = 0; i < numSlices; i++) {
 			output.concat(String.valueOf(slices[i])).concat(" ");
 		}
-		System.out.println(output);
 		return slices;
 	}
 	

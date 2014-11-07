@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.unicloud-table-smaller .z-listitem-content .z-listcell-content {
+	font-size: 10px;
+	padding: 0px 2px 0px;
+	line-height: 14px;
+}
+
+
+.unicloud-table .z-detail-icon {
+	font-size: 11px;
+}
+
+.unicloud-table .z-column-content {
+	font-size: 12px;
+	line-height: 18px;
+	padding: 4px 4px;
+}
+
+
+.unicloud-table .z-auxheader .z-auxheader-content .z-row-content {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
+
+.unicloud-table .z-listheader .z-listheader-content .z-listcell .z-listcell-content .z-label {
+	font-size: 12px;
+	padding: 4px 4px;
+	line-height: 18px;
+}
+
+.unicloud-table .z-listhead .z-listheader-content {
+	font-size: 12px;
+	line-height: 18px;
+	padding: 4px 4px;
+}
+
+.unimanage .z-nav .z-navitem-content .z-navcontent {
+	border: 1px solid;
+}

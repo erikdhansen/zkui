@@ -1,42 +1,44 @@
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Unimanage Dashboard" contentType="text/html;charset=UTF-8"?>
 <zk>
 <zscript>
 	int alarmCount = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarms().getUnackedCount();
 </zscript>
-<navbar orient="vertical" width="200px" sclass="unimanage">
-	<navitem label="Dashboard" iconSclass="z-icon-home" sclass="unimanage"/>
+<div id="mainNavbarDiv">
+<navbar id="mainNavbar" orient="vertical" width="200px">
+	<navitem id="navDashboard" label="Dashboard" iconSclass="z-icon-home"/>
 	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell">
-		<navitem label="Alarms"  sclass="unimanage"/>
-		<navitem label="Event History" sclass="unimanage"/>
-		<navitem label="Live Event Log" sclass="unimanage"/>
+		<navitem id="navAlarms" label="Alarms" />
+		<navitem id="navEventsHistory" label="Event History" />
+		<navitem id="navEventsLive" label="Live Event Log" />
 	</nav>
-	<navitem label="Network Map" iconSclass="z-icon-globe"/>
+	<navitem id="navNetworkMap" label="Network Map" iconSclass="z-icon-globe"/>
 	<nav label="Devices" iconSclass="z-icon-sitemap">
-		<navitem label="Manage"/>
-		<navitem label="Groups"/>
-		<navitem label="Upgrade"/>
-		<navitem label="Backup"/>
-		<navitem label="Files"/>
+		<navitem id="navDeviceManage" label="Manage"/>
+		<navitem id="navDeviceGroups" label="Groups"/>
+		<navitem id="navDeviceUpgrade" label="Upgrade"/>
+		<navitem id="navDeviceBackup" label="Backup"/>
+		<navitem id="navDeviceFiles" label="Files"/>
 	</nav>
 	<nav label="Statistics" iconSclass="z-icon-tachometer">
-		<navitem label="Graph Statistics"/>
-		<navitem label="Configure"/>
-		<navitem label="Threshold Rules"/>
+		<navitem id="navStatsGraph" label="Graph Statistics"/>
+		<navitem id="navStatsConfigure" label="Configure"/>
+		<navitem id="navStatsThreshold" label="Threshold Rules"/>
 	</nav>
-	<navitem label="Reports" iconSclass="z-icon-align-left"/>
-	<navitem label="Configuration" iconSclass="z-icon-wrench"/>
+	<navitem id="navReports" label="Reports" iconSclass="z-icon-align-left"/>
+	<navitem id="navConfiguration" label="Configuration" iconSclass="z-icon-wrench"/>
 	<nav label="Administration" iconSclass="z-icon-cogs">
-		<navitem label="Alarm System"/>
-		<navitem label="Web Resources"/>
+		<navitem id="navAdminAlarms" label="Alarm System"/>
+		<navitem id="navAdminWebResources" label="Web Resources"/>
 		<nav label="security" iconSclass="z-icon-lock">
-			<navitem label="Users"/>
-			<navitem label="Server"/>
-			<navitem label="Sessions"/>
-			<navitem label="Audit Log"/>
-			<navitem label="Views"/>
+			<navitem id="navSecurityUsers" label="Users"/>
+			<navitem id="navSecurityServer" label="Server"/>
+			<navitem id="navSecuritySessions" label="Sessions"/>
+			<navitem id="navSecurityAudits" label="Audit Log"/>
+			<navitem id="navSecurityViews" label="Views"/>
 		</nav>
-		<navitem label="System Backup"/>
+		<navitem id="navSystemBackup" label="System Backup"/>
 	</nav>
-	<navitem label="Help" iconSclass="z-icon-home"/>
+	<navitem id="navHelp" label="Help" iconSclass="z-icon-home"/>
 </navbar>
+</div>
 </zk>

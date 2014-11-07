@@ -1,0 +1,6 @@
+<?page title="Alarms" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Alarms" border="normal">
+New Content Here!
+</window>
+</zk>

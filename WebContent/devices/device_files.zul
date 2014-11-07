@@ -1,0 +1,6 @@
+<?page title="Manage Device Files" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Manage Device Files" border="normal">
+New Content Here!
+</window>
+</zk>

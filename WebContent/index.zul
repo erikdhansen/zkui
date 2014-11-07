@@ -7,7 +7,7 @@
 		"EuroStyleLT","ErasBT",Arial,Helvetica,sans-serif }
 		[class*="z-"]:not([class*="z-icon-"]) { font-family: ErasBT; }
 	</style>
-	<window style="margin-top: 10px" border="normal">
+	<window style="margin-top: 10px" border="normal" apply="com.parallelwireless.zkui.MainWindowController">
 		<!--  <caption label="UniManage 4.0" style="font-family: ErasBT" /> -->
 		<div sclass="header">	
 			<hbox align="center" width="100%">
@@ -32,49 +32,7 @@
 			</div>
 			<div sclass="content-header"></div>
 			<div sclass="content">
-				<div
-					apply="com.parallelwireless.zkui.DashboardPortalLayoutController">
-					<portallayout id="portalLayout"
-						maximizedMode="whole">
-						<portalchildren style="padding: 5px">
-							<panel title="Network Status"
-								id="network_summary_counts" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-									<include src="network_summary.zul" />
-								</panelchildren>
-							</panel>
-							<panel id="unicloud_system_resources"
-								title="Uni-Cloud System Resource Utilization" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-									<include src="unicloud_system_resources_dashboard.zul"/>
-								</panelchildren>
-							</panel>
-							<panel id="cws_system_resources"
-								title="CWS System Resource Utilization" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-								    <include src="cws_system_resources_dashboard.zul" />
-								</panelchildren>
-							</panel>
-							<panel id="cws_lte_statistics_1"
-								title="CWS LTE Statistics" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-									<include src="cws_lte_statistics_1.zul"/>
-								</panelchildren>
-							</panel>														
-							<panel id="cws_lte_statistics_2"
-								title="CWS LTE Statistics" border="normal" collapsible="true"
-								closable="true" style="margin-bottom: 10px; overflow: auto">
-								<panelchildren>
-									<include src="cws_lte_statistics_2.zul"/>
-								</panelchildren>
-							</panel>														
-						</portalchildren>
-					</portallayout>
-				</div>
+				<include id="mainContentInclude" src="dashboard/dashboard.zul"/>
 			</div>
 		</hbox>		
 		<div sclass="breadcrumb"></div>

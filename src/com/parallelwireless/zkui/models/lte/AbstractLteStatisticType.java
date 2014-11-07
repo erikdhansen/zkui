@@ -16,7 +16,6 @@ public abstract class AbstractLteStatisticType implements LteStatisticType {
 		} else if (getMonitoredValue() >= MINOR) {
 			cssClass = "minor";
 		}
-		System.out.println("MonitoredValue: " + getMonitoredValue() + "  CRIT: " + CRITICAL + " :: MAJ: " + MAJOR + " :: MIN: " + MINOR + " cssClass=" + cssClass);
 		return cssClass;
 	}
 	
