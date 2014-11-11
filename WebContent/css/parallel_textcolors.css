@@ -8,12 +8,12 @@
 
 .unicloud-table .z-row-content .major {
 	color: rgb(255, 255, 0);
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .unicloud-table .z-row-content .minor {
-	color: rgb(203, 205, 70);
-	font-weight: 600;
+	color: rgb(255, 0, 255);
+	font-weight: bold;
 }
 
 .unicloud-table .z-label {
@@ -39,32 +39,32 @@
 
 .critical .z-row-content {
 	color: rgb(255, 0, 0);
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .major .z-row-content {
 	color: rgb(255, 102, 0);
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .minor .z-row-content {
-	color: rgb(203, 205, 70);
-	font-weight: 600;
+	color: rgb(253, 255, 120);
+	font-weight: bold;
 }
 
 .critical .z-listitem {
 	color: rgb(255,0,0);
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .major .z-listitem {
 	color: rgb(255, 102, 0);
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .minor .z-listitem {
-	color: rgb(203, 205, 70);
-	font-weight: 600;
+	color: rgb(253, 255, 120);
+	font-weight: bold;
 }
 .unicloud-table .z-auxheader-content {
 	font-size: 12px;

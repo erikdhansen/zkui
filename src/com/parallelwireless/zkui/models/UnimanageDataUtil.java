@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import org.zkoss.chart.model.CategoryModel;
 import org.zkoss.chart.model.DefaultCategoryModel;
@@ -21,7 +22,8 @@ import com.parallelwireless.zkui.models.resources.ResourceConfig;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
 public class UnimanageDataUtil {
-
+	final static Logger log = Logger.getLogger(UnimanageDataUtil.class.getName());
+	
 	static NetworkMap uniclouds = new NetworkMap();
 	static {
 		// Unicloud Data
@@ -409,10 +411,20 @@ public class UnimanageDataUtil {
 	}
 	
 	public static long getRandomLong() {
-		return getRandomLong(9999999);
+		return getRandomLongWithinRange(9999999);
 	}
 	
-	public static long getRandomLong(long max) {
+	public static long getRandomLong(long l) {
+		return new Long(new Random().nextInt(Long.valueOf(l).intValue()));
+	}
+	
+	public static long getRandomLong(int min, int max) {
+		Random r = new Random();
+		int value = r.nextInt((max - min) + 1) + min;
+		return new Long(value);
+	}
+	
+	public static long getRandomLongWithinRange(long max) {
 		Random rand = new Random();
 		long randomNum = rand.nextInt(new Long((max - (max * 7 / 10) + 1) + (max * 7 / 10)).intValue());
 		return randomNum;
@@ -458,37 +470,41 @@ public class UnimanageDataUtil {
 			// UI element which stores any CSS class info within it so it can be easily
 			// changed as needed
 			if(comparator.hashCode() == QCI.AVG_THRU_DL.hashCode()) {
-				if(qci.getServiceAvgThruDL() > 9000) {
+				if(qci.getServiceAvgThruDL() > 9900) {
 					qci.setCssClass(CSS_CLASS.CRITICAL);
-				} else if(qci.getServiceAvgThruDL() > 7500) {
+				} else if(qci.getServiceAvgThruDL() > 9850) {
 					qci.setCssClass(CSS_CLASS.MAJOR);
-				} else if(qci.getServiceAvgThruDL() > 6500) {
+				} else if(qci.getServiceAvgThruDL() > 9700) {
 					qci.setCssClass(CSS_CLASS.MINOR);
 				}
+				log.warning("QCI: " + qci.toString() + " VALUE=" + qci.getServiceAvgThruDL() + " CLASS=" + qci.getCssClassName());
 			} else if(comparator.hashCode() == QCI.AVG_THRU_UL.hashCode()) {
-				if(qci.getServiceAvgThruUL() > 9000) {
+				if(qci.getServiceAvgThruUL() > 9900) {
 					qci.setCssClass(CSS_CLASS.CRITICAL);
-				} else if(qci.getServiceAvgThruUL() > 7500) {
+				} else if(qci.getServiceAvgThruUL() > 9850) {
 					qci.setCssClass(CSS_CLASS.MAJOR);
-				} else if(qci.getServiceAvgThruUL() > 6500) {
+				} else if(qci.getServiceAvgThruUL() > 9700) {
 					qci.setCssClass(CSS_CLASS.MINOR);
 				}				
+				log.warning("QCI: " + qci.toString() + " VALUE=" + qci.getServiceAvgThruDL() + " CLASS=" + qci.getCssClassName());				
 			} else if(comparator.hashCode() == QCI.TRAF_VOL_DL.hashCode()){
-				if(qci.getServiceTrafficVolDL() > 9000) {
+				if(qci.getServiceTrafficVolDL() > 9900) {
 					qci.setCssClass(CSS_CLASS.CRITICAL);
-				} else if(qci.getServiceTrafficVolDL() > 7500) {
+				} else if(qci.getServiceTrafficVolDL() > 9850) {
 					qci.setCssClass(CSS_CLASS.MAJOR);
-				} else if(qci.getServiceTrafficVolDL() > 6500) {
+				} else if(qci.getServiceTrafficVolDL() > 9700) {
 					qci.setCssClass(CSS_CLASS.MINOR);
 				}				
+				log.warning("QCI: " + qci.toString() + " VALUE=" + qci.getServiceAvgThruDL() + " CLASS=" + qci.getCssClassName());				
 			} else if(comparator.hashCode() == QCI.TRAF_VOL_UL.hashCode()) {
-				if(qci.getServiceTrafficVolUL() > 9000) {
+				if(qci.getServiceTrafficVolUL() > 9900) {
 					qci.setCssClass(CSS_CLASS.CRITICAL);
-				} else if(qci.getServiceTrafficVolUL() > 7500) {
+				} else if(qci.getServiceTrafficVolUL() > 9850) {
 					qci.setCssClass(CSS_CLASS.MAJOR);
-				} else if(qci.getServiceTrafficVolUL() > 6500) {
+				} else if(qci.getServiceTrafficVolUL() > 9700) {
 					qci.setCssClass(CSS_CLASS.MINOR);
 				}				
+				log.warning("QCI: " + qci.toString() + " VALUE=" + qci.getServiceAvgThruDL() + " CLASS=" + qci.getCssClassName());				
 			}
 		}
 		return top10;
@@ -498,7 +514,7 @@ public class UnimanageDataUtil {
 		int[] slices = new int[numSlices];
 		int total = 100;
 		for(int i=0; i < (numSlices - 1); i++) {
-			slices[i] = new Long(getRandomLong(total)).intValue();
+			slices[i] = new Long(getRandomLongWithinRange(total)).intValue();
 			total -= slices[i];
 		}
 		slices[numSlices - 1] = total;

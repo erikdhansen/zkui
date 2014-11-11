@@ -1,16 +1,12 @@
 <?page title="Unimanage" contentType="text/html;charset=UTF-8"?>
 <zk>
-<zscript>
-	List cwsLteDlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.AVG_THRU_DL);
-	List cwsLteUlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.AVG_THRU_UL);
-    List cwsLteDlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.TRAF_VOL_DL);
-	List cwsLteUlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.TRAF_VOL_UL);
-
-</zscript>
 <style src="/css/parallel.css"/>
 <div apply="com.parallelwireless.zkui.dashboard.CwsLteStatisticsDisplayController">
 <hbox>
 	<div id="lte_avg_dl_thru_section">
+<zscript>
+	List cwsLteDlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.AVG_THRU_DL);
+</zscript>
 		<grid id="lte_avg_dl_thru_grid" sclass="unicloud-table">
    			<auxhead>
    				<auxheader colspan="3" label="LTE Average Throughput (Downlink) (Top 10)"/>
@@ -30,6 +26,9 @@
    		</grid>
    	</div>
    	<div id="lte_avg_ul_thru_grid">
+   	<zscript>
+		List cwsLteUlAvgThru    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.AVG_THRU_UL);   	
+   	</zscript>
    		<grid id="lte_avg_thru_ul_grid" sclass="unicloud-table">
 			<auxhead>
 				<auxheader colspan="3" label="LTE Average Throughput [Uplink] (Top 10)"/>
@@ -39,18 +38,21 @@
 				<column hflex="2" label="QCI"/>
 				<column hflex="2" label="Avg. Throughput (UL)"/>
 			</columns>
-			<rows>
+ 			<rows>
 				<row forEach="${cwsLteUlAvgThru}" sclass="${each.cssClassName}">
 					<label value="${each.systemName}"/>
 					<label value="${each.qciName}"/>
 					<label value="${each.serviceAvgThruUL}"/>
 				</row>
-			</rows>						
+			</rows>			
    		</grid>
    	</div>
 </hbox>
 <hbox>
 	<div id="traffic_vol_dl_section">
+	<zscript>
+	    List cwsLteDlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.TRAF_VOL_DL);	
+	</zscript>
 		<grid id="traffic_vol_dl_grid" sclass="unicloud-table">
    			<auxhead>
    				<auxheader colspan="3" label="LTE Traffic Volume [Downlink] (Top 10)"/>
@@ -70,6 +72,9 @@
    		</grid>
    	</div>
 	<div id="traffic_vol_ul_section">
+	<zscript>
+		List cwsLteUlTrafVol    = com.parallelwireless.zkui.models.UnimanageDataUtil.getTop10QCI(com.parallelwireless.zkui.models.lte.QCI.TRAF_VOL_UL);	
+	</zscript>
 		<grid id="traffic_vol_ul_grid" sclass="unicloud-table">
    			<auxhead>
    				<auxheader colspan="3" label="LTE Traffic Volume [Uplink] (Top 10)"/>

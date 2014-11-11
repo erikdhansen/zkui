@@ -1,12 +1,17 @@
 package com.parallelwireless.zkui.models.lte;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.parallelwireless.zkui.models.CwsModel;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 public class QCI {
-
+	final static Logger log = Logger.getLogger(QCI.class.getName());
+	
 	public static enum CSS_CLASS {
 		CRITICAL("critical"),
 		MAJOR("major"),
@@ -31,6 +36,7 @@ public class QCI {
 	String qciName = "";
 	String systemName = "";
 	
+	CSS_CLASS[] cssClasses = { CSS_CLASS.NONE, CSS_CLASS.NONE, CSS_CLASS.NONE, CSS_CLASS.NONE };
 	CSS_CLASS cssClass = CSS_CLASS.NONE;
 	
 	public QCI() {	
@@ -41,7 +47,7 @@ public class QCI {
 		this.serviceAvgThruUL    = serviceAvgThruUL;
 		this.serviceAvgThruDL    = serviceAvgThruDL;
 		this.serviceTrafficVolUL = serviceTrafficVolUL;
-		this.serviceTrafficVolDL = serviceTrafficVolDL;
+		this.serviceTrafficVolDL = serviceTrafficVolDL;		
 	}
 	
 	public String getQciName() {
@@ -91,7 +97,7 @@ public class QCI {
 	public void setServiceTrafficVolDL(long serviceTrafficVolDL) {
 		this.serviceTrafficVolDL = serviceTrafficVolDL;
 	}
-	
+
 	public String getCssClassName() {
 		return cssClass.getCssClassName();
 	}
@@ -151,9 +157,14 @@ public class QCI {
 	public static QCI[] generateRandomQCIs() {
 		QCI[] q = new QCI[9];
 		for (int i = 0; i < 9; i++) {
-			q[i] = new QCI(i, UnimanageDataUtil.getRandomLong(10000), UnimanageDataUtil.getRandomLong(10000),
-					UnimanageDataUtil.getRandomLong(10000), UnimanageDataUtil.getRandomLong(10000));
+			q[i] = new QCI(i, UnimanageDataUtil.getRandomLong(6000, 10000), UnimanageDataUtil.getRandomLong(6000, 10000),
+					UnimanageDataUtil.getRandomLong(6000, 10000), UnimanageDataUtil.getRandomLong(6000, 10000));
 		}
 		return q;
+	}
+	
+	@Override
+	public String toString() {
+		return "QCI[" + systemName + ":" + qciName + "] thruDL=" + serviceAvgThruDL + " thruUL=" + serviceAvgThruUL + " volDL=" + serviceTrafficVolDL + " volUL=" + serviceTrafficVolUL;
 	}
 }
