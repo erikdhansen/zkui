@@ -13,11 +13,11 @@
 	</nav>
 	<navitem id="navNetworkMap" label="Network Map" iconSclass="z-icon-globe"/>
 	<nav label="Devices" iconSclass="z-icon-sitemap">
-		<navitem id="navDeviceManage" label="Manage"/>
+		<navitem id="navDeviceManage" label="View"/>
+		<navitem id="navConfiguration" label="Configuration" iconSclass="z-icon-wrench"/>
 		<navitem id="navDeviceGroups" label="Groups"/>
 		<navitem id="navDeviceUpgrade" label="Upgrade"/>
 		<navitem id="navDeviceBackup" label="Backup"/>
-		<navitem id="navDeviceFiles" label="Files"/>
 	</nav>
 	<nav label="Statistics" iconSclass="z-icon-tachometer">
 		<navitem id="navStatsGraph" label="Graph Statistics"/>
@@ -25,7 +25,6 @@
 		<navitem id="navStatsThreshold" label="Threshold Rules"/>
 	</nav>
 	<navitem id="navReports" label="Reports" iconSclass="z-icon-align-left"/>
-	<navitem id="navConfiguration" label="Configuration" iconSclass="z-icon-wrench"/>
 	<nav label="Administration" iconSclass="z-icon-cogs">
 		<navitem id="navAdminAlarms" label="Alarm System"/>
 		<navitem id="navAdminWebResources" label="Web Resources"/>

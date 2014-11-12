@@ -28,7 +28,9 @@ public interface SystemResource {
 		NET_RX_BYTES("rxBytes"),
 		NET_TX_BYTES("txBytes"),
 		NET_PCT_UTIL("percentUtilization"),
-		NET_LAST10_PCT_UTIL("lastTenPercentUtilization");
+		NET_LAST10_PCT_UTIL("lastTenPercentUtilization"),
+		GEO_LATITUDE("geoLatitude"),
+		GEO_LONGITUDE("geoLongitude");
 		
 
 			private final String resource;

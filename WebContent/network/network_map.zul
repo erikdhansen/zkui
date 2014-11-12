@@ -1,6 +1,19 @@
 <?page title="Network Map" contentType="text/html;charset=UTF-8"?>
 <zk>
+<zscript>
+	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
+	com.parallelwireless.zkui.models.resources.GeoLocation center = com.parallelwireless.zkui.models.UnimanageDataUtil.getMapCenter();
+</zscript>
 <window title="Network Map" border="normal">
-New Content Here!
+<div apply="com.parallelwireless.zkui.network.GoogleMapsController">
+	<script type="text/javascript" content="zk.googleAPIkey='AIzaSyBqs6D5Vhny8bGQUw6cD8phhFGdRnSKRng'">
+	</script>
+	<vbox width="100%">
+	<gmaps version="3.9" id="gmap" width="800px" height="480px" showSmallCtrl="true" lat="${center.latitude}" zoom="8" lng="${center.longitude}">
+        <gmarker forEach="${uniclouds}" iconImage="images/solid/unicloud-grey-32.png" id="${each.id}" lat="${each.sysInfo.geo.latitude}" lng="${each.sysInfo.geo.longitude}"
+            content="${each.name}"/>
+    </gmaps>
+    </vbox>
+</div>
 </window>
 </zk>

@@ -1,12 +1,7 @@
 package com.parallelwireless.zkui.models;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.zkoss.chart.Color;
-
-import com.parallelwireless.zkui.models.CwsModel.CWS_TYPE;
 
 public class UnicloudModel extends NetworkDeviceImpl {
 	int id;
@@ -25,6 +20,10 @@ public class UnicloudModel extends NetworkDeviceImpl {
 		refreshNetworkInterfaces(); 
 	}
 		
+	public int getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}

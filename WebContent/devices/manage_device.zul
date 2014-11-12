@@ -1,6 +1,13 @@
 <?page title="Unimanage: Device Management" contentType="text/html;charset=UTF-8"?>
 <zk>
+<zscript>
+	com.parallelwireless.zkui.models.UnicloudModel u = com.parallelwireless.zkui.models.UnimanageDataUtil.getUnicloud(1);
+</zscript>
 <window title="Device Management" border="normal">
-New Content Here!
+<panel id="${u.name}">
+<hbox>
+
+</hbox>
+</panel>
 </window>
 </zk>

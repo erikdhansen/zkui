@@ -3,6 +3,7 @@ package com.parallelwireless.zkui;
 import java.util.logging.Logger;
 
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.SelectEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -35,7 +36,7 @@ public class MainWindowController extends SelectorComposer<Window> {
 		log.info("ZUL Lookup: ZulMapper -- " + e.getTarget().getId() + " => " + newZul);
 		loadMainContent(newZul);
 	}
-	
+
 	private void loadMainContent(String zul) {
 		log.info("Grabbed component[" + mainContentInclude.getId() + "]");
 		log.info("CurrentZUL=" + currentZUL + " requestedZUL=" + zul);

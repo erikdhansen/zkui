@@ -23,17 +23,27 @@ public class UnicloudSystemResourceUsageController extends SelectorComposer<Wind
 	Charts cpuChart;
 	@Wire
 	Charts netChart;
+	@Wire
+	Charts unicloudMemoryChart;
 
-	List<UnicloudModel>	top10CPU  = new LinkedList<UnicloudModel>();
-	List<UnicloudModel> top10Mem  = new LinkedList<UnicloudModel>();
-	List<UnicloudModel> top10Disk = new LinkedList<UnicloudModel>();
-	List<UnicloudModel> top10Net  = new LinkedList<UnicloudModel>();
+//	List<UnicloudModel>	top10CPU  = new LinkedList<UnicloudModel>();
+//	List<UnicloudModel> top10Mem  = new LinkedList<UnicloudModel>();
+//	List<UnicloudModel> top10Disk = new LinkedList<UnicloudModel>();
+//	List<UnicloudModel> top10Net  = new LinkedList<UnicloudModel>();
 	
 	public void doAfterCompose(Window d) throws Exception {
 		super.doAfterCompose(d);
 		doCpuChart();
 		//doMemChart();
 		doNetChart();
+		doUnicloudMemoryChart();
+	}
+	
+	private void doUnicloudMemoryChart() {
+//		if(unicloudMemoryChart == null)
+//			return;
+//		unicloudMemoryChart.setModel(UnimanageDataUtil.getUnicloudDetailedMemoryModel(1));
+//		unicloudMemoryChart.setTitle(UnimanageDataUtil.getUnicloud(1).getName() + ": Detailed Memeory Usage");
 	}
 	
 	private void doNetChart() {

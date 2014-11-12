@@ -14,6 +14,7 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 	NetworkDeviceInfo networkDeviceInfo = new NetworkDeviceInfo();
 	SysInfo sysinfo = null;
+	
 	int bytes = 0;
 	
 	@Override

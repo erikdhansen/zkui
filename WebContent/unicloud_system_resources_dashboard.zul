@@ -64,7 +64,7 @@
 					</columns>
 					<rows>
 						<row forEach="${ucMem}"
-							sclass="${each.sysInfo.mem.cssClass}">
+							sclass="${each.sysInfo.mem.cssClass}" popup="unicloud_memory_popup">
 							<label value="${each.name}" />
 							<label style="text-align: right;"
 								value="${each.sysInfo.mem.totalRAMUsedHR}" />
@@ -168,6 +168,11 @@
 				<charts id="netChart" type="line"
 					title="Network Utilization" subtitle="Data Age: 2 min"
 					height="260" />
+			</window>
+		</popup>
+		<popup id="unicloud_memory_popup">
+			<window apply="com.parallelwireless.zkui.dashboard.UnicloudSystemResourceUsageController" title="Uni-Cloud Detailed Memory Usage">
+				<charts id="unicloudMemoryChart" subtitle="Data age: 2 min" height="260"/>
 			</window>
 		</popup>
 </zk>

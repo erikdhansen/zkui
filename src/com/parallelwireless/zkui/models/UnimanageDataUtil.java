@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 
 import org.zkoss.chart.model.CategoryModel;
 import org.zkoss.chart.model.DefaultCategoryModel;
+import org.zkoss.chart.model.DefaultPieModel;
+import org.zkoss.chart.model.PieModel;
 
 import com.parallelwireless.zkui.models.lte.LteStatistics;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
@@ -18,6 +20,7 @@ import com.parallelwireless.zkui.models.lte.QCI;
 import com.parallelwireless.zkui.models.lte.Statistics;
 import com.parallelwireless.zkui.models.lte.LteStatistics.STAT;
 import com.parallelwireless.zkui.models.lte.QCI.CSS_CLASS;
+import com.parallelwireless.zkui.models.resources.GeoLocation;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
@@ -32,7 +35,7 @@ public class UnimanageDataUtil {
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(1, u);
 		// Unicloud Data
-		u = new UnicloudModel(1, "Unicloud B", "10.10.10.122");
+		u = new UnicloudModel(2, "Unicloud B", "10.10.10.122");
 		cfg = new ResourceConfig();
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
@@ -58,7 +61,7 @@ public class UnimanageDataUtil {
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(2, u);
 		// Unicloud Data
-		u = new UnicloudModel(1, "Unicloud C", "10.10.10.122");
+		u = new UnicloudModel(3, "Unicloud C", "10.10.10.122");
 		cfg = new ResourceConfig();
 		cfg.put(RESOURCE.CPU_LOAD_ONE, "9");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE, "9");
@@ -84,7 +87,7 @@ public class UnimanageDataUtil {
 		u.getSysInfo().addResources(cfg);
 		uniclouds.put(3, u);
 		// Unicloud Data
-		u = new UnicloudModel(1, "Unicloud D", "10.10.10.122");
+		u = new UnicloudModel(4, "Unicloud D", "10.10.10.122");
 		cfg = new ResourceConfig();
 		cfg.put(RESOURCE.CPU_LOAD_ONE,     "7");
 		cfg.put(RESOURCE.CPU_LOAD_FIVE,    "11");
@@ -403,6 +406,36 @@ public class UnimanageDataUtil {
 		return i;
 	}
 	
+	public static GeoLocation getMapCenter() {
+		int i = 0;
+		float lat = 0;
+		float lng = 0;
+		
+		for(UnicloudModel u : getAllUniclouds()) {
+			i++;
+			lat += u.getSysInfo().getGeo().getLatitude();
+			lng += u.getSysInfo().getGeo().getLongitude();
+		}
+		lat = (lat / i);
+		lng = (lng / i);
+		return new GeoLocation("MapCenter", lat, lng);
+	}
+	
+	public static GeoLocation generateRandomLocation() {
+		// Generate a random latitude/mongitude between 42,-71 to 44,-73
+		int latInt = getRandomInt(42, 44);
+		int longInt = getRandomInt(-73, -71);
+		long latDec = getRandomLong(999999);
+		long longDec = getRandomLong(999999);
+		
+		
+		float latitude = Float.parseFloat(latInt + "." + latDec);
+		float longitude = Float.parseFloat(longInt + "." + longDec);
+		
+		GeoLocation g = new GeoLocation("RandomlyGenerated", latitude, longitude);
+		log.info("Generated random location: " + g);
+		return g;
+	}
 	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE type) {
 		List<NetworkDeviceInterface> netIfs = new LinkedList<NetworkDeviceInterface>();
 		NetworkDeviceInterface netIf = new NetworkDeviceInterface();
@@ -424,6 +457,10 @@ public class UnimanageDataUtil {
 		return new Long(value);
 	}
 	
+	public static int getRandomInt(int min, int max) {
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
 	public static long getRandomLongWithinRange(long max) {
 		Random rand = new Random();
 		long randomNum = rand.nextInt(new Long((max - (max * 7 / 10) + 1) + (max * 7 / 10)).intValue());
