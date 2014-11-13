@@ -20,4 +20,5 @@ public interface NetworkDevice {
 	public List<NetworkDeviceInterface> getNetworkInterfaces();
 	public SysInfo getSysInfo();
 	public NetworkDeviceInfo getNetworkDeviceInfo();
+	public List<String> getNetworkLinks();
 }

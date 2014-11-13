@@ -15,7 +15,7 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	public UnicloudModel(int id, String name, String ip) {
 		this.id = id;
 		this.name = name;
-		this.sysinfo = new SysInfo(name);
+		this.sysinfo = new SysInfo(name, true);
 		refreshSysInfo();
 		refreshNetworkInterfaces(); 
 	}

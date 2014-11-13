@@ -1,59 +1,74 @@
 package com.parallelwireless.zkui.models.resources;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
+
+import org.zkoss.gmaps.Gmarker;
 
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
-public class GeoLocation {
+@SuppressWarnings("serial")
+public class GeoLocation extends Gmarker {
 	final static Logger log = Logger.getLogger(GeoLocation.class.getName());
 	
-	private String systemName = "random";
-	private float latitude = 0f;
-	private float longitude = 0f;
-	private String locationName = "random";
+	public static enum MAP_STATE {
+		FOCUS,
+		NOFOCUS,
+		HIDDEN
+	};
+	
+	public static enum DEV_TYPE {
+		UNICLOUD,
+		CWS
+	};
+	
+	static Map<MAP_STATE,String> iconMap = new HashMap<MAP_STATE,String>();
+	static {
+		iconMap.put(MAP_STATE.FOCUS,  "/images/solid/*-green-32.png");
+		iconMap.put(MAP_STATE.NOFOCUS,  "/images/transparent/*-green-32.png");
+		iconMap.put(MAP_STATE.HIDDEN,  "/images/transparent/*-grey-32.png");
+	}
+
+	
+	
+	private String systemName   = "n/a";
+	private String locationName = "n/a";
+	private DEV_TYPE devType    = DEV_TYPE.UNICLOUD;
+	private MAP_STATE mapState  = MAP_STATE.HIDDEN;
 	
 	public GeoLocation() {
-		
+		super();
 	}
 	
-	public GeoLocation(String systemName) {
+	public GeoLocation(String systemName, DEV_TYPE devType) {
+		super();
 		this.systemName = systemName;
+		this.devType = devType;
+		this.setId(systemName);
 	}
 	
 	public void addResources(ResourceConfig cfg) throws Exception {
 		if((cfg.get(RESOURCE.GEO_LATITUDE) == null) || (cfg.get(RESOURCE.GEO_LONGITUDE) == null)) {
 			log.warning("No location data found!  Generating RANDOM GeoLocation!");
 			GeoLocation g = UnimanageDataUtil.generateRandomLocation();
-			latitude = g.getLatitude();
-			longitude = g.getLongitude();
+			setLat(g.getLat());
+			setLng(g.getLng());
 		} else {
-			latitude = Float.valueOf(cfg.get(RESOURCE.GEO_LATITUDE));
-			longitude = Float.valueOf(cfg.get(RESOURCE.GEO_LONGITUDE));
+			setLat(Float.valueOf(cfg.get(RESOURCE.GEO_LATITUDE)));
+			setLng(Float.valueOf(cfg.get(RESOURCE.GEO_LONGITUDE)));
 		}
 	}
 	
-	public GeoLocation(String systemName, float latitude, float longitude) {
+	public GeoLocation(String systemName, DEV_TYPE devType, float latitude, float longitude) {
+		super();
 		this.systemName = systemName;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-
-	public float getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
-
-	public float getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
+		this.devType = devType;
+		this.setId(systemName);
+		this.setLat(latitude);
+		this.setLng(longitude);
 	}
 
 	public String getLocationName() {
@@ -70,10 +85,41 @@ public class GeoLocation {
 
 	public void setSystemName(String systemName) {
 		this.systemName = systemName;
+		this.setId(systemName);
+	}
+	
+	public DEV_TYPE getDevType() {
+		return devType;
+	}
+	
+	public void setDevType(DEV_TYPE devType) {
+		this.devType = devType;
+	}
+	
+	public MAP_STATE getMapState() {
+		return mapState;
+	}
+	
+	public void setMapState(MAP_STATE mapState) {
+		this.mapState = mapState;
+		this.setIconImage(getIconPath());
+	}
+	
+	public String getIconPath() {
+		String dev = "";
+		if(devType == DEV_TYPE.UNICLOUD){
+			dev = "unicloud";
+		} else if(devType == DEV_TYPE.CWS){
+			dev = "cws-100";
+		}
+		
+		String basePathname = iconMap.get(mapState);
+		String iconPath = basePathname.replace("*", dev);
+		return iconPath;
 	}
 	
 	@Override
 	public String toString() {
-		return "GeoLocation: systemName = " + systemName + " lat=" + latitude + " long=" + longitude + " location=" + locationName;
+		return "GeoLocation: systemName = " + systemName + " devType=" + devType.name() + " mapState=" + mapState + " lat=" + getLat() + " long=" + getLng() + " location=" + locationName;
 	}
 }

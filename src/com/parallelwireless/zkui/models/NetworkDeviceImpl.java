@@ -14,6 +14,7 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 	NetworkDeviceInfo networkDeviceInfo = new NetworkDeviceInfo();
 	SysInfo sysinfo = null;
+	List<String> networkLinks = new LinkedList<String>();
 	
 	int bytes = 0;
 	
@@ -41,7 +42,23 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	public List<NetworkDeviceInterface> getNetworkInterfaces() {
 		return networkDeviceInterfaces;
 	}
-		
+	
+	@Override
+	public List<String> getNetworkLinks() {
+		return networkLinks;
+	}
+	
+	public void setNetworkLinks(List<String> networkLinks) {
+		this.networkLinks = networkLinks;
+	}
+	
+	public NetworkDeviceImpl addNetworkLinks(String... links) {
+		for(String link : links) {
+			networkLinks.add(link);
+		}
+		return this;
+	}
+	
 	public static final Comparator<NetworkDevice> CPU =
 			new Comparator<NetworkDevice>() {
 			@Override

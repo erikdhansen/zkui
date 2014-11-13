@@ -35,7 +35,7 @@ public class CwsModel extends NetworkDeviceImpl {
 		this.name = name;
 		this.unicloudId = unicloudId;
 		this.type = type;
-		this.sysinfo = new SysInfo(name);
+		this.sysinfo = new SysInfo(name, false);
 		this.sysinfo.addResources(ResourceConfig.generate());
 		lteStats = new LteStatisticsImpl(name);		
 		lteStats.setQCI(QCI.generateRandomQCIs());

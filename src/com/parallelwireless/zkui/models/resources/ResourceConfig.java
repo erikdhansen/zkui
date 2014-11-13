@@ -39,8 +39,8 @@ public class ResourceConfig extends HashMap<SystemResource.RESOURCE, String> {
 		cfg.put(RESOURCE.NET_TX_BYTES,     String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(5 * GB)));
 		cfg.put(RESOURCE.NET_PCT_UTIL,     String.valueOf(new Random().nextInt(100)));
 		GeoLocation randomLocation = UnimanageDataUtil.generateRandomLocation();
-		cfg.put(RESOURCE.GEO_LATITUDE, String.valueOf(randomLocation.getLatitude()));
-		cfg.put(RESOURCE.GEO_LONGITUDE, String.valueOf(randomLocation.getLongitude()));
+		cfg.put(RESOURCE.GEO_LATITUDE, String.valueOf(randomLocation.getLat()));
+		cfg.put(RESOURCE.GEO_LONGITUDE, String.valueOf(randomLocation.getLng()));
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i < 11; i++) {
 			sb.append(String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(100)).concat(" "));

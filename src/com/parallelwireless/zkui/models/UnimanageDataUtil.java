@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -21,6 +23,7 @@ import com.parallelwireless.zkui.models.lte.Statistics;
 import com.parallelwireless.zkui.models.lte.LteStatistics.STAT;
 import com.parallelwireless.zkui.models.lte.QCI.CSS_CLASS;
 import com.parallelwireless.zkui.models.resources.GeoLocation;
+import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
@@ -33,107 +36,99 @@ public class UnimanageDataUtil {
 		UnicloudModel u = new UnicloudModel(1, "Unicloud A", "10.10.10.122");
 		ResourceConfig cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
+		u.getNetworkLinks().add("cws-a4");
 		uniclouds.put(1, u);
 		// Unicloud Data
 		u = new UnicloudModel(2, "Unicloud B", "10.10.10.122");
-		cfg = new ResourceConfig();
-		cfg.put(RESOURCE.CPU_LOAD_ONE, "4");
-		cfg.put(RESOURCE.CPU_LOAD_FIVE, "3");
-		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "1");
-		cfg.put(RESOURCE.CPU_USER_PCT, "42");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "10");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "48");
-		cfg.put(RESOURCE.MEM_RAM_TOTAL, "8009428");
-		cfg.put(RESOURCE.MEM_RAM_USED, "2312728");
-		cfg.put(RESOURCE.MEM_RAM_FREE, "5696700");
-		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
-		cfg.put(RESOURCE.MEM_SWAP_FREE, "2837");
-		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "499238276000");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "21029392840");
-		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
-		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
-		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
-		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
-		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
-		cfg.put(RESOURCE.NET_PCT_UTIL, "62");
-		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "97 99 99 89 77 74 69 68 68 65");
+		cfg =  ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
+		u.getNetworkLinks().add("cws-b1");
 		uniclouds.put(2, u);
 		// Unicloud Data
 		u = new UnicloudModel(3, "Unicloud C", "10.10.10.122");
-		cfg = new ResourceConfig();
-		cfg.put(RESOURCE.CPU_LOAD_ONE, "9");
-		cfg.put(RESOURCE.CPU_LOAD_FIVE, "9");
-		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "7");
-		cfg.put(RESOURCE.CPU_USER_PCT, "22");
-		cfg.put(RESOURCE.CPU_SYS_PCT, "77");
-		cfg.put(RESOURCE.CPU_IDLE_PCT, "1");
-		cfg.put(RESOURCE.MEM_RAM_TOTAL, "16337652");
-		cfg.put(RESOURCE.MEM_RAM_USED, "8072635");
-		cfg.put(RESOURCE.MEM_RAM_FREE, "8265127");
-		cfg.put(RESOURCE.MEM_SWAP_TOTAL, "8009428");
-		cfg.put(RESOURCE.MEM_SWAP_FREE, "918273");
-		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "411823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "29293928400");
-		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
-		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
-		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
-		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
-		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
-		cfg.put(RESOURCE.NET_PCT_UTIL, "10");
-		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "63 68 66 66 66 4 4 8 9 10");
+		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
+		u.getNetworkLinks().add("cws-c1");
 		uniclouds.put(3, u);
 		// Unicloud Data
 		u = new UnicloudModel(4, "Unicloud D", "10.10.10.122");
-		cfg = new ResourceConfig();
-		cfg.put(RESOURCE.CPU_LOAD_ONE,     "7");
-		cfg.put(RESOURCE.CPU_LOAD_FIVE,    "11");
-		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, "15");
-		cfg.put(RESOURCE.CPU_USER_PCT,    "10");
-		cfg.put(RESOURCE.CPU_SYS_PCT,     "8");
-		cfg.put(RESOURCE.CPU_IDLE_PCT,    "82");
-		cfg.put(RESOURCE.MEM_RAM_TOTAL,   "16337652");
-		cfg.put(RESOURCE.MEM_RAM_USED,    "15312728");
-		cfg.put(RESOURCE.MEM_RAM_FREE,    "1024924");
-		cfg.put(RESOURCE.MEM_SWAP_TOTAL,  "8009428");
-		cfg.put(RESOURCE.MEM_SWAP_FREE,   "2736252");
-		cfg.put(RESOURCE.DISK_PART_DEV_PATH, "/dev/sda1");
-		cfg.put(RESOURCE.DISK_USED_BYTES, "421823827600");
-		cfg.put(RESOURCE.DISK_AVAIL_BYTES, "110293928400");
-		cfg.put(RESOURCE.DISK_TOTAL_PART_SIZE,"63211775400");
-		cfg.put(RESOURCE.NET_INTF_NAME, "eth0");
-		cfg.put(RESOURCE.NET_LINK_SPEED, "1000");
-		cfg.put(RESOURCE.NET_RX_BYTES, "8374637");
-		cfg.put(RESOURCE.NET_TX_BYTES, "8374625");
-		cfg.put(RESOURCE.NET_PCT_UTIL, "52");
-		cfg.put(RESOURCE.NET_LAST10_PCT_UTIL, "71 52 59 57 52 54 53 52 51 51");
+		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
+		u.getNetworkLinks().add("cws-d1");
+		u.getNetworkLinks().add("cws-d3");
 		uniclouds.put(4, u);		
 	}
 	
 	static {
-		uniclouds.get(1).addCws(new CwsModel("cws-uca-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(1).addCws(new CwsModel("cws-uceh-1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(1).addCws(new CwsModel("cws-uceh-2", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(1).addCws(new CwsModel("cws-uceh-3", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw));
-		uniclouds.get(2).addCws(new CwsModel("cws-uceh-4", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw));
-		uniclouds.get(2).addCws(new CwsModel("cws-uc2-1", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(2).addCws(new CwsModel("cws-uc2-2", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw));
-		uniclouds.get(2).addCws(new CwsModel("cws-uc2-3", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw));		
-		uniclouds.get(2).addCws(new CwsModel("cws-uc2-4", 2, "10.11.2.7", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(3).addCws(new CwsModel("cws-uc3-1", 3, "10.11.3.8", NetworkDevice.TYPE.cws_gw));
-		uniclouds.get(3).addCws(new CwsModel("cws-uc3-2", 3, "10.11.3.9", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(3).addCws(new CwsModel("cws-uc3-3", 3, "10.11.3.10", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(4).addCws(new CwsModel("cws-uc4-1", 4, "10.11.4.11", NetworkDevice.TYPE.cws_gw));
-		uniclouds.get(4).addCws(new CwsModel("cws-uc4-2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh));
-		uniclouds.get(4).addCws(new CwsModel("cws-uc4-3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw));
+		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-a4", "cws-a2");
+		uniclouds.get(1).addCws(cws);
+		cws = new CwsModel("cws-a2", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-a1", "cws-a3");
+		uniclouds.get(1).addCws(cws);
+		cws = new CwsModel("cws-a3", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-a2", "cws-a4");
+		uniclouds.get(1).addCws(cws);
+		cws = new CwsModel("cws-a4", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("cws-a1", "cws-a3", "Unicloud A");
+		uniclouds.get(1).addCws(cws);
+		cws = new CwsModel("cws-b1", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("Unicloud B", "cws-b2");
+		uniclouds.get(2).addCws(cws);
+		cws = new CwsModel("cws-b2", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-b1", "cws-c3");
+		uniclouds.get(2).addCws(cws);
+		cws = new CwsModel("cws-b3", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("cws-b2", "cws-b5");
+		uniclouds.get(2).addCws(cws);
+		cws = new CwsModel("cws-b4", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("cws-b5", "Unicloud B");
+		uniclouds.get(2).addCws(cws);		
+		cws = new CwsModel("cws-b5", 2, "10.11.2.7", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-b3", "cws-b4");
+		uniclouds.get(2).addCws(cws);
+		cws = new CwsModel("cws-c1", 3, "10.11.3.8", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("Unicloud C", "cws-c2");
+		uniclouds.get(3).addCws(cws);
+		cws = new CwsModel("cws-c2", 3, "10.11.3.9", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-c1");
+		uniclouds.get(3).addCws(cws);
+		cws = new CwsModel("cws-c3", 3, "10.11.3.10", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-c1");
+		uniclouds.get(3).addCws(cws);
+		cws = new CwsModel("cws-d1", 4, "10.11.4.11", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("Unicloud D", "cws-d2");
+		uniclouds.get(4).addCws(cws);
+		cws = new CwsModel("cws-d2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh);
+		cws.addNetworkLinks("cws-d1", "cws-d3");
+		uniclouds.get(4).addCws(cws);
+		cws = new CwsModel("cws-d3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw);
+		cws.addNetworkLinks("Unicloud D", "cws-d2");
+		uniclouds.get(4).addCws(cws);
 	}
 	
 	public static UnicloudModel getUnicloud(int id) {
 		return uniclouds.get(id);
+	}
+	
+	public static UnicloudModel getUnicloud(String systemName) throws NetworkDeviceNotFoundException {
+		for(UnicloudModel u : getAllUniclouds()) {
+			if(u.getName().equalsIgnoreCase(systemName)) {
+				return u;
+			}
+		}
+		throw new NetworkDeviceNotFoundException("No such system: " + systemName);
+	}
+	
+	public static Map<String,GeoLocation> getAllGeoLocations() {
+		Map<String,GeoLocation> gmap = new HashMap<String,GeoLocation>();
+		for(UnicloudModel u : getAllUniclouds()) {
+			gmap.put(u.getSysInfo().getGeo().getId(), u.getSysInfo().getGeo());
+			for(CwsModel c : u.getCwsList()) {
+				gmap.put(c.getSysInfo().getGeo().getId(), c.getSysInfo().getGeo());
+			}
+		}
+		return gmap;
 	}
 	
 	public static Collection<UnicloudModel> getAllUniclouds() {
@@ -413,12 +408,12 @@ public class UnimanageDataUtil {
 		
 		for(UnicloudModel u : getAllUniclouds()) {
 			i++;
-			lat += u.getSysInfo().getGeo().getLatitude();
-			lng += u.getSysInfo().getGeo().getLongitude();
+			lat += u.getSysInfo().getGeo().getLat();
+			lng += u.getSysInfo().getGeo().getLng();
 		}
 		lat = (lat / i);
 		lng = (lng / i);
-		return new GeoLocation("MapCenter", lat, lng);
+		return new GeoLocation("MapCenter", DEV_TYPE.UNICLOUD, lat, lng);
 	}
 	
 	public static GeoLocation generateRandomLocation() {
@@ -432,7 +427,7 @@ public class UnimanageDataUtil {
 		float latitude = Float.parseFloat(latInt + "." + latDec);
 		float longitude = Float.parseFloat(longInt + "." + longDec);
 		
-		GeoLocation g = new GeoLocation("RandomlyGenerated", latitude, longitude);
+		GeoLocation g = new GeoLocation("RandomlyGenerated", DEV_TYPE.UNICLOUD, latitude, longitude);
 		log.info("Generated random location: " + g);
 		return g;
 	}
