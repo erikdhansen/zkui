@@ -1,13 +1,40 @@
 <?page title="Unimanage: Device Management" contentType="text/html;charset=UTF-8"?>
 <zk>
-<zscript>
-	com.parallelwireless.zkui.models.UnicloudModel u = com.parallelwireless.zkui.models.UnimanageDataUtil.getUnicloud(1);
+	<zscript>
+	com.parallelwireless.zkui.models.UnicloudModel u = com.parallelwireless.zkui.models.UnimanageDataUtil
+			.getUnicloud(1);
+	ListModelList devices = new ListModelList(
+			com.parallelwireless.zkui.models.UnimanageDataUtil
+					.getAllNetworkDeviceNames());
+	int deviceListSize = devices.getSize();
 </zscript>
-<window title="Device Management" border="normal">
-<panel id="${u.name}">
-<hbox>
-
-</hbox>
-</panel>
-</window>
+		<div apply="com.parallelwireless.zkui.ManageDeviceLayoutController">
+			<portallayout id="portalLayout" maximizedMode="whole" width="100%">
+				<portalchildren style="padding: 5px">
+					<panel title="Device Management" border="normal" collapsible="true"
+						   closable="true" style="margin-bottom: 10px; overflow: auto"  width="100%">
+						<panelchildren>
+						<grid sclass="unicloud">
+							<columns>
+								<column>System: <combobox model="${devices}" autocomplete="true" name="System Name" id="deviceNameCombo" style="line-height: 20px;">
+													<comboitem label="@{each}" />
+												</combobox>
+								</column>
+								<column>Type: <radiogroup id="deviceTypeRadio" orient="horizontal">
+											 	<radio value="unicloud" label="Uni-Clouds" style="padding: 5px;"/>
+												<radio value="cws" label="CWSs" style="padding: 5px"/>
+												<radio value="all" label="All" style="padding: 5px;" checked="true"/>
+											  </radiogroup>
+								</column>
+							</columns>
+						</grid>
+						</panelchildren>
+					</panel>
+					<panel title="Device Information">
+						<panelchildren>
+						</panelchildren>
+					</panel>
+				</portalchildren>
+			</portallayout>
+		</div>
 </zk>

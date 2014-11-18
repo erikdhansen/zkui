@@ -131,6 +131,24 @@ public class UnimanageDataUtil {
 		return gmap;
 	}
 	
+	public static List<String> getAllNetworkDeviceNames() {
+		List<String> deviceNames = new LinkedList<String>();
+		for(NetworkDevice d : getAllNetworkDevices()) {
+			deviceNames.add(d.getName());
+		}
+		return deviceNames;
+	}
+	
+	public static List<NetworkDevice> getAllNetworkDevices() {
+		List<NetworkDevice> devices = new LinkedList<NetworkDevice>();
+		for(NetworkDevice dev : getAllUniclouds()) {
+			devices.add(dev);
+		}
+		for(NetworkDevice dev : getAllCwsModels()) {
+			devices.add(dev);
+		}
+		return devices;
+	}
 	public static Collection<UnicloudModel> getAllUniclouds() {
 		return uniclouds.values();
 	}

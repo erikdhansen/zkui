@@ -15,6 +15,7 @@ public interface NetworkDevice {
 		down
 	}
 	
+	public String getName();
 	public boolean isUp();
 	public TYPE getType();
 	public List<NetworkDeviceInterface> getNetworkInterfaces();

@@ -2,9 +2,15 @@
 <zk>
 <zscript>
 	int alarmCount = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarms().getUnackedCount();
+	String loggedInUser = "admin";
 </zscript>
 <div id="mainNavbarDiv">
-<navbar id="mainNavbar" orient="vertical" width="200px">
+<navbar id="mainNavbar" orient="vertical" width="200px" zclass="z-navbar navbar-fixed-top" style="padding-top: 75px; padding-left: 25px;">
+	<nav label="User: ${loggedInUser}" iconSclass="z-icon-user">
+		<navitem id="navUserSettings" label="Settings" iconSclass="z-icon-gear"/>
+		<navitem id="navUserProfile" label="Profile" iconSclass="z-icon-user"/>
+		<navitem id="navUserLogout" label="Logout"/>
+	</nav>
 	<navitem id="navDashboard" label="Dashboard" iconSclass="z-icon-home"/>
 	<nav label="Alarms" badgeText="${alarmCount}" iconSclass="z-icon-bell">
 		<navitem id="navAlarms" label="Alarms" />
@@ -39,5 +45,6 @@
 	</nav>
 	<navitem id="navHelp" label="Help" iconSclass="z-icon-home"/>
 </navbar>
+
 </div>
 </zk>

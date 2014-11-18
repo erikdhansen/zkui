@@ -17,7 +17,8 @@
 		<hbox width="100%">
 			<div sclass="user-nav">
 				<include src="nav_vertical.zul" />
-			<hbox >
+				<hbox width="200px"/>
+	<!--  		<hbox >
 					<menubar width="200px">
 						<menu label="User: admin">
 							<menupopup>
@@ -28,8 +29,8 @@
 							</menupopup>
 						</menu>
 					</menubar>
-			</hbox>				
-			</div>
+			</hbox>	-->			
+			</div> 
 			<div sclass="content-header"></div>
 			<div sclass="content">
 				<include id="mainContentInclude" src="dashboard/dashboard.zul"/>

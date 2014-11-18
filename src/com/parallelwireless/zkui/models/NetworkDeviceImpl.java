@@ -18,6 +18,8 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	
 	int bytes = 0;
 	
+	public abstract String getName();
+	
 	@Override
 	public boolean isUp() {
 		return up;
