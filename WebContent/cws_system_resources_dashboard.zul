@@ -43,7 +43,7 @@
 				<auxheader colspan="3" label="Swap (MB)"/>
 			</auxhead>
 			<columns>
-				<column hflex="2" label="Name"/>
+				<column hflex="2" label="System"/>
 				<column hflex="1"  label="Used"/>
 				<column hflex="1" label="Free"/>
 				<column hflex="1" label="Total"/>
@@ -97,7 +97,7 @@
 				<auxheader colspan="6" label="Network (Top 10)"/>
 			</auxhead>
 			<columns>
-				<column hflex="3">Name</column>
+				<column hflex="3">System</column>
 				<column hflex="2">Interface</column>
 				<column hflex="2">RX Bytes</column>
 				<column hflex="2">TX Bytes</column>

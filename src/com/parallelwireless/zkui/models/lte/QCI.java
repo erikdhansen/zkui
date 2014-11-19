@@ -35,6 +35,7 @@ public class QCI {
 	
 	String qciName = "";
 	String systemName = "";
+	String unicloudName = "";
 	
 	CSS_CLASS[] cssClasses = { CSS_CLASS.NONE, CSS_CLASS.NONE, CSS_CLASS.NONE, CSS_CLASS.NONE };
 	CSS_CLASS cssClass = CSS_CLASS.NONE;
@@ -42,7 +43,8 @@ public class QCI {
 	public QCI() {	
 	}
 
-	public QCI(int qciIndex, long serviceAvgThruUL, long serviceAvgThruDL, long serviceTrafficVolUL, long serviceTrafficVolDL) {
+	public QCI(int qciIndex, String unicloudName, long serviceAvgThruUL, long serviceAvgThruDL, long serviceTrafficVolUL, long serviceTrafficVolDL) {
+		this.unicloudName = unicloudName;
 		this.qciName = "QCI_" + (qciIndex + 1);
 		this.serviceAvgThruUL    = serviceAvgThruUL;
 		this.serviceAvgThruDL    = serviceAvgThruDL;
@@ -102,6 +104,10 @@ public class QCI {
 		return cssClass.getCssClassName();
 	}
 	
+	public String getUnicloud() {
+		return this.unicloudName;
+	}
+	
 	// This is to be set by the UnimanageDataUtil class when it sorts the QCIs by a 
 	// particular parameter.  Normally this logic is encapsulated by the class itself
 	// but rather than create separate QCI collections for each statistic, let the smarts
@@ -154,10 +160,10 @@ public class QCI {
 			}
 		};	
 		
-	public static QCI[] generateRandomQCIs() {
+	public static QCI[] generateRandomQCIs(String unicloudName) {
 		QCI[] q = new QCI[9];
 		for (int i = 0; i < 9; i++) {
-			q[i] = new QCI(i, UnimanageDataUtil.getRandomLong(6000, 10000), UnimanageDataUtil.getRandomLong(6000, 10000),
+			q[i] = new QCI(i, unicloudName, UnimanageDataUtil.getRandomLong(6000, 10000), UnimanageDataUtil.getRandomLong(6000, 10000),
 					UnimanageDataUtil.getRandomLong(6000, 10000), UnimanageDataUtil.getRandomLong(6000, 10000));
 		}
 		return q;

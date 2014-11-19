@@ -14,10 +14,10 @@
 					<panel title="Device Management" border="normal" collapsible="true"
 						   closable="true" style="margin-bottom: 10px; overflow: auto"  width="100%">
 						<panelchildren>
-						<grid sclass="unicloud">
+						<grid sclass="unicloud-table">
 							<columns>
-								<column>System: <combobox model="${devices}" autocomplete="true" name="System Name" id="deviceNameCombo" style="line-height: 20px;">
-													<comboitem label="@{each}" />
+								<column>System: <combobox model="${devices}" autocomplete="true" name="System Name" id="deviceNameCombo" sclass="unicloud-combo">
+													<comboitem label="@{each}" sclass="unicloud-combo"/>
 												</combobox>
 								</column>
 								<column>Type: <radiogroup id="deviceTypeRadio" orient="horizontal">
@@ -32,8 +32,97 @@
 					</panel>
 					<panel title="Device Information">
 						<panelchildren>
+						<grid sclass="unicloud-table">
+							<columns>
+								<column>System</column>
+								<column>IP Address</column>
+								<column>Software Rev.</column>
+								<column>Status</column>
+							</columns>
+							<rows>
+								<row>
+									<label>Unicloud A</label>
+									<label>10.10.10.10</label>
+									<label>MMM.nn.bbbb</label>
+									<label style="color: rgb(0, 255, 0);">OK</label>
+								</row>
+							</rows>
+						</grid>
 						</panelchildren>
 					</panel>
+					<panel title="Alarm Information">
+						<panelchildren>
+							<grid sclass="unicloud-table">
+								<auxhead>
+									<auxheader colspan="3" label="Alarm Summary"/>
+								</auxhead>
+								<columns>
+									<column>Summary</column>
+									<column>Alarms</column>
+								</columns>
+								<rows>
+									<row>
+										<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" height="260"/>
+										<grid sclass="unicloud-table">
+											<columns>
+												<column>Timestamp</column>
+												<column>Event ID</column>
+												<column>System Name</column>
+												<column>Alarm Name</column>
+												<column>Alarm Description</column>
+											</columns>
+										</grid>
+									</row>
+						  	   </rows>									
+							</grid>
+						</panelchildren>
+					</panel>
+					<panel title="Inventory Information">
+						<panelchildren>
+							<grid sclass="unicloud-table">
+								<auxhead>
+									<auxheader colspan="3" label="System Inventory"/>
+								</auxhead>
+								<columns>
+									<column>Item</column>
+									<column>Value</column>
+									<column>Description</column>
+								</columns>
+								<rows>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+									<row><label/><label/><label/></row>
+						  	   </rows>									
+							</grid>
+						</panelchildren>
+					</panel>
+					<panel title="Logical Network">
+						<panelchildren>
+							<grid sclass="unicloud-table">
+								<auxhead>
+									<auxheader colspan="3" label="Network Links"/>
+								</auxhead>
+								<columns>
+									<column>Link #</column>
+									<column>Remote System</column>
+									<column>Status</column>
+								</columns>
+								<rows>
+									<row>
+										<label value="1"/>
+										<label value="cws-1a"/>
+										<label style="color: rgb(0,255,0);" value="OK"/>
+									</row>
+						  	   </rows>									
+							</grid>
+						</panelchildren>
+					</panel>
+					
 				</portalchildren>
 			</portallayout>
 		</div>

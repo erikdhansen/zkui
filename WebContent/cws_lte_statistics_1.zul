@@ -9,16 +9,18 @@
 </zscript>
 		<grid id="lte_avg_dl_thru_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="3" label="LTE Average Throughput (Downlink) (Top 10)"/>
+   				<auxheader colspan="4" label="LTE Average Throughput (Downlink) (Top 10)"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">CWS</column>
-   				<column hflex="2">QCI</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
+   				<column hflex="1">QCI</column>
    				<column hflex="2">Avg. Throughput (DL)</column>
    			</columns>
    			<rows>
    				<row forEach="${cwsLteDlAvgThru}" sclass="${each.cssClassName}">
 	   				<label value="${each.systemName}"/>
+	   				<label value="${each.unicloud}"/>
 	   				<label value="${each.qciName}"/>
    					<label style="text-align: right;" value="${each.serviceAvgThruDL}"/>
  	  			</row>
@@ -31,16 +33,18 @@
    	</zscript>
    		<grid id="lte_avg_thru_ul_grid" sclass="unicloud-table">
 			<auxhead>
-				<auxheader colspan="3" label="LTE Average Throughput [Uplink] (Top 10)"/>
+				<auxheader colspan="4" label="LTE Average Throughput [Uplink] (Top 10)"/>
 			</auxhead>
 			<columns>
-				<column hflex="2" label="CWS"/>
-				<column hflex="2" label="QCI"/>
-				<column hflex="2" label="Avg. Throughput (UL)"/>
+				<column hflex="1" label="CWS"/>
+				<column hflex="1" label="LAC"/>
+				<column hflex="1" label="QCI"/>
+				<column hflex="1" label="Avg. Throughput (UL)"/>
 			</columns>
  			<rows>
 				<row forEach="${cwsLteUlAvgThru}" sclass="${each.cssClassName}">
 					<label value="${each.systemName}"/>
+					<label value="${each.unicloud}"/>
 					<label value="${each.qciName}"/>
 					<label value="${each.serviceAvgThruUL}"/>
 				</row>
@@ -55,16 +59,18 @@
 	</zscript>
 		<grid id="traffic_vol_dl_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="3" label="LTE Traffic Volume [Downlink] (Top 10)"/>
+   				<auxheader colspan="4" label="LTE Traffic Volume [Downlink] (Top 10)"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">CWS</column>
-   				<column hflex="2">QCI</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
+   				<column hflex="1">QCI</column>
    				<column hflex="1">Traffic Volume</column>
    			</columns>
    			<rows>
    				<row forEach="${cwsLteDlTrafVol}"  sclass="${each.cssClassName}">
 	   				<label sclass="unicloud-table" value="${each.systemName}"/>
+	   				<label value="${each.unicloud}"/>
 	   				<label value="${each.qciName}"/>
    					<label sclass="unicloud-table" value="${each.serviceTrafficVolDL}"/>
  	  			</row>
@@ -77,16 +83,18 @@
 	</zscript>
 		<grid id="traffic_vol_ul_grid" sclass="unicloud-table">
    			<auxhead>
-   				<auxheader colspan="3" label="LTE Traffic Volume [Uplink] (Top 10)"/>
+   				<auxheader colspan="4" label="LTE Traffic Volume [Uplink] (Top 10)"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">CWS</column>
-   				<column hflex="2">QCI</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
+   				<column hflex="1">QCI</column>
    				<column hflex="1">Traffic Volume</column>
    			</columns>
    			<rows>
    				<row forEach="${cwsLteUlTrafVol}" sclass="${each.cssClassName}">
 	   				<label sclass="unicloud-table" value="${each.systemName}"/>
+	   				<label value="${each.unicloud}"/>
 	   				<label value="${each.qciName}"/>
    					<label sclass="unicloud-table" value="${each.serviceTrafficVolUL}"/>
  	  			</row>

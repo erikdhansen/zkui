@@ -16,11 +16,11 @@
    			</auxhead>
    			<auxhead>
 	   			<auxheader colspan="2" label="System"/>
-	   			<auxheader colspan="3" label="Setup Results"/>
+	   			<auxheader colspan="4" label="Setup Results"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">CWS</column>
-   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
    				<column hflex="1">Failure</column>
 				<column hflex="1">Success</column>
 				<column hflex="1">Total</column>
@@ -45,11 +45,11 @@
 			</auxhead>
 			<auxhead>
 				<auxheader colspan="2" label="System"/>
-				<auxheader colspan="3" label="Release Type"/>
+				<auxheader colspan="4" label="Release Type"/>
 			</auxhead>
 			<columns>
-				<column hflex="2" label="CWS"/>
-				<column hflex="2" label="Uni-Cloud"/>
+				<column hflex="1" label="CWS"/>
+				<column hflex="1" label="LAC"/>
 				<column hflex="1" label="Abnormal"/>
 				<column hflex="1" label="Normal"/>
 				<column hflex="1" label="Total"/>
@@ -76,11 +76,11 @@
    			</auxhead>
    			<auxhead>
    				<auxheader colspan="2" label="System"/>
-   				<auxheader colspan="3" label="Incoming Results"/>
+   				<auxheader colspan="4" label="Incoming Results"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">System</column>
-   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
    				<column hflex="1">Failures</column>
 				<column hflex="1">Success</column>
 				<column hflex="1">Total</column>
@@ -105,11 +105,11 @@
    			</auxhead>
    			<auxhead>
    				<auxheader colspan="2" label="System"/>
-   				<auxheader colspan="3" label="Outgoing Results"/>
+   				<auxheader colspan="4" label="Outgoing Results"/>
    			</auxhead>
    			<columns>
-   				<column hflex="2">System</column>
-   				<column hflex="2">Uni-Cloud</column>
+   				<column hflex="1">CWS</column>
+   				<column hflex="1">LAC</column>
    				<column hflex="1">Failures</column>
 				<column hflex="1">Success</column>
 				<column hflex="1">Total</column>
