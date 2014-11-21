@@ -206,7 +206,7 @@ public class UnimanageDataUtil {
 	public static NetworkSummary getNetworkSummary() {
 		return new NetworkSummary(uniclouds);
 	}
-	
+
 	public static AlarmStatusModel getAlarmSummary() {
 		AlarmStatusModel model = new AlarmStatusModel();
 		List<AlarmRowModel> rows = model.getAlarmRowModels();

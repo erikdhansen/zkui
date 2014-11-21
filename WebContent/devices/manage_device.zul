@@ -7,6 +7,7 @@
 			com.parallelwireless.zkui.models.UnimanageDataUtil
 					.getAllNetworkDeviceNames());
 	int deviceListSize = devices.getSize();
+	com.parallelwireless.zkui.models.AlarmList alarmList = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarmsByDevice("Unicloud A");
 </zscript>
 		<div apply="com.parallelwireless.zkui.ManageDeviceLayoutController">
 			<portallayout id="portalLayout" maximizedMode="whole" width="100%">
@@ -21,7 +22,7 @@
 												</combobox>
 								</column>
 								<column>Type: <radiogroup id="deviceTypeRadio" orient="horizontal">
-											 	<radio value="unicloud" label="Uni-Clouds" style="padding: 5px;"/>
+											 	<radio value="unicloud" label="LACs" style="padding: 5px;"/>
 												<radio value="cws" label="CWSs" style="padding: 5px"/>
 												<radio value="all" label="All" style="padding: 5px;" checked="true"/>
 											  </radiogroup>
@@ -48,33 +49,55 @@
 								</row>
 							</rows>
 						</grid>
+						<tablelayout columns="4" width="100%">
+							<tablechildren colspan="4">
+								<grid style="border: 0px;">
+									<columns>
+										<column label="System Resources"/>									
+									</columns>
+								</grid>
+							</tablechildren>
+							<tablechildren>
+								<charts id="cpu_chart" type="gauge" title="CPU" width="150" height="150"/> 
+							</tablechildren>
+							<tablechildren id="mem_div">
+								<charts id="mem_chart" type="gauge" title="Memory" width="150" height="150"/>
+							</tablechildren>
+							<tablechildren>
+								<charts id="disk_chart" type="gauge" title="Disk" width="150" height="150"/> 
+							</tablechildren>
+							<tablechildren>
+								<charts id="net_chart" type="gauge" title="Net" width="150" height="150"/> 
+							</tablechildren>
+						</tablelayout>
 						</panelchildren>
-					</panel>
+					</panel>					
 					<panel title="Alarm Information">
 						<panelchildren>
-							<grid sclass="unicloud-table">
-								<auxhead>
-									<auxheader colspan="3" label="Alarm Summary"/>
-								</auxhead>
-								<columns>
-									<column>Summary</column>
-									<column>Alarms</column>
-								</columns>
-								<rows>
-									<row>
-										<charts id="alarm_counts" type="pie" title="Alarm Summary Counts" height="260"/>
-										<grid sclass="unicloud-table">
-											<columns>
-												<column>Timestamp</column>
-												<column>Event ID</column>
-												<column>System Name</column>
-												<column>Alarm Name</column>
-												<column>Alarm Description</column>
-											</columns>
-										</grid>
-									</row>
-						  	   </rows>									
-							</grid>
+							<hbox>
+								<charts id="alarm_chart" type="pie" title="Alarm Summary: ${u.name}" width="320" height="260"/>
+									<grid sclass="unicloud-table" id="alarm_grid">
+										<auxhead>
+											<auxheader colspan="5" label="Device Alarms: ${u.name}"/>
+										</auxhead>
+										<columns>
+											<column>Timestamp</column>
+											<column>Event ID</column>
+											<column>System Name</column>
+											<column>Alarm Name</column>
+											<column>Alarm Description</column>
+										</columns>
+										<rows>
+											<row forEach="${alarmList}" sclass="${each.cssClass}">
+												<label value="${each.timestamp}"/>
+												<label value="${each.eventId}"/>
+												<label value="${each.systemName}"/>
+												<label value="${each.alarmName}"/>
+												<label value="${each.alarmDescription}"/>
+											</row>
+										</rows>
+									</grid>
+							</hbox>
 						</panelchildren>
 					</panel>
 					<panel title="Inventory Information">
@@ -87,17 +110,7 @@
 									<column>Item</column>
 									<column>Value</column>
 									<column>Description</column>
-								</columns>
-								<rows>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-									<row><label/><label/><label/></row>
-						  	   </rows>									
+								</columns>								
 							</grid>
 						</panelchildren>
 					</panel>
@@ -121,8 +134,7 @@
 						  	   </rows>									
 							</grid>
 						</panelchildren>
-					</panel>
-					
+					</panel>					
 				</portalchildren>
 			</portallayout>
 		</div>
