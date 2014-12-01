@@ -1,0 +1,15 @@
+<?page title="Network Map" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript>
+	Collection uniclouds = com.parallelwireless.zkui.models.UnimanageDataUtil.getAllUniclouds();
+	com.parallelwireless.zkui.models.resources.GeoLocation center = com.parallelwireless.zkui.models.UnimanageDataUtil.getMapCenter();
+</zscript>
+<div apply="com.parallelwireless.zkui.network.GoogleMapsController">
+	<script type="text/javascript" content="zk.googleAPIkey='AIzaSyBqs6D5Vhny8bGQUw6cD8phhFGdRnSKRng'">
+	</script>
+	<vbox width="100%">
+	<gmaps version="3.9" id="gmap" width="400px" height="240px" showSmallCtrl="true" lat="${center.lat}" zoom="8" lng="${center.lng}">
+    </gmaps>
+    </vbox>
+</div>
+</zk>

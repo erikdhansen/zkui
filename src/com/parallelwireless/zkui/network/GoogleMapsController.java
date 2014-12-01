@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.network;
 
+import java.awt.Event;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import org.zkoss.bind.annotation.Scope;
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 import org.zkoss.gmaps.Gpolyline;
@@ -34,7 +36,9 @@ public class GoogleMapsController extends SelectorComposer<Div>{
 
 	@Wire
 	Gmaps gmap;
-
+	@Wire
+	Div infovis;
+	
 	List<Gmarker> cwsList = new LinkedList<Gmarker>();
 	Map<String,GeoLocation>     geos   = UnimanageDataUtil.getAllGeoLocations();
 
@@ -45,7 +49,8 @@ public class GoogleMapsController extends SelectorComposer<Div>{
 //		gmap.getChildren().removeAll(gmap.getChildren());
 		for(GeoLocation g : geos.values()) {
 			g.setMapState(MAP_STATE.HIDDEN);
-			gmap.appendChild(g);
+			if(gmap != null && g != null)
+				gmap.appendChild(g);
 		}
 		buildNetworkLinks();
 		for(GmapPolyline l : networkMapLinks) {
@@ -57,7 +62,7 @@ public class GoogleMapsController extends SelectorComposer<Div>{
 			newlink.setOpacity(50);
 			gmap.appendChild(newlink);
 		}
-	}
+}
 
 
 	public void buildNetworkLinks() {

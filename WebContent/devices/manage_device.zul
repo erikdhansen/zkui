@@ -47,11 +47,19 @@
 									<label>MMM.nn.bbbb</label>
 									<label style="color: rgb(0, 255, 0);">OK</label>
 								</row>
+								<row>
+									<cell colspan="2">
+										<include src="/devices/logical_map.zul"/>
+									</cell>
+									<cell colspan="2">
+										<include src="/devices/geographic_map.zul"/>
+									</cell>
+								</row>
 							</rows>
 						</grid>
 						<tablelayout columns="4" width="100%">
 							<tablechildren colspan="4">
-								<grid style="border: 0px;">
+								<grid style="border: 0px;" sclass="unicloud-table">
 									<columns>
 										<column label="System Resources"/>									
 									</columns>
@@ -75,7 +83,7 @@
 					<panel title="Alarm Information">
 						<panelchildren>
 							<hbox>
-								<charts id="alarm_chart" type="pie" title="Alarm Summary: ${u.name}" width="320" height="260"/>
+								<charts id="alarm_chart" type="pie" title="${u.name}" width="250" height="250"/>
 									<grid sclass="unicloud-table" id="alarm_grid">
 										<auxhead>
 											<auxheader colspan="5" label="Device Alarms: ${u.name}"/>
@@ -116,23 +124,7 @@
 					</panel>
 					<panel title="Logical Network">
 						<panelchildren>
-							<grid sclass="unicloud-table">
-								<auxhead>
-									<auxheader colspan="3" label="Network Links"/>
-								</auxhead>
-								<columns>
-									<column>Link #</column>
-									<column>Remote System</column>
-									<column>Status</column>
-								</columns>
-								<rows>
-									<row>
-										<label value="1"/>
-										<label value="cws-1a"/>
-										<label style="color: rgb(0,255,0);" value="OK"/>
-									</row>
-						  	   </rows>									
-							</grid>
+							<include src="devices/logical_map.zul"/>
 						</panelchildren>
 					</panel>					
 				</portalchildren>
