@@ -1,6 +1,8 @@
 <?page title="Unimanage: Device Management" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<zscript>
+<script src="/js/jit.js"/>
+<script src="/example1.js"/>
+<zscript>
 	com.parallelwireless.zkui.models.UnicloudModel u = com.parallelwireless.zkui.models.UnimanageDataUtil
 			.getUnicloud(1);
 	ListModelList devices = new ListModelList(
@@ -49,7 +51,8 @@
 								</row>
 								<row>
 									<cell colspan="2">
-										<include src="/devices/logical_map.zul"/>
+									<html><![CDATA[ <div id="log"/> ]]></html>
+										<div id="infovis" onFulfill="init();"/>
 									</cell>
 									<cell colspan="2">
 										<include src="/devices/geographic_map.zul"/>
