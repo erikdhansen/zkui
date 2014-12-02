@@ -10,8 +10,9 @@
 	<window style="margin-top: 10px" border="normal" apply="com.parallelwireless.zkui.MainWindowController">
 		<!--  <caption label="UniManage 4.0" style="font-family: ErasBT" /> -->
 		<div sclass="header">	
-			<hbox align="center" width="100%">
+			<hbox align="center" width="100%" style="position: fixed;">
 				<image src="images/logo_median.png" style="margin-top: 5px; margin-bottom: 15px" />
+				<hbox align="right" width="100%"/>
 			</hbox>				
 		</div>
 		<hbox width="100%">
