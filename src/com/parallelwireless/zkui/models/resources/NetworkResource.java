@@ -19,6 +19,7 @@ public class NetworkResource extends AbstractSystemResource {
 	int    currentPercentUtilization;
 	ArrayList<Integer>  lastTenPercentUtilization = new ArrayList<Integer>();
 	
+	int numInterfaces = 4;
 	public NetworkResource(String systemName) {
 		this.systemName = systemName;
 		CRITICAL = 80;
@@ -114,6 +115,10 @@ public class NetworkResource extends AbstractSystemResource {
 		this.systemName = systemName;
 	}
 
+	public int getNumInterfaces() {
+		return numInterfaces;
+	}
+	
 	public int getAverageUtilization() {
 		List<Integer> last10 = getLastTenPercentUtilization();
 		int total = 0;

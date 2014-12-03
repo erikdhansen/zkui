@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.models.resources;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -16,6 +17,10 @@ public class ResourceConfig extends HashMap<SystemResource.RESOURCE, String> {
 	
 	public static ResourceConfig generate() {
 		ResourceConfig cfg = new ResourceConfig();
+		Date installTimestamp = UnimanageDataUtil.getRandomDateBetweenDayAge(1, 365);
+		cfg.put(RESOURCE.GEN_INSTALL_DATE, String.valueOf(installTimestamp.getTime()));
+		cfg.put(RESOURCE.GEN_SYSTEM_VERSION, UnimanageDataUtil.getRandomSystemVersion());
+		cfg.put(RESOURCE.GEN_SERIAL_NUMBER, UnimanageDataUtil.getRandomSerialNumber()); 
 		cfg.put(RESOURCE.CPU_LOAD_ONE,     String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));
 		cfg.put(RESOURCE.CPU_LOAD_FIVE,    String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));

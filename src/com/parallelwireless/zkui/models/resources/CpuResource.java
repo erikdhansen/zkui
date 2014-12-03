@@ -1,5 +1,7 @@
 package com.parallelwireless.zkui.models.resources;
 
+import java.util.Random;
+
 public class CpuResource extends AbstractSystemResource {
 	String systemName;
 	
@@ -16,6 +18,9 @@ public class CpuResource extends AbstractSystemResource {
 	int    percentIdleCPU = 0;  // .1.3.6.1.4.1.2021.11.11.0
 	long   rawIdleCPU     = 0;  // .1.3.6.1.4.1.2021.11.53.0
 	long   rawNiceCPU     = 0;  // .1.3.6.1.4.1.2021.11.51.0
+	
+	int numCPUs = 2;
+	int cpuSpeed = new Random().nextInt(2500) + 1000;
 	
 	public CpuResource(String systemName) {
 		this.systemName = systemName;
@@ -142,5 +147,13 @@ public class CpuResource extends AbstractSystemResource {
 	@Override
 	public String getSystemName() {
 		return systemName;
-	}		
+	}	
+	
+	public int getNumCPUs() {
+		return numCPUs;
+	}
+	
+	public int getCpuSpeed() {
+		return cpuSpeed;
+	}
 }

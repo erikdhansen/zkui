@@ -19,6 +19,8 @@ public class DiskResource extends  AbstractSystemResource {
 	String systemName;
 	ResourceConfig cfg;
 	
+	int numHDs = 2;
+	
 	public DiskResource(String systemName) {
 		this.systemName = systemName;
 		CRITICAL = 95;
@@ -120,5 +122,9 @@ public class DiskResource extends  AbstractSystemResource {
 		Double inGB = dubs / new Double(GB);
 		hr = new DecimalFormat("#,###.##").format(inGB);
 		return hr;
+	}
+	
+	public int getNumHDs() {
+		return numHDs;
 	}
 }

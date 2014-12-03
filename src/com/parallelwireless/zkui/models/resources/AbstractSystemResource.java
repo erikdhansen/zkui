@@ -5,10 +5,17 @@ public abstract class AbstractSystemResource implements SystemResource {
 	int CRITICAL;
 	int MAJOR;
 	int MINOR;
+	String systemName;
 	
 	@Override
-	public abstract String getSystemName();
+	public String getSystemName() {
+		return systemName;
+	}
 
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+	
 	@Override
 	public abstract void addResources(ResourceConfig config) throws Exception;
 

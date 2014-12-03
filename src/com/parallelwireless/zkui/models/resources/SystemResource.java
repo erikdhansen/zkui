@@ -2,6 +2,9 @@ package com.parallelwireless.zkui.models.resources;
 
 public interface SystemResource {
 	public enum RESOURCE {
+		GEN_INSTALL_DATE("installDate"),
+		GEN_SYSTEM_VERSION("systemVersion"),
+		GEN_SERIAL_NUMBER("serialNumber"),
 		CPU_LOAD_ONE("oneMinLoad"),
 		CPU_LOAD_FIVE("fiveMinLoad"),
 		CPU_LOAD_FIFTEEN("fifteenMinLoad"),

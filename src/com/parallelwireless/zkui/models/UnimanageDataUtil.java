@@ -1,9 +1,11 @@
 package com.parallelwireless.zkui.models;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -217,6 +219,13 @@ public class UnimanageDataUtil {
 		return model;
 	}
 	
+	
+	/**
+	 * 
+	 * Routines to build and return CategoryModels used to crate ZK charts
+	 * 
+	 * \
+	 */
 	public static CategoryModel getCwsLteHandoverSuccessRate() {
 		CategoryModel model = new DefaultCategoryModel();
 		List<CwsModel> cwss = new LinkedList<CwsModel>(getTop10CwsModelsLTE(CwsModel.LTE_HANDOVER_SUCCESS_RATE_IN));
@@ -409,6 +418,13 @@ public class UnimanageDataUtil {
 		return model;
 	}
 	
+	
+	/**
+	 * Utility Functions
+	 *
+	 */
+	
+	
 	private static int stoi(String s) {
 		int i = -1;
 		try {
@@ -434,6 +450,12 @@ public class UnimanageDataUtil {
 		return new GeoLocation("MapCenter", DEV_TYPE.UNICLOUD, lat, lng);
 	}
 	
+	
+	/**
+	 * Routines to generate random data
+	 * 
+	 * 
+	 */
 	public static GeoLocation generateRandomLocation() {
 		// Generate a random latitude/mongitude between 42,-71 to 44,-73
 		int latInt = getRandomInt(42, 44);
@@ -490,6 +512,28 @@ public class UnimanageDataUtil {
 		return fraction;
 	}
 	
+	public static Date getRandomDateBetweenDayAge(int min, int max) {
+		long now = Calendar.getInstance().getTimeInMillis();
+		Long minStamp = now - (min * 86400) * 1000;  // min date in range is current timestamp - number of milliseconds * number of days
+		Long maxStamp = now - (max * 86400) * 1000; // max date in range is current timestamp - number of milliseconds * number of dayss
+		long dateStamp = getRandomLong(maxStamp.intValue(), minStamp.intValue()); // min is greater than max as more recent timestamp is higher than older timestamp
+		Calendar randomCal = Calendar.getInstance();
+		randomCal.setTimeInMillis(dateStamp);
+		log.info("Asked for a random date between T-" + min + " days and T-" + max + " days -- result: " + randomCal.getTime().toString());
+		return randomCal.getTime();
+	}
+	
+	public static String getRandomSystemVersion() {
+		int major = getRandomInt(1,  4);
+		int minor = getRandomInt(100, 999);
+		int build = getRandomInt(1000, 9999);
+		return String.valueOf(major).concat(".").concat(String.valueOf(minor)).concat(".").concat(String.valueOf(build));
+	}
+	
+	public static String getRandomSerialNumber() {
+		long serial = getRandomLong(10000, 99999);
+		return "PWX".concat(String.valueOf(serial));
+	}
 	
 	public static List<QCI> getNQCI(int n, Comparator<QCI> comparator) {
 		List<QCI> qcis = new LinkedList<QCI>();

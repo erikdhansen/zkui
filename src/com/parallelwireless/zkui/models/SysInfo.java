@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import com.parallelwireless.zkui.models.resources.CpuResource;
 import com.parallelwireless.zkui.models.resources.DiskResource;
+import com.parallelwireless.zkui.models.resources.GeneralResource;
 import com.parallelwireless.zkui.models.resources.GeoLocation;
 import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.MemoryResource;
@@ -14,15 +15,17 @@ public class SysInfo {
 	
 
 	String  systemName = "";
+	private GeneralResource gen  = null;
 	private CpuResource     cpu  = null;
 	private MemoryResource  mem  = null; 
 	private DiskResource    disk = null; 
-	private NetworkResource net = null;
-	private GeoLocation     geo = null;
-	private boolean    		uni = true;
+	private NetworkResource net  = null;
+	private GeoLocation     geo  = null;
+	private boolean    		uni  = true;
 	
 	public SysInfo(String systemName, boolean uni) {
 		this.systemName = systemName;
+		gen = new GeneralResource(systemName);
 		cpu  = new CpuResource(systemName);
 		mem  = new MemoryResource(systemName);
 		disk = new DiskResource(systemName);
@@ -32,6 +35,7 @@ public class SysInfo {
 	
 	public void addResources(ResourceConfig config) {
 		try {
+			gen.addResources(config);
 			cpu.addResources(config);
 			mem.addResources(config);
 			disk.addResources(config);
@@ -42,6 +46,10 @@ public class SysInfo {
 		}
 	}
 
+	public GeneralResource getGeneral() {
+		return gen;
+	}
+	
 	public CpuResource getCpu() {
 		return cpu;
 	}

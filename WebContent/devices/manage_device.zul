@@ -44,17 +44,28 @@
 							</columns>
 							<rows>
 								<row>
-									<label>Unicloud A</label>
-									<label>10.10.10.10</label>
-									<label>MMM.nn.bbbb</label>
+									<label>${u.name}</label>
+									<label>${u.networkInterfaces.get(0).fakeIp}</label>
+									<label>${u.sysInfo.general.systemVersion}</label>
 									<label style="color: rgb(0, 255, 0);">OK</label>
 								</row>
+								</rows>
+							</grid>
+							<grid sclass="unicloud-table">
+								<auxhead>
+									<auxheader colspan="2">Network Topologies</auxheader>
+								</auxhead>
+								<columns>
+									<column>Logical Network</column>
+									<column>Geographical Network</column>
+								</columns>
+								<rows>
 								<row>
-									<cell colspan="2">
-									<html><![CDATA[ <div id="log"/> ]]></html>
-										<div id="infovis" onFulfill="init();"/>
+									<cell colspan="1">
+										<!--  <iframe style="width: 99%;" src="http://localhost/jit/Spacetree/example1.html"/> -->
+										<image width="400px" height="240" src="/images/logical_map.png"/>
 									</cell>
-									<cell colspan="2">
+									<cell colspan="1">
 										<include src="/devices/geographic_map.zul"/>
 									</cell>
 								</row>
@@ -115,21 +126,68 @@
 						<panelchildren>
 							<grid sclass="unicloud-table">
 								<auxhead>
-									<auxheader colspan="3" label="System Inventory"/>
+									<auxheader colspan="14" label="System Inventory"/>
+								</auxhead>
+								<auxhead>
+									<auxheader colspan="5" label="General System"/>
+									<auxheader colspan="9" label="System Resources"/>
+								</auxhead>
+								<auxhead>
+									<auxheader colspan="5" label="System Config"/>
+									<auxheader colspan="2" label="CPU"/>
+									<auxheader colspan="2" label="Memory"/>
+									<auxheader colspan="3" label="Disk"/>
+									<auxheader colspan="2" label="Network"/>
 								</auxhead>
 								<columns>
-									<column>Item</column>
-									<column>Value</column>
-									<column>Description</column>
-								</columns>								
+									<column>System</column>
+									<column>IP Address</column>
+									<column>Install Date</column>
+									<column>Version</column>
+									<column>Serial No.</column>
+									<column>No. CPUs</column>
+									<column>CPU Speed</column>
+									<column>Physical</column>
+									<column>Virtual</column>
+									<column>Num HDs</column>
+									<column>Total Space</column>
+									<column>Avail Space</column>
+									<column>No. Intf</column>
+									<column>Intf Type</column>									
+								</columns>
+								<rows>
+									<row>
+										<label value="${u.name}"/>
+										<label value="${u.networkInterfaces.get(0).fakeIp}"/>
+										<label value="${u.sysInfo.general.installDate}"/>
+										<label value="${u.sysInfo.general.systemVersion}"/>
+										<label value="${u.sysInfo.general.serialNumber}"/>
+										<label value="${u.sysInfo.cpu.numCPUs}"/>
+										<label value="${u.sysInfo.cpu.cpuSpeed}GHz"/>
+										<label value="${u.sysInfo.mem.totalRAMFreeHR}MB"/>
+										<label value="${u.sysInfo.mem.availSwapSizeHR}MB"/>
+										<label hflex="1" value="${u.sysInfo.disk.numHDs}"/>
+										<label value="${u.sysInfo.disk.totalDiskSpaceHR}GB"/>
+										<label value="${u.sysInfo.disk.freeDiskSpaceHR}GB"/>
+										<label value="${u.sysInfo.network.numInterfaces}"/>
+										<label value="${u.sysInfo.network.linkSpeed}"/>
+									</row>
+								</rows>								
 							</grid>
 						</panelchildren>
 					</panel>
-					<panel title="Logical Network">
+					<panel title="Key Performance Indicators">
 						<panelchildren>
-							<include src="devices/logical_map.zul"/>
+							<include src="unicloud_system_resources_dashboard.zul"/>
+						</panelchildren>
+					</panel>
+					<panel title="CWS Key Performance Indicators">
+						<panelchildren>
+							<include src="cws_lte_statistics_1.zul"/>
+							<include src="cws_lte_statistics_2.zul"/>
 						</panelchildren>
 					</panel>					
+										
 				</portalchildren>
 			</portallayout>
 		</div>
