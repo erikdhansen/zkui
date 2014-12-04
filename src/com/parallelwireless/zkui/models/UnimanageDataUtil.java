@@ -18,6 +18,7 @@ import org.zkoss.chart.model.DefaultCategoryModel;
 import org.zkoss.chart.model.DefaultPieModel;
 import org.zkoss.chart.model.PieModel;
 
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.lte.LteStatistics;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
 import com.parallelwireless.zkui.models.lte.QCI;
@@ -134,9 +135,19 @@ public class UnimanageDataUtil {
 	}
 	
 	public static List<String> getAllNetworkDeviceNames() {
+		return getAllNetworkDeviceNames(true, true, true);
+	}
+	
+	public static List<String> getAllNetworkDeviceNames(boolean lac, boolean cwsGW, boolean cwsMesh) {
 		List<String> deviceNames = new LinkedList<String>();
 		for(NetworkDevice d : getAllNetworkDevices()) {
-			deviceNames.add(d.getName());
+			if(d.getType() == TYPE.unicloud && lac == true) {
+				deviceNames.add(d.getName());
+			} else if(d.getType() == TYPE.cws_gw && cwsGW == true) {
+				deviceNames.add(d.getName());
+			} else if(d.getType() == TYPE.cws_mesh && cwsMesh == true) {
+				deviceNames.add(d.getName());
+			}
 		}
 		return deviceNames;
 	}

@@ -1,38 +1,39 @@
 package com.parallelwireless.zkui;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 import org.zkoss.chart.Charts;
-import org.zkoss.chart.Tooltip;
-import org.zkoss.chart.model.CategoryModel;
-import org.zkoss.chart.model.DefaultCategoryModel;
 import org.zkoss.chart.model.DefaultDialModel;
 import org.zkoss.chart.model.DefaultPieModel;
 import org.zkoss.chart.model.DialModel;
 import org.zkoss.chart.model.DialModelScale;
 import org.zkoss.chart.model.PieModel;
+import org.zkoss.zk.ui.event.CheckEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zkmax.zul.Tablechildren;
+import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Grid;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Popup;
-import org.zkoss.zul.Radiogroup;
-import org.zkoss.zul.Row;
 
 import com.parallelwireless.zkui.models.AlarmDataUtil;
 import com.parallelwireless.zkui.models.AlarmList;
-import com.parallelwireless.zkui.models.AlarmModel;
 import com.parallelwireless.zkui.models.AlarmModel.Severity;
 import com.parallelwireless.zkui.models.Unimanage;
+import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 
 @SuppressWarnings("serial")
 public class ManageDeviceLayoutController extends SelectorComposer<Div> {
-
+	final static Logger log = Logger.getLogger(ManageDeviceLayoutController.class.getName());
+	
 	@Wire
 	Combobox 	deviceNameCombo;
-	@Wire
-	Radiogroup	deviceTypeRadio;
 	@Wire
 	Charts		cpu_chart;
 	@Wire
@@ -47,6 +48,16 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	Charts		alarm_chart;
 	@Wire
 	Grid		alarm_grid;
+	@Wire
+	Checkbox	lac;
+	@Wire
+	Checkbox	cwsGW;
+	@Wire
+	Checkbox	cwsMesh;
+	
+	boolean includeLac     = true;
+	boolean includeCwsGW   = true;
+	boolean includeCwsMesh = true;
 	
 	@Override
 	public void doAfterCompose(Div d) throws Exception {
@@ -56,6 +67,19 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 		doDiskChart();
 		doNetChart();
 		doAlarms();
+	}
+	
+	@Listen( "onCheck = Checkbox" )
+	public void deviceTypeChecked(CheckEvent e) {
+		includeLac     = lac.isChecked()     ? true : false;
+		includeCwsGW   = cwsGW.isChecked()   ? true : false;
+		includeCwsMesh = cwsMesh.isChecked() ? true : false;
+		updateDeviceNameCombo();
+	}
+
+	private void updateDeviceNameCombo() {
+		List<String> netDevNames = UnimanageDataUtil.getAllNetworkDeviceNames(includeLac, includeCwsGW, includeCwsMesh);
+		deviceNameCombo.setModel(new ListModelList<String>(netDevNames));
 	}
 	
 	private void doAlarms() {

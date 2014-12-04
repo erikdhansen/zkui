@@ -23,11 +23,9 @@
 													<comboitem label="@{each}" sclass="unicloud-combo"/>
 												</combobox>
 								</column>
-								<column>Type: <radiogroup id="deviceTypeRadio" orient="horizontal">
-											 	<radio value="unicloud" label="LACs" style="padding: 5px;"/>
-												<radio value="cws" label="CWSs" style="padding: 5px"/>
-												<radio value="all" label="All" style="padding: 5px;" checked="true"/>
-											  </radiogroup>
+								<column>Device Type: <checkbox id="lac" label="LACs" style="padding: 5px;" checked="true"/>
+											  <checkbox id="cwsGW"	label="CWS (gw)" style="padding: 5px;" checked="true"/>
+											  <checkbox id="cwsMesh" label="CWS (mesh)" style="padding: 5px;" checked="true"/>
 								</column>
 							</columns>
 						</grid>
