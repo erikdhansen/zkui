@@ -3,13 +3,10 @@
 <script src="/js/jit.js"/>
 <script src="/example1.js"/>
 <zscript>
-	com.parallelwireless.zkui.models.UnicloudModel u = com.parallelwireless.zkui.models.UnimanageDataUtil
-			.getUnicloud(1);
 	ListModelList devices = new ListModelList(
 			com.parallelwireless.zkui.models.UnimanageDataUtil
 					.getAllNetworkDeviceNames());
 	int deviceListSize = devices.getSize();
-	com.parallelwireless.zkui.models.AlarmList alarmList = com.parallelwireless.zkui.models.AlarmDataUtil.getAlarmsByDevice("Unicloud A");
 </zscript>
 		<div apply="com.parallelwireless.zkui.ManageDeviceLayoutController">
 			<portallayout id="portalLayout" maximizedMode="whole" width="100%">
@@ -33,21 +30,21 @@
 					</panel>
 					<panel title="Device Information">
 						<panelchildren>
-						<grid sclass="unicloud-table">
+						<grid sclass="unicloud-table" id="deviceInformation" model="${networkDevice}">
 							<columns>
 								<column>System</column>
 								<column>IP Address</column>
 								<column>Software Rev.</column>
 								<column>Status</column>
 							</columns>
-							<rows>
+							<template name="model">
 								<row>
-									<label>${u.name}</label>
-									<label>${u.networkInterfaces.get(0).fakeIp}</label>
-									<label>${u.sysInfo.general.systemVersion}</label>
+									<label>${each.name}</label>
+									<label>${each.networkInterfaces.get(0).fakeIp}</label>
+									<label>${each.sysInfo.general.systemVersion}</label>
 									<label style="color: rgb(0, 255, 0);">OK</label>
 								</row>
-								</rows>
+							</template>
 							</grid>
 							<grid sclass="unicloud-table">
 								<auxhead>
@@ -64,8 +61,13 @@
 										<image width="400px" height="240" src="/images/logical_map.png"/>
 									</cell>
 									<cell colspan="1">
-										<include src="/devices/geographic_map.zul"/>
-									</cell>
+									<div id="deviceGeoMapDiv">
+										<script type="text/javascript" content="zk.googleAPIkey='AIzaSyBqs6D5Vhny8bGQUw6cD8phhFGdRnSKRng'"/>
+										<vbox width="100%">
+											<gmaps version="3.9" id="gmap" width="400px" height="240px" showSmallCtrl="true" zoom="8"/>
+								    	</vbox>
+									</div>
+							</cell>
 								</row>
 							</rows>
 						</grid>
@@ -95,10 +97,10 @@
 					<panel title="Alarm Information">
 						<panelchildren>
 							<hbox>
-								<charts id="alarm_chart" type="pie" title="${u.name}" width="250" height="250"/>
-									<grid sclass="unicloud-table" id="alarm_grid">
+								<charts id="alarm_chart" type="pie" width="250" height="250"/>
+									<grid sclass="unicloud-table" id="alarm_grid" model="${alarmList}">
 										<auxhead>
-											<auxheader colspan="5" label="Device Alarms: ${u.name}"/>
+											<auxheader id="alarmGridHeader" colspan="5" label="Device Alarms"/>
 										</auxhead>
 										<columns>
 											<column>Timestamp</column>
@@ -107,22 +109,22 @@
 											<column>Alarm Name</column>
 											<column>Alarm Description</column>
 										</columns>
-										<rows>
-											<row forEach="${alarmList}" sclass="${each.cssClass}">
+										<template name="model">
+											<row sclass="${each.cssClass}">
 												<label value="${each.timestamp}"/>
 												<label value="${each.eventId}"/>
 												<label value="${each.systemName}"/>
 												<label value="${each.alarmName}"/>
 												<label value="${each.alarmDescription}"/>
 											</row>
-										</rows>
+										</template>
 									</grid>
 							</hbox>
 						</panelchildren>
 					</panel>
 					<panel title="Inventory Information">
 						<panelchildren>
-							<grid sclass="unicloud-table">
+							<grid sclass="unicloud-table" model="${networkDevice}">
 								<auxhead>
 									<auxheader colspan="14" label="System Inventory"/>
 								</auxhead>
@@ -153,7 +155,7 @@
 									<column>No. Intf</column>
 									<column>Intf Type</column>									
 								</columns>
-								<rows>
+								<template name="model">
 									<row>
 										<label value="${u.name}"/>
 										<label value="${u.networkInterfaces.get(0).fakeIp}"/>
@@ -170,7 +172,7 @@
 										<label value="${u.sysInfo.network.numInterfaces}"/>
 										<label value="${u.sysInfo.network.linkSpeed}"/>
 									</row>
-								</rows>								
+								</template>								
 							</grid>
 						</panelchildren>
 					</panel>

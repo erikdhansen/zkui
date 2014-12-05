@@ -36,7 +36,7 @@ public class UnimanageDataUtil {
 	static NetworkMap uniclouds = new NetworkMap();
 	static {
 		// Unicloud Data
-		UnicloudModel u = new UnicloudModel(1, "Unicloud A", "10.10.10.122");
+		UnicloudModel u = new UnicloudModel(1, "Unicloud A", "10.10.10.121");
 		ResourceConfig cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-a4");
@@ -48,13 +48,13 @@ public class UnimanageDataUtil {
 		u.getNetworkLinks().add("cws-b1");
 		uniclouds.put(2, u);
 		// Unicloud Data
-		u = new UnicloudModel(3, "Unicloud C", "10.10.10.122");
+		u = new UnicloudModel(3, "Unicloud C", "10.10.10.123");
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-c1");
 		uniclouds.put(3, u);
 		// Unicloud Data
-		u = new UnicloudModel(4, "Unicloud D", "10.10.10.122");
+		u = new UnicloudModel(4, "Unicloud D", "10.10.10.124");
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-d1");
@@ -63,7 +63,7 @@ public class UnimanageDataUtil {
 	}
 	
 	static {
-		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh);
+		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.9", NetworkDevice.TYPE.cws_mesh);
 		cws.addNetworkLinks("cws-a4", "cws-a2");
 		uniclouds.get(1).addCws(cws);
 		cws = new CwsModel("cws-a2", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh);
@@ -132,6 +132,15 @@ public class UnimanageDataUtil {
 			}
 		}
 		return gmap;
+	}
+	
+	public static NetworkDevice getNetworkDevice(String deviceName) throws NetworkDeviceNotFoundException {
+		List<NetworkDevice> allDevices = getAllNetworkDevices();
+		for(NetworkDevice n : allDevices) {
+			if(n.getName().equalsIgnoreCase(deviceName))
+				return n;
+		}
+		throw new NetworkDeviceNotFoundException(deviceName);
 	}
 	
 	public static List<String> getAllNetworkDeviceNames() {

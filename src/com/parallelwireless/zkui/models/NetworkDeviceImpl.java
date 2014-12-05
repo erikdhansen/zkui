@@ -3,12 +3,10 @@ package com.parallelwireless.zkui.models;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.parallelwireless.zkui.models.resources.CpuResource;
-import com.parallelwireless.zkui.models.resources.DiskResource;
+import java.util.logging.Logger;
 
 public abstract class NetworkDeviceImpl implements NetworkDevice {
-
+	final static Logger log = Logger.getLogger(NetworkDeviceImpl.class.getName());
 	boolean up = true;
 	NetworkDevice.TYPE type;
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
@@ -100,4 +98,14 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 		    	return net2.compareTo(net1);
 		    }
 	};
+	
+	@Override
+	public double getLat() {
+		return getSysInfo().getGeo().getLat();
+	}
+	
+	@Override
+	public double getLng() {
+		return getSysInfo().getGeo().getLng();
+	}
 }

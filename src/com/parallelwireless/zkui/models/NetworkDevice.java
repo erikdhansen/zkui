@@ -22,4 +22,7 @@ public interface NetworkDevice {
 	public SysInfo getSysInfo();
 	public NetworkDeviceInfo getNetworkDeviceInfo();
 	public List<String> getNetworkLinks();
+	public double getLat();
+	public double getLng();
 }
+

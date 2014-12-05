@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.zkoss.chart.Color;
 import org.zkoss.chart.RadialGradient;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zul.Caption;
+import org.zkoss.zul.Window;
 
 public class Unimanage {
 
@@ -65,5 +68,13 @@ public class Unimanage {
 		rg = new RadialGradient(0.5, 0.3, 0.7);
 		rg.setStops(COLOR_MINOR, "#96a000");
 		ALARM_COLOR_GRADIENTS.add(new Color(rg));
+	}
+	
+	public static void getModalWindow(String message) {
+		Window w = new Window("Error", "normal", true);
+		Caption c = new Caption(message, "/images/device_icon_medium.png");
+		w.appendChild(c);
+		w.doModal();
+		return;
 	}
 }
