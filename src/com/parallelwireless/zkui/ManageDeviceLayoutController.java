@@ -77,7 +77,7 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	Checkbox	cwsMesh;
 	@Wire
 	Auxheader	alarmGridHeader;
-	
+		
 	boolean includeLac     = true;
 	boolean includeCwsGW   = true;
 	boolean includeCwsMesh = true;
@@ -92,6 +92,7 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 		log.log(Level.INFO, "device name selected: " + deviceNameCombo.getSelectedItem().getValue());
 		updatePage((String)deviceNameCombo.getSelectedItem().getValue());
 	}
+	
 	@Listen( "onCheck = Checkbox" )
 	public void deviceTypeChecked(CheckEvent e) {
 		includeLac     = lac.isChecked()     ? true : false;
@@ -131,17 +132,17 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 			return;
 		log.log(Level.INFO, "doCpuChart: NetworkDevice = " + d.getName());
 		DialModel model = new DefaultDialModel();
-		DialModelScale scale = model.newScale(0, 100, -150, -300, 10, 4);
+		DialModelScale scale = model.newScale(0, 400, -150, -300, 25, 5);
 		cpu_chart.setSpacingTop(5);
 		cpu_chart.getXAxis().getLabels().setStyle("font-size: 8px;");
 		cpu_chart.getYAxis().getLabels().setStyle("font-size: 8px;");
 		scale.setTickColor("#666666");
 		scale.setTickLabelOffset(0.1);
 		scale.setValue(d.getSysInfo().getCpu().getPercentCPUTotal());
-		scale.newRange(0, 50, "#55bf3b", 0.9, 1);
-		scale.newRange(50, 70, "#ffff0d", 0.9, 1);
-		scale.newRange(70, 85, "#df7318", 0.9, 1);
-		scale.newRange(85, 100, "#ed5353", 0.9, 1);
+		scale.newRange(0, 200, "#55bf3b", 0.9, 1);
+		scale.newRange(200, 280, "#ffff0d", 0.9, 1);
+		scale.newRange(280, 340, "#df7318", 0.9, 1);
+		scale.newRange(340, 400, "#ed5353", 0.9, 1);
 		cpu_chart.setModel(model);
 	}
 	
@@ -238,6 +239,7 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	}
 	
 	private void updateInventoryInformation(NetworkDevice d) {
+		NetworkDeviceInventory i = UnimanageDataUtil.getDeviceInventory(d);
 		log.log(Level.INFO, "updateInventoryInformation: " + d.toString());		
 	}
 	

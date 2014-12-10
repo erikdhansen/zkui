@@ -1,7 +1,13 @@
 package com.parallelwireless.zkui.models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.zkoss.chart.Color;
 import org.zkoss.chart.RadialGradient;
@@ -9,11 +15,22 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Caption;
 import org.zkoss.zul.Window;
 
-public class Unimanage {
+import com.parallelwireless.zkui.models.inventory.CwsDeviceInventoryItem;
 
+public class Unimanage {
+	final static Logger log = Logger.getLogger(Unimanage.class.getName());
+	
 	public final static String COLOR_CRITICAL = "#cc0000";
 	public final static String COLOR_MAJOR    = "#f39317";
 	public final static String COLOR_MINOR    = "#ebf317";
+	
+	public static enum IP4_ADDR_CLASS {
+		CLASS_A,
+		CLASS_B,
+		CLASS_C,
+		CLASS_D,
+		CIDR
+	}
 	
 	public static enum RESOURCE_COLOR {
 		RESOURCE_RAM_FREE,
@@ -76,5 +93,57 @@ public class Unimanage {
 		w.appendChild(c);
 		w.doModal();
 		return;
+	}
+	
+	public static List<CwsDeviceInventoryItem> generateFakeInventory(NetworkDevice d) {
+		List<CwsDeviceInventoryItem> inventory = new LinkedList<CwsDeviceInventoryItem>();
+		CwsDeviceInventoryItem i = new CwsDeviceInventoryItem();
+		inventory.add(i);
+		return inventory;		
+	}
+	
+	public static String getRandomIP() {
+		return getRandomIP(IP4_ADDR_CLASS.CIDR);
+	}
+	
+	public static Date getRandomInstallDate(int daysBack) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_YEAR, (0 - new Random().nextInt(daysBack)));
+		return cal.getTime();
+	}
+	
+	public static String getRandomVersionString() {
+		return "4.0.1029";
+	}
+	
+	public static String getRandomSerialNumber(NetworkDevice.TYPE type) {
+		return type.name().concat(String.valueOf(UnimanageDataUtil.getRandomInt(1001, 9999)));
+	}
+	
+	public static String getRandomIP(IP4_ADDR_CLASS addrClass) {
+		Random r = new Random();
+		int b1 = 0;
+		switch(addrClass) {
+			case CLASS_A:
+				b1 = r.nextInt(125) + 1;
+				break;
+			case CLASS_B:
+				b1 = UnimanageDataUtil.getRandomInt(128, 191);
+				break;
+			case CLASS_C:
+				b1 = UnimanageDataUtil.getRandomInt(192,222);
+				break;
+			default:
+				while(b1 != 255 && b1 != 127 && b1 != 223 && b1 != 0)
+					b1 = r.nextInt(256);
+		}
+		int b2 = r.nextInt(256);
+		int b3 = r.nextInt(256);
+		int b4 = r.nextInt(256);
+		
+		String ipAddr = String.valueOf(b1).concat(".").concat(String.valueOf(b2)).concat(".").concat(String.valueOf(b3)).concat(".").concat(String.valueOf(b4));
+		log.log(Level.INFO, "Generated Random IP Address: " + ipAddr);
+		return ipAddr;
 	}
 }

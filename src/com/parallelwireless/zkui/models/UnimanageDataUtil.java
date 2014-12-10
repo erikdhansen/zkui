@@ -63,49 +63,49 @@ public class UnimanageDataUtil {
 	}
 	
 	static {
-		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.9", NetworkDevice.TYPE.cws_mesh);
+		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.9", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a4", "cws-a2");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a2", 1, "10.11.1.1", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-a2", 1, "10.11.1.1", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a1", "cws-a3");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a3", 1, "10.11.1.2", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-a3", 1, "10.11.1.2", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a2", "cws-a4");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a4", 1, "10.11.1.3", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-a4", 1, "10.11.1.3", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-a1", "cws-a3", "Unicloud A");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-b1", 1, "10.11.1.4", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-b1", 1, "10.11.1.4", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud B", "cws-b2");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b2", 2, "10.11.2.4", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-b2", 2, "10.11.2.4", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-b1", "cws-c3");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b3", 2, "10.11.2.5", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-b3", 2, "10.11.2.5", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-b2", "cws-b5");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b4", 2, "10.11.2.6", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-b4", 2, "10.11.2.6", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-b5", "Unicloud B");
 		uniclouds.get(2).addCws(cws);		
-		cws = new CwsModel("cws-b5", 2, "10.11.2.7", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-b5", 2, "10.11.2.7", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-b3", "cws-b4");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-c1", 3, "10.11.3.8", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-c1", 3, "10.11.3.8", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud C", "cws-c2");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c2", 3, "10.11.3.9", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-c2", 3, "10.11.3.9", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c3", 3, "10.11.3.10", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-c3", 3, "10.11.3.10", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-d1", 4, "10.11.4.11", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-d1", 4, "10.11.4.11", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud D", "cws-d2");
 		uniclouds.get(4).addCws(cws);
-		cws = new CwsModel("cws-d2", 4, "10.11.4.12", NetworkDevice.TYPE.cws_mesh);
+		cws = new CwsModel("cws-d2", 4, "10.11.4.12", NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-d1", "cws-d3");
 		uniclouds.get(4).addCws(cws);
-		cws = new CwsModel("cws-d3", 4, "10.11.4.13", NetworkDevice.TYPE.cws_gw);
+		cws = new CwsModel("cws-d3", 4, "10.11.4.13", NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud D", "cws-d2");
 		uniclouds.get(4).addCws(cws);
 	}
@@ -150,11 +150,11 @@ public class UnimanageDataUtil {
 	public static List<String> getAllNetworkDeviceNames(boolean lac, boolean cwsGW, boolean cwsMesh) {
 		List<String> deviceNames = new LinkedList<String>();
 		for(NetworkDevice d : getAllNetworkDevices()) {
-			if(d.getType() == TYPE.unicloud && lac == true) {
+			if(d.getType() == TYPE.LAC && lac == true) {
 				deviceNames.add(d.getName());
-			} else if(d.getType() == TYPE.cws_gw && cwsGW == true) {
+			} else if(d.getType() == TYPE.CWS_GW && cwsGW == true) {
 				deviceNames.add(d.getName());
-			} else if(d.getType() == TYPE.cws_mesh && cwsMesh == true) {
+			} else if(d.getType() == TYPE.CWS_MESH && cwsMesh == true) {
 				deviceNames.add(d.getName());
 			}
 		}
@@ -233,9 +233,9 @@ public class UnimanageDataUtil {
 		AlarmStatusModel model = new AlarmStatusModel();
 		List<AlarmRowModel> rows = model.getAlarmRowModels();
 		rows.clear();
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.unicloud), 3, 4, 8));
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_gw), 6, 3, 9));
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.cws_mesh), 4, 2, 3));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.LAC), 3, 4, 8));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.CWS_GW), 6, 3, 9));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.CWS_MESH), 4, 2, 3));
 		return model;
 	}
 	
@@ -491,10 +491,13 @@ public class UnimanageDataUtil {
 		log.info("Generated random location: " + g);
 		return g;
 	}
-	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE type) {
+	public static List<NetworkDeviceInterface> fudgeNetworkDeviceInterfaces(int count) {
 		List<NetworkDeviceInterface> netIfs = new LinkedList<NetworkDeviceInterface>();
-		NetworkDeviceInterface netIf = new NetworkDeviceInterface();
-		netIfs.add(netIf);
+		for(int i=0; i < count; i++) {
+			NetworkDeviceInterface netIf = new NetworkDeviceInterface();
+			netIf.setIPAddress(Unimanage.getRandomIP());
+			netIfs.add(netIf);
+		}
 		return netIfs;
 	}
 	
@@ -622,6 +625,21 @@ public class UnimanageDataUtil {
 			}
 		}
 		return top10;
+	}
+	
+	public static int[] getRandomCPUPercent(int numSlices, int numCPU) {
+		int[] slices = new int[numSlices];
+		int total = numCPU * 100;
+		for(int i=0; i < (numSlices - 1); i++) {
+			slices[i] = new Long(getRandomLongWithinRange(total)).intValue();
+			total -= slices[i];
+		}
+		slices[numSlices - 1] = total;
+		String output = "RandomPercent[" + numSlices + "]; ";
+		for(int i = 0; i < numSlices; i++) {
+			output.concat(String.valueOf(slices[i])).concat(" ");
+		}
+		return slices;		
 	}
 	
 	public static int[] getRandomPercent(int numSlices) {

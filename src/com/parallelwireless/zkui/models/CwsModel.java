@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.parallelwireless.zkui.models.inventory.SystemInventory;
 import com.parallelwireless.zkui.models.lte.LteErabSetupSuccessRateAll;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
 import com.parallelwireless.zkui.models.lte.QCI;
@@ -27,20 +28,22 @@ public class CwsModel extends NetworkDeviceImpl {
 	int lastSeenMinutes;
 	String unicloudName = "";
 	
-	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
+	List<NetworkDeviceInterface> networkDeviceInterfaces = null;
+	
 	LteStatisticsImpl lteStats = null;
 	
-	public CwsModel(String name, int unicloudId, String ip, NetworkDevice.TYPE type) {
+	public CwsModel(String name, int unicloudId, NetworkDevice.TYPE type) {
 		this.id = globalCwsId++;
 		this.name = name;
 		this.unicloudId = unicloudId;
 		this.type = type;
 		this.sysinfo = new SysInfo(name, false);
+		networkDeviceInterfaces = generateNetworkInterfaces(4);
 		this.sysinfo.addResources(ResourceConfig.generate());
-		networkDeviceInterfaces = refreshNetworkDeviceInterfaces();
 		lteStats = new LteStatisticsImpl(name);		
 		lteStats.setQCI(QCI.generateRandomQCIs(UnimanageDataUtil.getUnicloud(unicloudId).getName()));
-		lteStats.addStatistics(new Statistics());		
+		lteStats.addStatistics(new Statistics());
+		setSystemInventory(SystemInventory.generateSampleInventory(this));
 	}
 
 	public int getId() {
@@ -97,16 +100,7 @@ public class CwsModel extends NetworkDeviceImpl {
 	public SysInfo refreshSysInfo() {
 		return sysinfo;
 	}
-	
-	public List<NetworkDeviceInterface> refreshNetworkDeviceInterfaces() {
-		networkDeviceInterfaces = UnimanageDataUtil.fudgeNetworkDeviceInterfaces(getType());
-		return networkDeviceInterfaces;
-	}
-	
-	public List<NetworkDeviceInterface> getNetworkInterfaces() {
-		return networkDeviceInterfaces;
-	}
-	
+		
 	public LteStatisticsImpl getLteStats() {
 		return lteStats;
 	}
@@ -206,8 +200,5 @@ public class CwsModel extends NetworkDeviceImpl {
 		    }
 	};
 
-	public List<NetworkDeviceInterface> refreshNetworkInterfaces() {
-		return UnimanageDataUtil.fudgeNetworkDeviceInterfaces(getType());
-	}
 	
 }

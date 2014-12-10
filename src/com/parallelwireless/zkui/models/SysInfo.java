@@ -23,6 +23,10 @@ public class SysInfo {
 	private GeoLocation     geo  = null;
 	private boolean    		uni  = true;
 	
+	// CPU count and speed -- added here for demo purposes...should be in CPU info
+	int cpuCount = 4;
+	String cpuSpeed = "3.2GHz";
+	
 	public SysInfo(String systemName, boolean uni) {
 		this.systemName = systemName;
 		gen = new GeneralResource(systemName);
@@ -68,6 +72,22 @@ public class SysInfo {
 	
 	public GeoLocation getGeo() {
 		return geo;
+	}
+	
+	public int getCpuCount() {
+		return cpuCount;
+	}
+	
+	public void setCpuCount(int cpuCount) {
+		this.cpuCount = cpuCount;
+	}
+	
+	public String getCpuSpeed() {
+		return cpuSpeed;
+	}
+	
+	public void setCpuSpeed(String cpuSpeed) {
+		this.cpuSpeed = cpuSpeed;
 	}
 	
 	public static class Comparators {

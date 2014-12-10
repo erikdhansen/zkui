@@ -24,7 +24,7 @@ public class ResourceConfig extends HashMap<SystemResource.RESOURCE, String> {
 		cfg.put(RESOURCE.CPU_LOAD_ONE,     String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));
 		cfg.put(RESOURCE.CPU_LOAD_FIVE,    String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));
 		cfg.put(RESOURCE.CPU_LOAD_FIFTEEN, String.valueOf(UnimanageDataUtil.getRandomLongWithinRange(20)));
-		int[] cpuPercent = UnimanageDataUtil.getRandomPercent(3);
+		int[] cpuPercent = UnimanageDataUtil.getRandomCPUPercent(3, 4);
 		cfg.put(RESOURCE.CPU_USER_PCT,     String.valueOf(cpuPercent[0]));
 		cfg.put(RESOURCE.CPU_SYS_PCT,      String.valueOf(cpuPercent[1]));
 		cfg.put(RESOURCE.CPU_IDLE_PCT,     String.valueOf(cpuPercent[2]));

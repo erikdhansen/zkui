@@ -3,6 +3,8 @@ package com.parallelwireless.zkui.models;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.parallelwireless.zkui.models.inventory.SystemInventory;
+
 public class UnicloudModel extends NetworkDeviceImpl {
 	int id;
 	String name;
@@ -11,13 +13,15 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	NetworkDevice.TYPE type = NetworkDevice.TYPE.unicloud;
 	
 	List<CwsModel> cwsList = new LinkedList<CwsModel>();
+	List<NetworkDeviceInterface> networkInterfaces = null;
 	
-	public UnicloudModel(int id, String name, String ip) {
+	public UnicloudModel(int id, String name) {
 		this.id = id;
 		this.name = name;
 		this.sysinfo = new SysInfo(name, true);
 		refreshSysInfo();
-		refreshNetworkInterfaces(); 
+		networkInterfaces = generateNetworkInterfaces(NETIF_COUNT);
+		setSystemInventory(SystemInventory.generateSampleInventory(this));
 	}
 		
 	public int getId() {
@@ -96,10 +100,4 @@ public class UnicloudModel extends NetworkDeviceImpl {
 	public SysInfo refreshSysInfo() {
 		return sysinfo;
 	}
-	
-	public List<NetworkDeviceInterface> refreshNetworkInterfaces() {
-		networkDeviceInterfaces = UnimanageDataUtil.fudgeNetworkDeviceInterfaces(NetworkDevice.TYPE.unicloud);
-		return networkDeviceInterfaces;
-	}
-	
 }

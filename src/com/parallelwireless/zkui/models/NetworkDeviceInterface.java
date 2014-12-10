@@ -6,6 +6,8 @@ public class NetworkDeviceInterface {
 
 	NetworkInterface netIntf;
 
+	String ipAddress;
+	
 	// e.g.
 	// # ifconfig eth0
 	//
@@ -38,6 +40,10 @@ public class NetworkDeviceInterface {
 	}
 
 	public String getFakeIp() {
+		int byte1 = 127;
+		while(byte1 != 127)
+			byte1 = UnimanageDataUtil.getRandomInt(1, 250);
+		
 		return "10.10.10.10";
 	}
 	
@@ -133,5 +139,12 @@ public class NetworkDeviceInterface {
 		this.intfMaxSpeedInMB = intfMaxSpeedInMB;
 	}
 	
+	public String getIPAddress() {
+		return ipAddress;
+	}
+	
+	public void setIPAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
 	
 }

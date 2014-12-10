@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.parallelwireless.zkui.models.inventory.SystemInventory;
+
 public abstract class NetworkDeviceImpl implements NetworkDevice {
 	final static Logger log = Logger.getLogger(NetworkDeviceImpl.class.getName());
 	boolean up = true;
@@ -12,7 +14,9 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	List<NetworkDeviceInterface> networkDeviceInterfaces = new LinkedList<NetworkDeviceInterface>();
 	NetworkDeviceInfo networkDeviceInfo = new NetworkDeviceInfo();
 	SysInfo sysinfo = null;
+	
 	List<String> networkLinks = new LinkedList<String>();
+	SystemInventory inventory;
 	
 	int bytes = 0;
 	
@@ -99,6 +103,15 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 		    }
 	};
 	
+
+	public SystemInventory getSystemInventory() {
+		return inventory;
+	}
+	
+	public void setSystemInventory(SystemInventory inventory) {
+		this.inventory = inventory;
+	}
+	
 	@Override
 	public double getLat() {
 		return getSysInfo().getGeo().getLat();
@@ -108,4 +121,10 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	public double getLng() {
 		return getSysInfo().getGeo().getLng();
 	}
+	
+	protected List<NetworkDeviceInterface> generateNetworkInterfaces(int count) {
+		return UnimanageDataUtil.fudgeNetworkDeviceInterfaces(count);
+	}
+	
+
 }
