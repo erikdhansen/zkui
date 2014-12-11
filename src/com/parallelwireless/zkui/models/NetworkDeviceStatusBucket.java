@@ -29,11 +29,11 @@ public class NetworkDeviceStatusBucket {
 	
 	public static String getLabel(TYPE type) {
 		switch(type){
-		case unicloud:
-			return "Uni-Cloud";
-		case cws_mesh:
+		case LAC:
+			return "LAC";
+		case CWS_MESH:
 			return "CWS (Mesh)";
-		case cws_gw:
+		case CWS_GW:
 			return "CWS (GW)";
 		default:
 			return "Unknown Type: " + type;

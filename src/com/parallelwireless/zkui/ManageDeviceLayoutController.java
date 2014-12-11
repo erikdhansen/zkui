@@ -37,6 +37,7 @@ import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.NetworkDeviceNotFoundException;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
+import com.parallelwireless.zkui.models.inventory.SystemInventory;
 import com.parallelwireless.zkui.models.map.NetworkDeviceMapModel;
 
 
@@ -81,6 +82,8 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	boolean includeLac     = true;
 	boolean includeCwsGW   = true;
 	boolean includeCwsMesh = true;
+	
+	SystemInventory inventory;
 	
 	@Override
 	public void doAfterCompose(Div d) throws Exception {
@@ -239,7 +242,7 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	}
 	
 	private void updateInventoryInformation(NetworkDevice d) {
-		NetworkDeviceInventory i = UnimanageDataUtil.getDeviceInventory(d);
+		inventory = SystemInventory.generateSampleInventory(d);
 		log.log(Level.INFO, "updateInventoryInformation: " + d.toString());		
 	}
 	

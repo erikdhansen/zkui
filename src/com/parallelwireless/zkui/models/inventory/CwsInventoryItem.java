@@ -2,10 +2,12 @@ package com.parallelwireless.zkui.models.inventory;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import com.parallelwireless.zkui.models.NetworkDevice;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
+import com.parallelwireless.zkui.models.inventory.CwsInventoryItemFactory.PARTS;
 
 public class CwsInventoryItem {
 	String id;
@@ -19,10 +21,60 @@ public class CwsInventoryItem {
 	String  serialNumber;
 	String  revision;
 	String  description;
-	int 	antennaCount;
+	String 	antennaCount;
 	int 	maxPowers;
 	
 	List<BAND>  bandlist;
+	
+	public enum CATEGORY {
+		BOARD("Board"),
+		PORT("Port"),
+		SYSTEM("System");
+		
+		private String category;
+		private CATEGORY(String category) {
+			this.category = category;
+		}
+		public String getTypeName() {
+			return category;
+		}
+	}
+	
+	public enum TYPE {
+		LTE("LTE"),
+		WIFI("WiFi"),
+		OTHER("");
+		
+		private String type;
+		private TYPE(String type) {
+			this.type = type;
+		}
+		public String getTypeName() {
+			return type;
+		}
+	}
+	
+	public enum BAND {
+		LTE_BAND_20("Band-20"),
+		LTE_BAND_3("Band-3"),
+		TWOFOUR_GHZ_WIFI("2.4GHz"),
+		FIVE_GHZ_WIFI("5 GHz");
+		
+		private String bandName;
+		private BAND(String bandName) {
+			this.bandName = bandName;
+		}
+		public String getBandName() {
+			return bandName;
+		}
+	}	
+	
+	public CwsInventoryItem() {
+		
+	}
+	protected CwsInventoryItem(PARTS part) {
+		this.partNum = part.getName();
+	}
 	
 	public String getId() {
 		return id;
@@ -104,11 +156,11 @@ public class CwsInventoryItem {
 		this.description = description;
 	}
 
-	public int getAntennaCount() {
+	public String getAntennaCount() {
 		return antennaCount;
 	}
 
-	public void setAntennaCount(int antennaCount) {
+	public void setAntennaCount(String antennaCount) {
 		this.antennaCount = antennaCount;
 	}
 
@@ -142,73 +194,26 @@ public class CwsInventoryItem {
 		return itemList;
 	}
 	
-	public enum CATEGORY {
-		BOARD("Board"),
-		PORT("Port"),
-		SYSTEM("System");
-		
-		private String category;
-		private CATEGORY(String category) {
-			this.category = category;
-		}
-		public String getTypeName() {
-			return category;
-		}
-	}
-	
-	public enum TYPE {
-		LTE("LTE"),
-		WIFI("WiFi"),
-		OTHER("");
-		
-		private String type;
-		private TYPE(String type) {
-			this.type = type;
-		}
-		public String getTypeName() {
-			return type;
-		}
-	}
-	
-	public enum BAND {
-		LTE_BAND_20("Band-20"),
-		LTE_BAND_3("Band-3"),
-		TWOFOUR_GHZ_WIFI("2.4GHz"),
-		FIVE_GHZ_WIFI("5 GHz");
-		
-		private String bandName;
-		private BAND(String bandName) {
-			this.bandName = bandName;
-		}
-		public String getBandName() {
-			return bandName;
-		}
-	}
-	
 	public static List<CwsInventoryItem> generateSampleInventoryItems(NetworkDevice d) {
 		List<CwsInventoryItem> items = new LinkedList<CwsInventoryItem>();
-		int rndPrefix = UnimanageDataUtil.getRandomInt(1001, 9009);
-		items.add(generateSampleBoardItem(d, rndPrefix));
+		CwsInventoryItem item = CwsInventoryItemFactory.buildPart(PARTS.P_CI9999, 1);
+		item.setCwsName(d.getName());
+		items.add(item);
+		item = CwsInventoryItemFactory.buildPart(PARTS.P_6010012, 1);
+		item.setCwsName(d.getName());
+		items.add(item);
+		item = CwsInventoryItemFactory.buildPart(PARTS.P_6010012, 0);
+		item.setCwsName(d.getName());
+		items.add(item);
+		item = CwsInventoryItemFactory.buildPart(PARTS.P_2110004, 1);
+		item.setCwsName(d.getName());
+		items.add(item);
+		item = CwsInventoryItemFactory.buildPart(PARTS.P_2110005, 2);
+		item.setCwsName(d.getName());
+		items.add(item);
 		return items;
 	}
-	
-	private static CwsInventoryItem generateSamplePortItem(NetworkDevice d, int rndPrefix) {
-		CwsInventoryItem p1 = new CwsInventoryItem();
-		return p1;
-	}
-	private static CwsInventoryItem generateSampleBoardItem(NetworkDevice d, int rndPrefix) {
-		String version = Unimanage.getRandomVersionString();
-		CwsInventoryItem b1 = new CwsInventoryItem();
-		b1.setName("B1");
-		b1.setCategory(CATEGORY.BOARD);
-		b1.setCwsName(d.getName());
-		b1.setId(String.valueOf(rndPrefix) + "." + d.getName() + "." + b1.getName());
-		b1.setVersion(version);
-		b1.setType(TYPE.OTHER);
-		b1.setPartNum("CI9999");
-		b1.setSerialNumber(Unimanage.getRandomSerialNumber(d.getType()));
-		b1.setRevision("001");
-		b1.setDescription("CI0001");
-		return b1;
-	}
+
+
 }
+

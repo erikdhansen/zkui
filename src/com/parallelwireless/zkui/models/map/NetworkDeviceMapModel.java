@@ -20,7 +20,7 @@ public class NetworkDeviceMapModel extends MapModelList {
 		super();
 		this.d = d;
 		devices.add(d.getSysInfo().getGeo());
-		if(d.getType() == TYPE.unicloud) {
+		if(d.getType() == TYPE.LAC) {
 			UnicloudModel u = (UnicloudModel)d;
 			for(NetworkDevice cws : u.getCwsList()) {
 				devices.add(cws.getSysInfo().getGeo());

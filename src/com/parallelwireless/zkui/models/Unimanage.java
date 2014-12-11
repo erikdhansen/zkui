@@ -1,5 +1,6 @@
 package com.parallelwireless.zkui.models;
 
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,7 +16,8 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Caption;
 import org.zkoss.zul.Window;
 
-import com.parallelwireless.zkui.models.inventory.CwsDeviceInventoryItem;
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
+import com.parallelwireless.zkui.models.inventory.CwsInventoryItem;
 
 public class Unimanage {
 	final static Logger log = Logger.getLogger(Unimanage.class.getName());
@@ -95,11 +97,8 @@ public class Unimanage {
 		return;
 	}
 	
-	public static List<CwsDeviceInventoryItem> generateFakeInventory(NetworkDevice d) {
-		List<CwsDeviceInventoryItem> inventory = new LinkedList<CwsDeviceInventoryItem>();
-		CwsDeviceInventoryItem i = new CwsDeviceInventoryItem();
-		inventory.add(i);
-		return inventory;		
+	public static List<CwsInventoryItem> generateFakeCWSInventory(NetworkDevice d) {
+		return CwsInventoryItem.generateSampleInventoryItems(d);
 	}
 	
 	public static String getRandomIP() {
@@ -135,9 +134,9 @@ public class Unimanage {
 				b1 = UnimanageDataUtil.getRandomInt(192,222);
 				break;
 			default:
-				while(b1 != 255 && b1 != 127 && b1 != 223 && b1 != 0)
+				while(b1 == 255 || b1 == 127 ||  b1 == 223 || b1 == 0)
 					b1 = r.nextInt(256);
-		}
+				}
 		int b2 = r.nextInt(256);
 		int b3 = r.nextInt(256);
 		int b4 = r.nextInt(256);
@@ -145,5 +144,15 @@ public class Unimanage {
 		String ipAddr = String.valueOf(b1).concat(".").concat(String.valueOf(b2)).concat(".").concat(String.valueOf(b3)).concat(".").concat(String.valueOf(b4));
 		log.log(Level.INFO, "Generated Random IP Address: " + ipAddr);
 		return ipAddr;
+	}
+	
+	public static List<NetworkDeviceInterface> spoofNetworkInterfaces(int count) {
+		List<NetworkDeviceInterface> ifs = new LinkedList<NetworkDeviceInterface>();
+		for(int i=0; i < count; i++) {
+			NetworkDeviceInterface di = new NetworkDeviceInterface();
+			di.setIPAddress(Unimanage.getRandomIP(IP4_ADDR_CLASS.CIDR));
+			ifs.add(di);
+		}
+		return ifs;
 	}
 }

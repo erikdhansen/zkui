@@ -121,10 +121,5 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	public double getLng() {
 		return getSysInfo().getGeo().getLng();
 	}
-	
-	protected List<NetworkDeviceInterface> generateNetworkInterfaces(int count) {
-		return UnimanageDataUtil.fudgeNetworkDeviceInterfaces(count);
-	}
-	
 
 }

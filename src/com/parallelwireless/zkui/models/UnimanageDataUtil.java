@@ -36,25 +36,25 @@ public class UnimanageDataUtil {
 	static NetworkMap uniclouds = new NetworkMap();
 	static {
 		// Unicloud Data
-		UnicloudModel u = new UnicloudModel(1, "Unicloud A", "10.10.10.121");
+		UnicloudModel u = new UnicloudModel(1, "Unicloud A");
 		ResourceConfig cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-a4");
 		uniclouds.put(1, u);
 		// Unicloud Data
-		u = new UnicloudModel(2, "Unicloud B", "10.10.10.122");
+		u = new UnicloudModel(2, "Unicloud B");
 		cfg =  ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-b1");
 		uniclouds.put(2, u);
 		// Unicloud Data
-		u = new UnicloudModel(3, "Unicloud C", "10.10.10.123");
+		u = new UnicloudModel(3, "Unicloud C");
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-c1");
 		uniclouds.put(3, u);
 		// Unicloud Data
-		u = new UnicloudModel(4, "Unicloud D", "10.10.10.124");
+		u = new UnicloudModel(4, "Unicloud D");
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-d1");
@@ -63,49 +63,49 @@ public class UnimanageDataUtil {
 	}
 	
 	static {
-		CwsModel cws = new CwsModel("cws-a1", 1, "10.11.1.9", NetworkDevice.TYPE.CWS_MESH);
+		CwsModel cws = new CwsModel("cws-a1", 1, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a4", "cws-a2");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a2", 1, "10.11.1.1", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-a2", 1, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a1", "cws-a3");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a3", 1, "10.11.1.2", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-a3", 1, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-a2", "cws-a4");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a4", 1, "10.11.1.3", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-a4", 1, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-a1", "cws-a3", "Unicloud A");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-b1", 1, "10.11.1.4", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-b1", 1, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud B", "cws-b2");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b2", 2, "10.11.2.4", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-b2", 2, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-b1", "cws-c3");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b3", 2, "10.11.2.5", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-b3", 2, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-b2", "cws-b5");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b4", 2, "10.11.2.6", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-b4", 2, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-b5", "Unicloud B");
 		uniclouds.get(2).addCws(cws);		
-		cws = new CwsModel("cws-b5", 2, "10.11.2.7", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-b5", 2, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-b3", "cws-b4");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-c1", 3, "10.11.3.8", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-c1", 3, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud C", "cws-c2");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c2", 3, "10.11.3.9", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-c2", 3, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c3", 3, "10.11.3.10", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-c3", 3, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-d1", 4, "10.11.4.11", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-d1", 4, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud D", "cws-d2");
 		uniclouds.get(4).addCws(cws);
-		cws = new CwsModel("cws-d2", 4, "10.11.4.12", NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-d2", 4, NetworkDevice.TYPE.CWS_MESH);
 		cws.addNetworkLinks("cws-d1", "cws-d3");
 		uniclouds.get(4).addCws(cws);
-		cws = new CwsModel("cws-d3", 4, "10.11.4.13", NetworkDevice.TYPE.CWS_GW);
+		cws = new CwsModel("cws-d3", 4, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud D", "cws-d2");
 		uniclouds.get(4).addCws(cws);
 	}

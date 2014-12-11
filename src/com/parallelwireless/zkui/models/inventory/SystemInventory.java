@@ -57,7 +57,7 @@ public class SystemInventory {
 			break;
 		case CWS_MESH:
 		case CWS_GW:
-			i = generateSampleCWSInventory(d, itemCount);
+			i = generateSampleCWSInventory(d);
 			break;
 		}
 		return i;
@@ -70,10 +70,10 @@ public class SystemInventory {
 		return i;
 	}
 	
-	private static SystemInventory generateSampleCWSInventory(NetworkDevice d, int itemCount) {
+	private static SystemInventory generateSampleCWSInventory(NetworkDevice d) {
 		SystemInventory i = new SystemInventory(d);
 		i.setType(TYPE.CWS);
-		i.setCwsItems(CwsInventoryItem.generateSampleInventoryItem(d, itemCount));
+		i.setCwsItems(CwsInventoryItem.generateSampleInventoryItems(d));
 		return i;
 	}
 	
