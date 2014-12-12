@@ -21,20 +21,21 @@ public class SysInfo {
 	private DiskResource    disk = null; 
 	private NetworkResource net  = null;
 	private GeoLocation     geo  = null;
-	private boolean    		uni  = true;
+	private DEV_TYPE    	devType;
 	
 	// CPU count and speed -- added here for demo purposes...should be in CPU info
 	int cpuCount = 4;
 	String cpuSpeed = "3.2GHz";
 	
-	public SysInfo(String systemName, boolean uni) {
+	public SysInfo(String systemName, DEV_TYPE devType) {
 		this.systemName = systemName;
 		gen = new GeneralResource(systemName);
 		cpu  = new CpuResource(systemName);
 		mem  = new MemoryResource(systemName);
 		disk = new DiskResource(systemName);
 		net  = new NetworkResource(systemName);
-		geo  = new GeoLocation(systemName, uni ? DEV_TYPE.UNICLOUD : DEV_TYPE.CWS);
+		geo  = new GeoLocation(systemName, devType);
+		this.devType = devType;
 	}
 	
 	public void addResources(ResourceConfig config) {

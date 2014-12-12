@@ -24,6 +24,7 @@ public class NetworkDeviceMapModel extends MapModelList {
 			UnicloudModel u = (UnicloudModel)d;
 			for(NetworkDevice cws : u.getCwsList()) {
 				devices.add(cws.getSysInfo().getGeo());
+				
 			}
 		}
 		this.addAll(devices);

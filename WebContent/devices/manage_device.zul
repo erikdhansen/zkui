@@ -40,8 +40,8 @@
 							<template name="model">
 								<row>
 									<label>${each.name}</label>
-									<label>${each.networkInterfaces.get(0).fakeIp}</label>
-									<label>${each.sysInfo.general.systemVersion}</label>
+									<label>${each.networkDeviceInfo.interfaceList.get(0).ipAddress}</label>
+									<label>${each.version}</label>
 									<label style="color: rgb(0, 255, 0);">OK</label>
 								</row>
 							</template>
@@ -122,58 +122,9 @@
 							</hbox>
 						</panelchildren>
 					</panel>
-					<panel title="Inventory Information">
+					<panel title="System Inventory">
 						<panelchildren>
-							<grid sclass="unicloud-table" model="${networkDevice}">
-								<auxhead>
-									<auxheader colspan="14" label="System Inventory"/>
-								</auxhead>
-								<auxhead>
-									<auxheader colspan="5" label="General System"/>
-									<auxheader colspan="9" label="System Resources"/>
-								</auxhead>
-								<auxhead>
-									<auxheader colspan="5" label="System Config"/>
-									<auxheader colspan="2" label="CPU"/>
-									<auxheader colspan="2" label="Memory"/>
-									<auxheader colspan="3" label="Disk"/>
-									<auxheader colspan="2" label="Network"/>
-								</auxhead>
-								<columns>
-									<column>System</column>
-									<column>IP Address</column>
-									<column>Install Date</column>
-									<column>Version</column>
-									<column>Serial No.</column>
-									<column>No. CPUs</column>
-									<column>CPU Speed</column>
-									<column>Physical</column>
-									<column>Virtual</column>
-									<column>Num HDs</column>
-									<column>Total Space</column>
-									<column>Avail Space</column>
-									<column>No. Intf</column>
-									<column>Intf Type</column>									
-								</columns>
-								<template name="model">
-									<row>
-										<label value="${u.name}"/>
-										<label value="${u.networkInterfaces.get(0).fakeIp}"/>
-										<label value="${u.sysInfo.general.installDate}"/>
-										<label value="${u.sysInfo.general.systemVersion}"/>
-										<label value="${u.sysInfo.general.serialNumber}"/>
-										<label value="${u.sysInfo.cpu.numCPUs}"/>
-										<label value="${u.sysInfo.cpu.cpuSpeed}GHz"/>
-										<label value="${u.sysInfo.mem.totalRAMFreeHR}MB"/>
-										<label value="${u.sysInfo.mem.availSwapSizeHR}MB"/>
-										<label hflex="1" value="${u.sysInfo.disk.numHDs}"/>
-										<label value="${u.sysInfo.disk.totalDiskSpaceHR}GB"/>
-										<label value="${u.sysInfo.disk.freeDiskSpaceHR}GB"/>
-										<label value="${u.sysInfo.network.numInterfaces}"/>
-										<label value="${u.sysInfo.network.linkSpeed}"/>
-									</row>
-								</template>								
-							</grid>
+							<include id="inventory_section" src="/devices/device_inventory_lac.zul"/>											
 						</panelchildren>
 					</panel>
 					<panel title="Key Performance Indicators">

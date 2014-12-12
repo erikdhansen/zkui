@@ -1,6 +1,5 @@
 package com.parallelwireless.zkui.models;
 
-import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,11 +11,9 @@ import java.util.logging.Logger;
 
 import org.zkoss.chart.Color;
 import org.zkoss.chart.RadialGradient;
-import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Caption;
 import org.zkoss.zul.Window;
 
-import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.inventory.CwsInventoryItem;
 
 public class Unimanage {
@@ -116,8 +113,8 @@ public class Unimanage {
 		return "4.0.1029";
 	}
 	
-	public static String getRandomSerialNumber(NetworkDevice.TYPE type) {
-		return type.name().concat(String.valueOf(UnimanageDataUtil.getRandomInt(1001, 9999)));
+	public static String getRandomSerialNumber() {
+		return String.format("%08d",  UnimanageDataUtil.getRandomInt(0, 9999));
 	}
 	
 	public static String getRandomIP(IP4_ADDR_CLASS addrClass) {

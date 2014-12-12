@@ -1,0 +1,51 @@
+<?page title="LAC System Inventory" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<grid id="inventory_grid" sclass="unicloud-table" model="${networkDevice}">
+		<auxhead>
+			<auxheader colspan="14" label="System Inventory" />
+		</auxhead>
+		<auxhead>
+			<auxheader colspan="5" label="General System" />
+			<auxheader colspan="9" label="System Resources" />
+		</auxhead>
+		<auxhead>
+			<auxheader colspan="5" label="System Config" />
+			<auxheader colspan="2" label="CPU" />
+			<auxheader colspan="2" label="Memory" />
+			<auxheader colspan="3" label="Disk" />
+			<auxheader colspan="2" label="Network" />
+		</auxhead>
+		<columns>
+			<column>System</column>
+			<column>IP Address</column>
+			<column>Install Date</column>
+			<column>Version</column>
+			<column>Serial No.</column>
+			<column>No. CPUs</column>
+			<column>CPU Speed</column>
+			<column>Physical</column>
+			<column>Num HDs</column>
+			<column>Total Space</column>
+			<column>Avail Space</column>
+			<column>No. Intf</column>
+			<column>Intf Type</column>
+		</columns>
+<!-- 		<template name="model">
+			<row>
+				<label value="${each.name}" />
+				<label value="${each.ipAddress}" />
+				<label value="${each.installDate}" />
+				<label value="${each.version}" />
+				<label value="${each.serialNumber}" />
+				<label value="${each.cpuCount}" />
+				<label value="${each.cpuSpeed}GHz" />
+				<label value="${each.physicalMemory}MB" />
+				<label value="${each.diskCount}" />
+				<label value="${each.totalSpace}GB" />
+				<label value="${each.availableSpace}GB" />
+				<label value="${each.ifCount}" />
+				<label value="1000" />
+			</row>
+		</template> -->
+	</grid>
+</zk>

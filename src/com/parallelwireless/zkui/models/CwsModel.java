@@ -9,6 +9,7 @@ import com.parallelwireless.zkui.models.lte.LteErabSetupSuccessRateAll;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
 import com.parallelwireless.zkui.models.lte.QCI;
 import com.parallelwireless.zkui.models.lte.Statistics;
+import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
 
 
@@ -16,7 +17,7 @@ public class CwsModel extends NetworkDeviceImpl {
 
 	private static int globalCwsId = 1;
 	
-	public enum CWS_TYPE {
+	public enum CWS_ROLE {
 		Gateway,
 		Mesh
 	}
@@ -24,21 +25,20 @@ public class CwsModel extends NetworkDeviceImpl {
 	int id;
 	String name;
 	int unicloudId;
-	NetworkDevice.TYPE type;
+	DEV_TYPE type;
+	CWS_ROLE cwsRole;
 	int lastSeenMinutes;
 	String unicloudName = "";
-	
-	List<NetworkDeviceInterface> networkDeviceInterfaces = null;
-	
+		
 	LteStatisticsImpl lteStats = null;
 	
-	public CwsModel(String name, int unicloudId, NetworkDevice.TYPE type) {
+	public CwsModel(String name, int unicloudId, DEV_TYPE type) {
 		this.id = globalCwsId++;
 		this.name = name;
 		this.unicloudId = unicloudId;
 		this.type = type;
-		this.sysinfo = new SysInfo(name, false);
-		networkDeviceInterfaces = Unimanage.spoofNetworkInterfaces(NETIF_COUNT);		
+		this.sysinfo = new SysInfo(name, type);
+		networkDeviceInfo.setInterfaceList(Unimanage.spoofNetworkInterfaces(NETIF_COUNT));		
 		this.sysinfo.addResources(ResourceConfig.generate());
 		lteStats = new LteStatisticsImpl(name);		
 		lteStats.setQCI(QCI.generateRandomQCIs(UnimanageDataUtil.getUnicloud(unicloudId).getName()));
@@ -66,7 +66,14 @@ public class CwsModel extends NetworkDeviceImpl {
 		this.unicloudId = unicloudId;
 	}
 	
-	public void setType(NetworkDevice.TYPE type) {
+	public void setCwsRole(CWS_ROLE cwsRole) {
+		this.cwsRole = cwsRole;
+	}
+	
+	public CWS_ROLE getCwsRole() {
+		return cwsRole;
+	}
+	public void setType(DEV_TYPE type) {
 		this.type = type;
 	}
 
@@ -93,7 +100,7 @@ public class CwsModel extends NetworkDeviceImpl {
 	}
 	
 	@Override
-	public TYPE getType() {
+	public DEV_TYPE getType() {
 		return type;
 	}
 	

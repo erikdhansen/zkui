@@ -102,7 +102,7 @@ public class GoogleMapsController extends SelectorComposer<Div>{
 		GeoLocation geo = geos.get(gmarker.getId());
 		String geoId    = geo.getId();
 		if(geo != null) {
-			if(geo.getDevType() == DEV_TYPE.UNICLOUD){
+			if(geo.getDevType() == DEV_TYPE.LAC){
 				geo.setMapState(MAP_STATE.FOCUS);
 				for(UnicloudModel u : UnimanageDataUtil.getAllUniclouds()) {
 					if(u.getName().equalsIgnoreCase(geoId)) {

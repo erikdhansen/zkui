@@ -36,25 +36,25 @@ public class UnimanageDataUtil {
 	static NetworkMap uniclouds = new NetworkMap();
 	static {
 		// Unicloud Data
-		UnicloudModel u = new UnicloudModel(1, "Unicloud A");
+		UnicloudModel u = new UnicloudModel(1, "Unicloud A", DEV_TYPE.LAC);
 		ResourceConfig cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-a4");
 		uniclouds.put(1, u);
 		// Unicloud Data
-		u = new UnicloudModel(2, "Unicloud B");
+		u = new UnicloudModel(2, "Unicloud B", DEV_TYPE.LAC);
 		cfg =  ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-b1");
 		uniclouds.put(2, u);
 		// Unicloud Data
-		u = new UnicloudModel(3, "Unicloud C");
+		u = new UnicloudModel(3, "Unicloud C", DEV_TYPE.LAC);
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-c1");
 		uniclouds.put(3, u);
 		// Unicloud Data
-		u = new UnicloudModel(4, "Unicloud D");
+		u = new UnicloudModel(4, "Unicloud D", DEV_TYPE.LAC);
 		cfg = ResourceConfig.generate();
 		u.getSysInfo().addResources(cfg);
 		u.getNetworkLinks().add("cws-d1");
@@ -63,13 +63,13 @@ public class UnimanageDataUtil {
 	}
 	
 	static {
-		CwsModel cws = new CwsModel("cws-a1", 1, NetworkDevice.TYPE.CWS_MESH);
+		CwsModel cws = new CwsModel("cws-a1", 1, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-a4", "cws-a2");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a2", 1, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-a2", 1, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-a1", "cws-a3");
 		uniclouds.get(1).addCws(cws);
-		cws = new CwsModel("cws-a3", 1, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-a3", 1, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-a2", "cws-a4");
 		uniclouds.get(1).addCws(cws);
 		cws = new CwsModel("cws-a4", 1, NetworkDevice.TYPE.CWS_GW);
@@ -78,7 +78,7 @@ public class UnimanageDataUtil {
 		cws = new CwsModel("cws-b1", 1, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud B", "cws-b2");
 		uniclouds.get(2).addCws(cws);
-		cws = new CwsModel("cws-b2", 2, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-b2", 2, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-b1", "cws-c3");
 		uniclouds.get(2).addCws(cws);
 		cws = new CwsModel("cws-b3", 2, NetworkDevice.TYPE.CWS_GW);
@@ -87,22 +87,22 @@ public class UnimanageDataUtil {
 		cws = new CwsModel("cws-b4", 2, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("cws-b5", "Unicloud B");
 		uniclouds.get(2).addCws(cws);		
-		cws = new CwsModel("cws-b5", 2, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-b5", 2, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-b3", "cws-b4");
 		uniclouds.get(2).addCws(cws);
 		cws = new CwsModel("cws-c1", 3, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud C", "cws-c2");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c2", 3, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-c2", 3, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
-		cws = new CwsModel("cws-c3", 3, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-c3", 3, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-c1");
 		uniclouds.get(3).addCws(cws);
 		cws = new CwsModel("cws-d1", 4, NetworkDevice.TYPE.CWS_GW);
 		cws.addNetworkLinks("Unicloud D", "cws-d2");
 		uniclouds.get(4).addCws(cws);
-		cws = new CwsModel("cws-d2", 4, NetworkDevice.TYPE.CWS_MESH);
+		cws = new CwsModel("cws-d2", 4, NetworkDevice.TYPE.CWS_100);
 		cws.addNetworkLinks("cws-d1", "cws-d3");
 		uniclouds.get(4).addCws(cws);
 		cws = new CwsModel("cws-d3", 4, NetworkDevice.TYPE.CWS_GW);
@@ -233,9 +233,9 @@ public class UnimanageDataUtil {
 		AlarmStatusModel model = new AlarmStatusModel();
 		List<AlarmRowModel> rows = model.getAlarmRowModels();
 		rows.clear();
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.LAC), 3, 4, 8));
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.CWS_GW), 6, 3, 9));
-		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.TYPE.CWS_MESH), 4, 2, 3));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.ROLE.LAC), 3, 4, 8));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.ROLE.CWS_GW), 6, 3, 9));
+		rows.add(new AlarmRowModel(NetworkDeviceStatusBucket.getLabel(NetworkDevice.ROLE.CWS_MESH), 4, 2, 3));
 		return model;
 	}
 	
@@ -467,7 +467,7 @@ public class UnimanageDataUtil {
 		}
 		lat = (lat / i);
 		lng = (lng / i);
-		return new GeoLocation("MapCenter", DEV_TYPE.UNICLOUD, lat, lng);
+		return new GeoLocation("MapCenter", DEV_TYPE.LAC, lat, lng);
 	}
 	
 	
@@ -487,7 +487,7 @@ public class UnimanageDataUtil {
 		float latitude = Float.parseFloat(latInt + "." + latDec);
 		float longitude = Float.parseFloat(longInt + "." + longDec);
 		
-		GeoLocation g = new GeoLocation("RandomlyGenerated", DEV_TYPE.UNICLOUD, latitude, longitude);
+		GeoLocation g = new GeoLocation("RandomlyGenerated", DEV_TYPE.LAC, latitude, longitude);
 		log.info("Generated random location: " + g);
 		return g;
 	}

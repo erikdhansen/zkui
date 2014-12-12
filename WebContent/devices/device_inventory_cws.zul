@@ -1,0 +1,44 @@
+<?page title="LAC System Inventory" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<grid id="inventory_grid" sclass="unicloud-table" model="${cwsInventoryItems}">
+		<auxhead>
+			<auxheader colspan="13" label="System Inventory"/>
+		</auxhead>
+		<auxhead>
+			<auxheader colspan="3" label="System Information"/>
+			<auxheader colspan="10" label="Hardware Component Information"/>
+		</auxhead>
+		<columns>
+			<column>CWS</column>
+			<column>ID</column>
+			<column>Name</column>
+			<column>Category</column>
+			<column>SW Ver</column>
+			<column>Type</column>
+			<column>Part No.</column>
+			<column>Serial No.</column>
+			<column>Revision</column>
+			<column>Description</column>
+			<column># Antennas</column>
+			<column>Max Power</column>
+			<column>Bands</column>
+		</columns>
+<!-- 		<template name="model">
+			<row>
+				<label value="${each.cwsName}"/>
+				<label value="${each.id}"/>
+				<label value="${each.name}"/>
+				<label value="${each.category.typeName}"/>
+				<label value="${each.version}"/>
+				<label value="${each.type.typeName}"/>
+				<label value="${each.partNum}"/>
+				<label value="${each.serialNumber"/>
+				<label value="${each.revision}"/>
+				<label value="${each.description}"/>
+				<label value="${each.antennaCount}"/>
+				<label value="${each.maxPowers}"/>
+				<label value="${each.bandListString}"/>
+			</row>
+		</template> -->								
+	</grid>
+</zk>

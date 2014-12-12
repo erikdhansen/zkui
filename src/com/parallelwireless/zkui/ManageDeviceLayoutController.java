@@ -24,6 +24,7 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Grid;
+import org.zkoss.zul.Include;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Popup;
@@ -37,6 +38,8 @@ import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.NetworkDeviceNotFoundException;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
+import com.parallelwireless.zkui.models.inventory.CwsInventoryItem;
+import com.parallelwireless.zkui.models.inventory.LacInventoryItem;
 import com.parallelwireless.zkui.models.inventory.SystemInventory;
 import com.parallelwireless.zkui.models.map.NetworkDeviceMapModel;
 
@@ -78,7 +81,11 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	Checkbox	cwsMesh;
 	@Wire
 	Auxheader	alarmGridHeader;
-		
+	@Wire
+	Grid		inventory_grid;
+	@Wire 
+	Include		inventory_section;
+	
 	boolean includeLac     = true;
 	boolean includeCwsGW   = true;
 	boolean includeCwsMesh = true;
@@ -88,6 +95,7 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	@Override
 	public void doAfterCompose(Div d) throws Exception {
 		super.doAfterCompose(d);
+		log.log(Level.INFO, "Found inventoryGrid element: " + inventory_grid);
 	}
 
 	@Listen("onSelect = #deviceNameCombo")
@@ -242,8 +250,18 @@ public class ManageDeviceLayoutController extends SelectorComposer<Div> {
 	}
 	
 	private void updateInventoryInformation(NetworkDevice d) {
-		inventory = SystemInventory.generateSampleInventory(d);
 		log.log(Level.INFO, "updateInventoryInformation: " + d.toString());		
+		inventory = SystemInventory.generateSampleInventory(d);
+		if(d.getType() == TYPE.LAC) { 
+			inventory_section.setSrc("/devices/device_inventory_lac.zul");
+			List<LacInventoryItem> items = new LinkedList<LacInventoryItem>();
+			items.add(inventory.getLac());
+			//inventory_grid.setModel(new ListModelList<LacInventoryItem>(items));
+		} else {
+			inventory_section.setSrc("/devices/device_inventory_cws.zul");
+			//inventory_grid.setModel(new ListModelList<CwsInventoryItem>(inventory.getCwsItems()));
+		}
+		
 	}
 	
 	private void updateKPIs(NetworkDevice d) {

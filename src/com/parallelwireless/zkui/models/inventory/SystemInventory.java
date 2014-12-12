@@ -14,10 +14,12 @@ public class SystemInventory {
 	
 	TYPE type;
 	LacInventoryItem lac;
+	NetworkDevice d;
 	List<CwsInventoryItem> cwsItems = new LinkedList<CwsInventoryItem>();
 	
 	public SystemInventory(NetworkDevice d) {
 		type = (d.getType() == NetworkDevice.TYPE.LAC ? TYPE.LAC : TYPE.CWS);
+		this.d = d;
 	}
 	
 	public TYPE getType() {

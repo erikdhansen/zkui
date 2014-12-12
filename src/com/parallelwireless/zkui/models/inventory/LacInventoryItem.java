@@ -1,13 +1,15 @@
 package com.parallelwireless.zkui.models.inventory;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.parallelwireless.zkui.models.NetworkDevice;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
 public class LacInventoryItem {
-	
+	final static Logger log = Logger.getLogger(LacInventoryItem.class.getName());
 	String name;
 	String ipAddress;
 	Date   installDate;
@@ -105,6 +107,7 @@ public class LacInventoryItem {
 
 	public static LacInventoryItem generateSampleInventoryItem(NetworkDevice d) {
 		LacInventoryItem lac = new LacInventoryItem();
+		log.log(Level.INFO, "Creating LAC inventory for LAC: " + d.getName());
 		lac.setName(d.getName());
 		lac.setIpAddress(d.getNetworkDeviceInfo().getInterfaceList().get(0).getIPAddress());
 		lac.setInstallDate(Unimanage.getRandomInstallDate(UnimanageDataUtil.getRandomIntFromZero(300)));
