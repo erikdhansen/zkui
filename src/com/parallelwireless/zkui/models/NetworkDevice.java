@@ -4,7 +4,6 @@ package com.parallelwireless.zkui.models;
 import java.util.List;
 
 import com.parallelwireless.zkui.models.inventory.SystemInventory;
-import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 
 public interface NetworkDevice {
 	public static int NETIF_COUNT = 4;
@@ -22,23 +21,25 @@ public interface NetworkDevice {
 			return role;
 		}
 	}
-
-	public enum STATUS {
-		up,
-		down
-	}
 	
-	public static enum DEV_TYPE {
+	public static enum TYPE {
 		LAC,
 		LAC_HA,
 		CWS_100,
 		CWS_200,
 		CWS_300
 	};
+	public enum STATUS {
+		up,
+		down
+	}
+	
+
 	
 	public String getName();
 	public boolean isUp();
-	public DEV_TYPE getType();
+	public TYPE getType();
+	public ROLE getRole();
 	public List<NetworkDeviceInterface> getNetworkInterfaces();
 	public SysInfo getSysInfo();
 	public NetworkDeviceInfo getNetworkDeviceInfo();

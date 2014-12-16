@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.parallelwireless.zkui.models.inventory.SystemInventory;
-import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 
 public abstract class NetworkDeviceImpl implements NetworkDevice {
 	final static Logger log = Logger.getLogger(NetworkDeviceImpl.class.getName());
 	boolean up = true;
-	DEV_TYPE type;
+	TYPE type;
+	ROLE role;
 	NetworkDeviceInfo networkDeviceInfo = new NetworkDeviceInfo();
 	SysInfo sysinfo = null;
 	
@@ -28,10 +28,19 @@ public abstract class NetworkDeviceImpl implements NetworkDevice {
 	}
 
 	@Override
-	public DEV_TYPE getType() {
+	public TYPE getType() {
 		return type;
 	}
 
+	@Override 
+	public ROLE getRole() {
+		return role;
+	}
+	
+	public void setRole(ROLE role) {
+		this.role = role;
+	}
+	
 	@Override
 	public NetworkDeviceInfo getNetworkDeviceInfo() {
 		return networkDeviceInfo;

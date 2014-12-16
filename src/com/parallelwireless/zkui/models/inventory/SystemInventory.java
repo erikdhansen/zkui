@@ -54,11 +54,13 @@ public class SystemInventory {
 		NetworkDevice.TYPE devType = d.getType();
 		SystemInventory i = null;
 		switch(devType) {
-		case LAC: 
+		case LAC:
+		case LAC_HA:
 			i = generateSampleLACInventory(d);
 			break;
-		case CWS_MESH:
-		case CWS_GW:
+		case CWS_100:
+		case CWS_200:
+		case CWS_300:
 			i = generateSampleCWSInventory(d);
 			break;
 		}

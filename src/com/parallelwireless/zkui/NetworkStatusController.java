@@ -25,6 +25,7 @@ import com.parallelwireless.zkui.models.NetworkSummary;
 import com.parallelwireless.zkui.models.Unimanage;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 
+@SuppressWarnings("serial")
 public class NetworkStatusController extends SelectorComposer<Div>{
 
 	@Wire
@@ -52,9 +53,9 @@ public class NetworkStatusController extends SelectorComposer<Div>{
 		ColumnPlotOptions plotOptions = new ColumnPlotOptions();
 		plotOptions.setColorByPoint(true);
 		series.setPlotOptions(plotOptions);
-		Iterator<Entry<NetworkDevice.TYPE, Integer>> iterator = summary.getAllDevices().entrySet().iterator();
+		Iterator<Entry<NetworkDevice.ROLE, Integer>> iterator = summary.getAllDevices().entrySet().iterator();
 		while(iterator.hasNext()) {
-			Map.Entry<NetworkDevice.TYPE, Integer> entry = iterator.next();
+			Map.Entry<NetworkDevice.ROLE, Integer> entry = iterator.next();
 			String label = NetworkDeviceStatusBucket.getLabel(entry.getKey());
 			Point point = new Point(label, entry.getValue());
 			if(entry.getValue() > 1) {

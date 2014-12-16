@@ -1,17 +1,13 @@
 package com.parallelwireless.zkui.network;
 
-import java.awt.Event;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Logger;
 
-import org.zkoss.bind.annotation.Scope;
 import org.zkoss.gmaps.Gmaps;
 import org.zkoss.gmaps.Gmarker;
 import org.zkoss.gmaps.Gpolyline;
@@ -24,10 +20,10 @@ import org.zkoss.zul.Div;
 import com.parallelwireless.zkui.models.CwsModel;
 import com.parallelwireless.zkui.models.GmapEndpoint;
 import com.parallelwireless.zkui.models.GmapPolyline;
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.UnicloudModel;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 import com.parallelwireless.zkui.models.resources.GeoLocation;
-import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.GeoLocation.MAP_STATE;
 
 @SuppressWarnings("serial")
@@ -102,7 +98,7 @@ public class GoogleMapsController extends SelectorComposer<Div>{
 		GeoLocation geo = geos.get(gmarker.getId());
 		String geoId    = geo.getId();
 		if(geo != null) {
-			if(geo.getDevType() == DEV_TYPE.LAC){
+			if(geo.getDevType() == TYPE.LAC){
 				geo.setMapState(MAP_STATE.FOCUS);
 				for(UnicloudModel u : UnimanageDataUtil.getAllUniclouds()) {
 					if(u.getName().equalsIgnoreCase(geoId)) {

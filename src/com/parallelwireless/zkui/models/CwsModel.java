@@ -1,15 +1,10 @@
 package com.parallelwireless.zkui.models;
 
 import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.parallelwireless.zkui.models.inventory.SystemInventory;
-import com.parallelwireless.zkui.models.lte.LteErabSetupSuccessRateAll;
 import com.parallelwireless.zkui.models.lte.LteStatisticsImpl;
 import com.parallelwireless.zkui.models.lte.QCI;
 import com.parallelwireless.zkui.models.lte.Statistics;
-import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
 
 
@@ -25,19 +20,19 @@ public class CwsModel extends NetworkDeviceImpl {
 	int id;
 	String name;
 	int unicloudId;
-	DEV_TYPE type;
+	TYPE type;
 	CWS_ROLE cwsRole;
 	int lastSeenMinutes;
 	String unicloudName = "";
 		
 	LteStatisticsImpl lteStats = null;
 	
-	public CwsModel(String name, int unicloudId, DEV_TYPE type) {
+	public CwsModel(String name, int unicloudId, TYPE type, ROLE role) {
 		this.id = globalCwsId++;
 		this.name = name;
 		this.unicloudId = unicloudId;
 		this.type = type;
-		this.sysinfo = new SysInfo(name, type);
+		this.sysinfo = new SysInfo(name, type, role);
 		networkDeviceInfo.setInterfaceList(Unimanage.spoofNetworkInterfaces(NETIF_COUNT));		
 		this.sysinfo.addResources(ResourceConfig.generate());
 		lteStats = new LteStatisticsImpl(name);		
@@ -73,7 +68,7 @@ public class CwsModel extends NetworkDeviceImpl {
 	public CWS_ROLE getCwsRole() {
 		return cwsRole;
 	}
-	public void setType(DEV_TYPE type) {
+	public void setType(TYPE type) {
 		this.type = type;
 	}
 
@@ -100,7 +95,7 @@ public class CwsModel extends NetworkDeviceImpl {
 	}
 	
 	@Override
-	public DEV_TYPE getType() {
+	public TYPE getType() {
 		return type;
 	}
 	

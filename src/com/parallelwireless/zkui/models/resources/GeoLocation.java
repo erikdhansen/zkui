@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.zkoss.gmaps.Gmarker;
 
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.UnimanageDataUtil;
 import com.parallelwireless.zkui.models.resources.SystemResource.RESOURCE;
 
@@ -80,26 +81,26 @@ public class GeoLocation extends Gmarker {
 		ICON_CWS_100.put(ICON_COLOR.YELLOW, "/images/solid/cws-300-yellow-32.png");
 	}
 	
-	private static Map<DEV_TYPE, Map<ICON_COLOR, String>> devIconMap = new HashMap<DEV_TYPE, Map<ICON_COLOR, String>>();
+	private static Map<TYPE, Map<ICON_COLOR, String>> devIconMap = new HashMap<TYPE, Map<ICON_COLOR, String>>();
 	static {
-		devIconMap.put(DEV_TYPE.LAC,  ICON_LAC);
-		devIconMap.put(DEV_TYPE.LAC_HA, ICON_LAC_HA);
-		devIconMap.put(DEV_TYPE.CWS_100, ICON_CWS_100);
-		devIconMap.put(DEV_TYPE.CWS_200,  ICON_CWS_200);
-		devIconMap.put(DEV_TYPE.CWS_300, ICON_CWS_300);
+		devIconMap.put(TYPE.LAC,  ICON_LAC);
+		devIconMap.put(TYPE.LAC_HA, ICON_LAC_HA);
+		devIconMap.put(TYPE.CWS_100, ICON_CWS_100);
+		devIconMap.put(TYPE.CWS_200,  ICON_CWS_200);
+		devIconMap.put(TYPE.CWS_300, ICON_CWS_300);
 	}
 	
 	
 	private String systemName   = "n/a";
 	private String locationName = "n/a";
-	private DEV_TYPE devType    = DEV_TYPE.LAC;
+	private TYPE devType    = TYPE.LAC;
 	private MAP_STATE mapState  = MAP_STATE.HIDDEN;
 	
 	public GeoLocation() {
 		super();
 	}
 	
-	public GeoLocation(String systemName, DEV_TYPE devType) {
+	public GeoLocation(String systemName, TYPE devType) {
 		super();
 		this.systemName = systemName;
 		this.devType = devType;
@@ -119,7 +120,7 @@ public class GeoLocation extends Gmarker {
 		}
 	}
 	
-	public GeoLocation(String systemName, DEV_TYPE devType, float latitude, float longitude) {
+	public GeoLocation(String systemName, TYPE devType, float latitude, float longitude) {
 		super();
 		this.systemName = systemName;
 		this.devType = devType;
@@ -145,11 +146,11 @@ public class GeoLocation extends Gmarker {
 		this.setId(systemName);
 	}
 	
-	public DEV_TYPE getDevType() {
+	public TYPE getDevType() {
 		return devType;
 	}
 	
-	public void setDevType(DEV_TYPE devType) {
+	public void setDevType(TYPE devType) {
 		this.devType = devType;
 	}
 	

@@ -1,17 +1,16 @@
 package com.parallelwireless.zkui.models;
 
 
-import com.parallelwireless.zkui.models.NetworkDevice.DEV_TYPE;
 import com.parallelwireless.zkui.models.NetworkDevice.ROLE;
 import com.parallelwireless.zkui.models.NetworkDevice.STATUS;
 
 public class NetworkDeviceStatusBucket {
-	NetworkDevice.DEV_TYPE type;
+	NetworkDevice.ROLE role;
 	NetworkDevice.STATUS status;
 	int count = 0;
 	
-   public NetworkDeviceStatusBucket(NetworkDevice.DEV_TYPE type, NetworkDevice.STATUS status, int count) {
-		this.type = type;
+   public NetworkDeviceStatusBucket(NetworkDevice.ROLE role, NetworkDevice.STATUS status, int count) {
+		this.role = role;
 		this.status = status;
 		this.count = count;
 	}
@@ -20,8 +19,8 @@ public class NetworkDeviceStatusBucket {
 		return (status == STATUS.up) ? true : false;
 	}
 
-	public DEV_TYPE getType() {
-		return type;
+	public ROLE getRole() {
+		return role;
 	}
 	
 	public int getCount() {

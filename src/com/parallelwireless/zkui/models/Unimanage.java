@@ -14,6 +14,7 @@ import org.zkoss.chart.RadialGradient;
 import org.zkoss.zul.Caption;
 import org.zkoss.zul.Window;
 
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.inventory.CwsInventoryItem;
 
 public class Unimanage {
@@ -113,8 +114,9 @@ public class Unimanage {
 		return "4.0.1029";
 	}
 	
-	public static String getRandomSerialNumber() {
-		return String.format("%08d",  UnimanageDataUtil.getRandomInt(0, 9999));
+	public static String getRandomSerialNumber(TYPE type) {
+		String prefix = type.name().replace("_", "").concat("-");
+		return prefix.concat(String.format("%08d",  UnimanageDataUtil.getRandomInt(0, 9999)));
 	}
 	
 	public static String getRandomIP(IP4_ADDR_CLASS addrClass) {

@@ -2,11 +2,12 @@ package com.parallelwireless.zkui.models;
 
 import java.util.Comparator;
 
+import com.parallelwireless.zkui.models.NetworkDevice.ROLE;
+import com.parallelwireless.zkui.models.NetworkDevice.TYPE;
 import com.parallelwireless.zkui.models.resources.CpuResource;
 import com.parallelwireless.zkui.models.resources.DiskResource;
 import com.parallelwireless.zkui.models.resources.GeneralResource;
 import com.parallelwireless.zkui.models.resources.GeoLocation;
-import com.parallelwireless.zkui.models.resources.GeoLocation.DEV_TYPE;
 import com.parallelwireless.zkui.models.resources.MemoryResource;
 import com.parallelwireless.zkui.models.resources.NetworkResource;
 import com.parallelwireless.zkui.models.resources.ResourceConfig;
@@ -21,21 +22,23 @@ public class SysInfo {
 	private DiskResource    disk = null; 
 	private NetworkResource net  = null;
 	private GeoLocation     geo  = null;
-	private DEV_TYPE    	devType;
+	private TYPE			type;
+	private ROLE    		role;
 	
 	// CPU count and speed -- added here for demo purposes...should be in CPU info
 	int cpuCount = 4;
 	String cpuSpeed = "3.2GHz";
 	
-	public SysInfo(String systemName, DEV_TYPE devType) {
+	public SysInfo(String systemName, TYPE type, ROLE role) {
 		this.systemName = systemName;
+		this.role = role;
+		this.type = type;
 		gen = new GeneralResource(systemName);
 		cpu  = new CpuResource(systemName);
 		mem  = new MemoryResource(systemName);
 		disk = new DiskResource(systemName);
 		net  = new NetworkResource(systemName);
-		geo  = new GeoLocation(systemName, devType);
-		this.devType = devType;
+		geo  = new GeoLocation(systemName, type);
 	}
 	
 	public void addResources(ResourceConfig config) {
@@ -89,6 +92,22 @@ public class SysInfo {
 	
 	public void setCpuSpeed(String cpuSpeed) {
 		this.cpuSpeed = cpuSpeed;
+	}
+	
+	public void setRole(ROLE role) {
+		this.role = role;
+	}
+	
+	public ROLE getRole() {
+		return role;
+	}
+	
+	public TYPE getType() {
+		return type;
+	}
+	
+	public void setType(TYPE type) {
+		this.type = type;
 	}
 	
 	public static class Comparators {
