@@ -18,7 +18,6 @@ import com.parallelwireless.zkui.models.AlarmDataUtil;
 import com.parallelwireless.zkui.models.AlarmModel;
 import com.parallelwireless.zkui.models.ChartDataModelFactory;
 import com.parallelwireless.zkui.models.UnicloudActiveAlarmSummaryData;
-import com.sun.media.sound.ModelAbstractChannelMixer;
 
 
 @SuppressWarnings("serial")

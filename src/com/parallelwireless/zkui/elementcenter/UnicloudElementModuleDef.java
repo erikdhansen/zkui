@@ -10,15 +10,15 @@ import com.centeredlogic.ecx.elements.Element;
 import com.centeredlogic.ecx.moduleSupport.AbstractElementModuleDef;
 import com.centeredlogic.ecx.moduleSupport.ElementControllerIf;
 import com.centeredlogic.ecx.moduleSupport.gui.ElementModuleGuiDefIf;
-import com.centeredlogic.net.snmp.TrapManagerIf;
-import com.parallelwireless.zkui.config.*;
+//import com.centeredlogic.net.snmp.TrapManagerIf;
+import com.parallelwireless.unimanage.mib2unicloud.config.*;
 
 public class UnicloudElementModuleDef extends AbstractElementModuleDef {
 	final static Log log = LogFactory.getLog(UnicloudElementModuleDef.class);
 	
 	public static ArrayList<VersionedObject> configAppRootNodes;
 	
-	public static String MODULENAME = "UniCloud";
+	public static String MODULENAME = "Mib2Unicloud";
 	public static String DISPLAY_NAME = "LAC SNMP MIB-II Device";
 	
 	boolean started = false;
